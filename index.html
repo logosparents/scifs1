@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>科學探險家：貓頭鷹博士的學堂</title>
+    <title>Science Explorer: Dr. Owl's Academy</title>
     <!-- Tailwind CSS for vibrant UI -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for cute icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts for friendly rounded text -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700;900&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Quicksand', 'Noto Sans TC', sans-serif;
@@ -36,17 +37,31 @@
         }
         @keyframes bounce-slow {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
         }
         .bounce-owl {
-            animation: bounce-slow 3s infinite ease-in-out;
+            animation: bounce-slow 2.5s infinite ease-in-out;
         }
-        /* Custom scrollbar for flashcards */
+        
+        /* Pulse Animation for Speaking Buttons */
+        @keyframes speak-pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+        .speak-active {
+            animation: speak-pulse-ring 1.2s infinite ease-in-out;
+            background-color: #fbbf24 !important;
+            color: #78350f !important;
+        }
+        
+        /* Custom scrollbar for horizontal category filter */
         ::-webkit-scrollbar {
-            width: 8px;
+            height: 8px;
         }
         ::-webkit-scrollbar-track {
             background: #fef3c7;
+            border-radius: 999px;
         }
         ::-webkit-scrollbar-thumb {
             background: #fbbf24;
@@ -54,135 +69,125 @@
         }
     </style>
 </head>
-<body class="min-h-screen pb-12 select-none">
+<body class="min-h-screen pb-16 select-none text-teal-950">
 
     <!-- Sparkle Stars Background Effect -->
-    <div class="absolute inset-0 pointer-events-none opacity-20 overflow-hidden">
-        <i class="fa-solid fa-star text-yellow-400 absolute text-2xl" style="top: 10%; left: 8%; animation: pulse 2s infinite;"></i>
-        <i class="fa-solid fa-star text-yellow-400 absolute text-3xl" style="top: 15%; right: 10%; animation: pulse 2.5s infinite;"></i>
-        <i class="fa-solid fa-star text-yellow-400 absolute text-xl" style="bottom: 20%; left: 15%; animation: pulse 1.8s infinite;"></i>
-        <i class="fa-solid fa-star text-yellow-400 absolute text-2xl" style="bottom: 15%; right: 12%; animation: pulse 2.2s infinite;"></i>
+    <div class="absolute inset-0 pointer-events-none opacity-25 overflow-hidden">
+        <i class="fa-solid fa-star text-yellow-400 absolute text-3xl" style="top: 8%; left: 6%; animation: pulse 2s infinite;"></i>
+        <i class="fa-solid fa-star text-yellow-400 absolute text-4xl" style="top: 14%; right: 8%; animation: pulse 2.5s infinite;"></i>
+        <i class="fa-solid fa-star text-yellow-400 absolute text-2xl" style="bottom: 18%; left: 12%; animation: pulse 1.8s infinite;"></i>
+        <i class="fa-solid fa-star text-yellow-400 absolute text-3xl" style="bottom: 12%; right: 10%; animation: pulse 2.2s infinite;"></i>
     </div>
 
-    <!-- Header Block -->
-    <header class="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 p-4 text-white text-center shadow-lg border-b-8 border-cyan-300 relative z-10">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <span class="text-4xl sm:text-5xl bounce-owl">🦉</span>
+    <!-- Header Block (English on top, Chinese below) -->
+    <header class="bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500 p-6 text-white text-center shadow-xl border-b-8 border-cyan-400 relative z-10">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <span class="text-5xl sm:text-6xl bounce-owl cursor-pointer" onclick="speakEnglish('Welcome to Dr. Owls Academy! Let\'s learn science together!')">🦉</span>
                 <div class="text-left">
-                    <h1 class="text-2xl sm:text-3xl font-extrabold title-font tracking-wide text-yellow-100 drop-shadow">
-                        <span class="lang-zh">科學探險家：貓頭鷹博士的學堂</span>
-                        <span class="lang-en hidden">Science Explorer: Dr. Owl's Academy</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold title-font tracking-wide text-yellow-100 drop-shadow">
+                        Science Explorer: Dr. Owl's Academy
                     </h1>
-                    <p class="text-xs sm:text-sm font-semibold text-white/90">
-                        <span class="lang-zh">依據最新 SA2 溫習手冊與模擬試卷設計</span>
-                        <span class="lang-en hidden">Designed based on SA2 Booklet & Practice Paper</span>
+                    <p class="text-lg sm:text-xl font-bold text-teal-50 mt-1">
+                        科學探險家：貓頭鷹博士的學堂
+                    </p>
+                    <p class="text-xs sm:text-sm font-semibold text-white/80 mt-1">
+                        Designed based on SA2 Booklet & Practice Paper / 依據最新 SA2 溫習手冊與模擬試卷設計
                     </p>
                 </div>
             </div>
             
-            <!-- Language Selector & Stars Count -->
+            <!-- Stars Count & Mode Indicator -->
             <div class="flex items-center gap-3">
-                <!-- Star Counter -->
-                <div class="bg-amber-500/30 border-2 border-amber-300 px-4 py-2 rounded-full flex items-center gap-2 shadow-inner">
-                    <span class="text-2xl text-yellow-300 drop-shadow"><i class="fa-solid fa-star animate-spin" style="animation-duration: 4s;"></i></span>
-                    <span id="star-count" class="text-xl font-black text-yellow-100 title-font">0</span>
+                <div class="bg-amber-500/30 border-2 border-amber-300 px-5 py-2.5 rounded-full flex items-center gap-2 shadow-inner">
+                    <span class="text-3xl text-yellow-300 drop-shadow"><i class="fa-solid fa-star animate-spin" style="animation-duration: 4s;"></i></span>
+                    <span id="star-count" class="text-2xl font-black text-yellow-100 title-font">0</span>
                 </div>
-                <!-- Language Switcher Buttons -->
-                <div class="inline-flex rounded-full border-2 border-white shadow-md overflow-hidden bg-white/20">
-                    <button id="btn-zh" onclick="setLanguage('zh')" class="px-4 py-1.5 font-bold transition text-xs sm:text-sm bg-yellow-300 text-teal-900 shadow">中文</button>
-                    <button id="btn-en" onclick="setLanguage('en')" class="px-4 py-1.5 font-bold transition text-xs sm:text-sm text-white hover:bg-white/10">ENG</button>
+                <div class="bg-white/20 border-2 border-white/40 px-4 py-2 rounded-full font-bold text-xs sm:text-sm text-white flex items-center gap-1.5">
+                    🇺🇸 🗣️ Audio Mode
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Container -->
-    <main class="max-w-4xl mx-auto px-4 mt-6 relative z-10">
+    <main class="max-w-4xl mx-auto px-4 mt-8 relative z-10">
         
         <!-- ================= HOME SCREEN ================= -->
         <section id="screen-home" class="transition-all duration-300">
             <!-- Hero Mascot and Greeting -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border-4 border-teal-300 text-center relative overflow-hidden mb-6">
-                <div class="absolute -top-12 -left-12 w-24 h-24 bg-yellow-200 rounded-full opacity-50"></div>
-                <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-teal-100 rounded-full opacity-50"></div>
+            <div class="bg-white rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border-4 border-teal-400 text-center relative overflow-hidden mb-8">
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-yellow-200 rounded-full opacity-50"></div>
+                <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-teal-100 rounded-full opacity-50"></div>
                 
-                <div class="relative z-10">
-                    <div class="text-6xl sm:text-7xl mb-4 bounce-owl">🦉</div>
-                    <div class="inline-block bg-yellow-100 border-2 border-yellow-300 rounded-2xl px-6 py-3 mb-6 relative">
-                        <div class="absolute w-3 h-3 bg-yellow-100 border-t-2 border-l-2 border-yellow-300 rotate-45 -bottom-1.5 left-1/2 -translate-x-1/2"></div>
-                        <p id="owl-greeting" class="text-base sm:text-lg font-bold text-teal-900 leading-relaxed"></p>
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="text-7xl sm:text-8xl mb-4 bounce-owl cursor-pointer" onclick="speakGreeting()">🦉</div>
+                    
+                    <!-- Bubble with Pronunciation Button inside -->
+                    <div class="inline-block bg-yellow-50 border-4 border-yellow-300 rounded-[2rem] p-6 mb-8 relative max-w-2xl shadow-md">
+                        <div class="absolute w-4 h-4 bg-yellow-50 border-t-4 border-l-4 border-yellow-300 rotate-45 -bottom-2.5 left-1/2 -translate-x-1/2"></div>
+                        
+                        <!-- Speaker play button -->
+                        <button onclick="speakGreeting(this)" id="btn-speak-greeting" class="mb-3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-5 py-2 rounded-full flex items-center gap-2 mx-auto shadow-md transition active:scale-95 text-base sm:text-lg">
+                            <i class="fa-solid fa-volume-high text-xl"></i> Listen to Dr. Owl / 聽聽博士說話
+                        </button>
+                        
+                        <!-- Stacked Text: English on top (Large), Chinese on bottom (Medium) -->
+                        <p id="owl-greeting-en" class="text-xl sm:text-2xl font-extrabold text-teal-900 leading-relaxed mb-2"></p>
+                        <p id="owl-greeting-zh" class="text-base sm:text-lg font-bold text-teal-700/90 leading-relaxed border-t border-dashed border-teal-200/50 pt-2"></p>
                     </div>
                     
-                    <h3 class="text-lg sm:text-xl font-black text-teal-800 mb-6 uppercase tracking-wider">
-                        <span class="lang-zh">🎒 請選擇你想挑戰的探險關卡：</span>
-                        <span class="lang-en hidden">🎒 Choose Your Learning Adventure:</span>
+                    <h3 class="text-xl sm:text-2xl font-black text-teal-800 mb-8 uppercase tracking-wider">
+                        🎒 Choose Your Learning Adventure: <br>
+                        <span class="text-lg font-bold text-teal-600">請選擇你想挑戰的探險關卡：</span>
                     </h3>
                     
                     <!-- Quick Navigator Buttons -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl mx-auto">
                         <!-- Flashcard Button -->
-                        <button onclick="switchScreen('flashcards')" class="group relative bg-emerald-400 hover:bg-emerald-500 text-white rounded-3xl p-6 shadow-lg hover:shadow-xl border-b-8 border-emerald-600 transition-all active:scale-95 flex flex-col items-center">
-                            <span class="text-5xl mb-3 group-hover:scale-110 transition">📚</span>
-                            <span class="text-lg font-extrabold">
-                                <span class="lang-zh">科學閃卡</span>
-                                <span class="lang-en hidden">Science Flashcards</span>
-                            </span>
-                            <span class="text-xs text-emerald-100 mt-1 font-semibold">
-                                <span class="lang-zh">基礎知識一覽</span>
-                                <span class="lang-en hidden">Quick Learning Cards</span>
-                            </span>
+                        <button onclick="switchScreen('flashcards')" class="group relative bg-emerald-400 hover:bg-emerald-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-emerald-600 transition-all active:scale-95 flex flex-col items-center">
+                            <span class="text-6xl mb-4 group-hover:scale-110 transition">📚</span>
+                            <span class="text-2xl font-black">Science Flashcards</span>
+                            <span class="text-base font-bold text-emerald-100 mt-2">科學閃卡</span>
+                            <span class="text-xs text-emerald-50/80 mt-1 font-semibold">Quick Learning Cards / 基礎知識一覽</span>
                         </button>
 
                         <!-- Matching Button -->
-                        <button onclick="switchScreen('matching')" class="group relative bg-purple-400 hover:bg-purple-500 text-white rounded-3xl p-6 shadow-lg hover:shadow-xl border-b-8 border-purple-600 transition-all active:scale-95 flex flex-col items-center">
-                            <span class="text-5xl mb-3 group-hover:scale-110 transition">🧩</span>
-                            <span class="text-lg font-extrabold">
-                                <span class="lang-zh">自然與人造配對</span>
-                                <span class="lang-en hidden">Natural vs Man-made</span>
-                            </span>
-                            <span class="text-xs text-purple-100 mt-1 font-semibold">
-                                <span class="lang-zh">配對大挑戰</span>
-                                <span class="lang-en hidden">Sorting Game</span>
-                            </span>
+                        <button onclick="switchScreen('matching')" class="group relative bg-purple-400 hover:bg-purple-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-purple-600 transition-all active:scale-95 flex flex-col items-center">
+                            <span class="text-6xl mb-4 group-hover:scale-110 transition">🧩</span>
+                            <span class="text-2xl font-black">Natural vs Man-made</span>
+                            <span class="text-base font-bold text-purple-100 mt-2">自然與人造配對</span>
+                            <span class="text-xs text-purple-50/80 mt-1 font-semibold">Sorting Game / 配對大挑戰</span>
                         </button>
 
                         <!-- Quiz Button -->
-                        <button onclick="switchScreen('quiz')" class="group relative bg-orange-400 hover:bg-orange-500 text-white rounded-3xl p-6 shadow-lg hover:shadow-xl border-b-8 border-orange-600 transition-all active:scale-95 flex flex-col items-center">
-                            <span class="text-5xl mb-3 group-hover:scale-110 transition">❓</span>
-                            <span class="text-lg font-extrabold">
-                                <span class="lang-zh">貓頭鷹問答比賽</span>
-                                <span class="lang-en hidden">Dr. Owl's Quiz</span>
-                            </span>
-                            <span class="text-xs text-orange-100 mt-1 font-semibold">
-                                <span class="lang-zh">SA2 仿真題庫</span>
-                                <span class="lang-en hidden">SA2 Exam Simulator</span>
-                            </span>
+                        <button onclick="switchScreen('quiz')" class="group relative bg-orange-400 hover:bg-orange-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-orange-600 transition-all active:scale-95 flex flex-col items-center">
+                            <span class="text-6xl mb-4 group-hover:scale-110 transition">❓</span>
+                            <span class="text-2xl font-black">Dr. Owl's Quiz</span>
+                            <span class="text-base font-bold text-orange-100 mt-2">貓頭鷹問答比賽</span>
+                            <span class="text-xs text-orange-50/80 mt-1 font-semibold">SA2 Exam Simulator / SA2 仿真題庫</span>
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- Parent Record Panel / Share Segment -->
-            <div class="bg-gradient-to-r from-amber-100 to-orange-100 rounded-3xl p-6 shadow-xl border-4 border-amber-300">
+            <div class="bg-gradient-to-r from-amber-100 to-orange-100 rounded-[2rem] p-8 shadow-xl border-4 border-amber-300">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div class="flex items-center gap-4 text-left">
-                        <span class="text-4xl">📊</span>
+                        <span class="text-5xl">📊</span>
                         <div>
-                            <h4 class="text-lg font-bold text-amber-900">
-                                <span class="lang-zh">親愛的家長：</span>
-                                <span class="lang-en hidden">Dear Parents:</span>
+                            <h4 class="text-xl font-bold text-amber-900">
+                                Dear Parents / 親愛的家長：
                             </h4>
-                            <p class="text-sm text-amber-800">
-                                <span class="lang-zh">隨時分享小朋友在學堂獲得的星星數目和溫習進度！</span>
-                                <span class="lang-en hidden">Share your kid's study progress and stars earned!</span>
+                            <p class="text-base text-amber-800 mt-1">
+                                Share your kid's study progress and stars earned! / 隨時分享小朋友在學堂獲得的星星和溫習進度！
                             </p>
                         </div>
                     </div>
-                    <button onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-3 rounded-2xl flex items-center gap-2 shadow-lg transition active:scale-95 text-base whitespace-nowrap">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span class="lang-zh">傳送進度給家長</span>
-                        <span class="lang-en hidden">Share to Parents</span>
+                    <button onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-8 py-4 rounded-2xl flex items-center gap-3 shadow-lg transition active:scale-95 text-lg whitespace-nowrap">
+                        <i class="fa-brands fa-whatsapp text-3xl"></i>
+                        <span>Share to Parents / 傳送進度給家長</span>
                     </button>
                 </div>
             </div>
@@ -192,70 +197,89 @@
         <section id="screen-flashcards" class="hidden transition-all duration-300">
             <!-- Navigation -->
             <div class="flex items-center justify-between mb-4">
-                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-4 py-2 rounded-2xl font-bold transition flex items-center gap-2 shadow-md">
+                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
                     <i class="fa-solid fa-arrow-left"></i>
-                    <span class="lang-zh">返回主頁</span>
-                    <span class="lang-en hidden">Main Menu</span>
+                    <span>Main Menu / 返回主頁</span>
                 </button>
-                <!-- Stars reward info -->
-                <div class="bg-yellow-100 border-2 border-yellow-300 px-4 py-1.5 rounded-full font-bold text-yellow-800 text-sm shadow">
-                    ⭐ <span class="lang-zh">看卡片翻頁可獲得額外星星！</span><span class="lang-en hidden">Learn to earn stars!</span>
+                <div class="bg-yellow-100 border-2 border-yellow-300 px-4 py-2 rounded-full font-bold text-yellow-800 text-sm sm:text-base shadow">
+                    ⭐ Learn to earn stars! / 翻閱閃卡可獲得額外星星！
                 </div>
             </div>
 
             <!-- Dr. Owl Tips inside Flashcard -->
-            <div class="bg-teal-50 border-4 border-teal-200 rounded-2xl p-4 mb-6 flex items-start gap-3">
-                <span class="text-3xl bounce-owl">🦉</span>
+            <div class="bg-teal-50 border-4 border-teal-200 rounded-2xl p-5 mb-6 flex items-start gap-4">
+                <span class="text-4xl bounce-owl">🦉</span>
                 <div>
-                    <h4 class="font-bold text-teal-800">
-                        <span class="lang-zh">貓頭鷹博士的提示：</span>
-                        <span class="lang-en hidden">Dr. Owl's Tips:</span>
+                    <h4 class="font-bold text-teal-800 text-lg">
+                        Dr. Owl's Tips / 貓頭鷹博士的提示：
                     </h4>
-                    <p class="text-sm text-teal-700">
-                        <span class="lang-zh">點擊卡片就可以將它翻過來！背面有溫習小手冊的精華內容喔！</span>
-                        <span class="lang-en hidden">Tap any card to flip it! The back contains critical Booklet takeaways!</span>
+                    <p class="text-base text-teal-700 mt-1">
+                        Tap any card to flip it! The back contains critical Booklet takeaways! Click the speaker 🔊 button to hear pronunciation. <br>
+                        <span class="text-sm font-semibold text-teal-600">點擊卡片就可以將它翻過來！背面有手冊精華內容喔！點擊喇叭 🔊 可聽取英語讀音。</span>
                     </p>
                 </div>
             </div>
 
-            <!-- Flashcard Deck Selector -->
-            <div class="flex gap-2 overflow-x-auto pb-3 mb-6" id="flashcard-categories">
+            <!-- Flashcard Deck Selector (Horizontal Scrollable) -->
+            <div class="flex gap-3 overflow-x-auto pb-3 mb-6" id="flashcard-categories">
                 <!-- Filled dynamically by JavaScript -->
             </div>
 
             <!-- Single Card Box -->
             <div class="flex flex-col items-center">
-                <div class="card-perspective w-full max-w-lg aspect-[4/3] cursor-pointer" onclick="flipFlashcard()">
-                    <div id="flashcard-inner" class="card-inner w-full h-full relative duration-500 shadow-2xl rounded-3xl border-4 border-yellow-400">
-                        <!-- Front Face -->
-                        <div id="flashcard-front" class="card-front absolute inset-0 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-[1.2rem] p-6 flex flex-col justify-between items-center text-center">
-                            <span class="bg-yellow-300/60 border border-yellow-400 text-amber-900 text-xs font-black px-4 py-1 rounded-full" id="flash-card-cat-label">CATEGORY</span>
+                <div class="card-perspective w-full max-w-xl aspect-[4/3] cursor-pointer" onclick="flipFlashcard()">
+                    <div id="flashcard-inner" class="card-inner w-full h-full relative duration-500 shadow-2xl rounded-[2.5rem] border-4 border-yellow-400">
+                        
+                        <!-- Front Face (English Primary on top, Chinese below) -->
+                        <div id="flashcard-front" class="card-front absolute inset-0 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-[2.2rem] p-8 flex flex-col justify-between items-center text-center">
+                            
+                            <!-- Category label & Pronunciation row -->
+                            <div class="w-full flex items-center justify-between">
+                                <span class="bg-yellow-300/80 border border-yellow-400 text-amber-900 text-sm font-black px-4 py-1.5 rounded-full" id="flash-card-cat-label">CATEGORY</span>
+                                <button onclick="speakFlashcardFront(event)" class="bg-amber-400 hover:bg-amber-500 text-amber-950 p-2.5 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-11 h-11" title="Pronounce Title">
+                                    <i class="fa-solid fa-volume-high text-xl"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Center Title Content -->
                             <div class="my-auto flex flex-col items-center">
-                                <span class="text-6xl mb-4" id="flash-card-icon">💧</span>
-                                <h3 class="text-2xl font-black text-amber-900" id="flash-card-title-zh">繁體中文標題</h3>
-                                <h4 class="text-lg font-bold text-amber-700/80 mt-1" id="flash-card-title-en">English Title</h4>
+                                <span class="text-7xl sm:text-8xl mb-4" id="flash-card-icon">💧</span>
+                                <h3 class="text-3xl sm:text-4xl font-black text-amber-950" id="flash-card-title-en">English Title</h3>
+                                <h4 class="text-xl sm:text-2xl font-bold text-amber-800/80 mt-2" id="flash-card-title-zh">繁體中文標題</h4>
                             </div>
-                            <span class="text-xs font-bold text-amber-600/80 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP / 點擊翻轉</span>
+                            
+                            <span class="text-sm font-bold text-amber-600/80 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP / 點擊卡片翻轉</span>
                         </div>
-                        <!-- Back Face -->
-                        <div id="flashcard-back" class="card-back absolute inset-0 bg-gradient-to-tr from-teal-500 to-cyan-600 rounded-[1.2rem] p-6 text-white flex flex-col justify-between items-center text-center">
-                            <span class="bg-teal-400/40 border border-teal-300 text-teal-100 text-xs font-bold px-3 py-1 rounded-full">💡 KEY FACTS / 重點核心</span>
-                            <div class="my-auto px-2">
-                                <p class="text-xl font-black leading-relaxed" id="flash-card-desc-zh">這是繁體中文說明的核心內容，適合小朋友記憶與溫習。</p>
-                                <p class="text-sm font-bold text-teal-100 mt-4 leading-relaxed" id="flash-card-desc-en">This is the English description for the science concept.</p>
+
+                        <!-- Back Face (Bilingual facts stacked) -->
+                        <div id="flashcard-back" class="card-back absolute inset-0 bg-gradient-to-tr from-teal-500 to-cyan-600 rounded-[2.2rem] p-8 text-white flex flex-col justify-between items-center text-center">
+                            
+                            <!-- Category label & Pronunciation row -->
+                            <div class="w-full flex items-center justify-between">
+                                <span class="bg-teal-400/40 border border-teal-300 text-teal-100 text-sm font-bold px-4 py-1.5 rounded-full">💡 KEY FACTS / 重點核心</span>
+                                <button onclick="speakFlashcardBack(event)" class="bg-teal-400 hover:bg-teal-300 text-white p-2.5 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-11 h-11" title="Pronounce Content">
+                                    <i class="fa-solid fa-volume-high text-xl"></i>
+                                </button>
                             </div>
-                            <span class="text-xs font-bold text-teal-200/80 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP BACK / 點擊翻回</span>
+                            
+                            <!-- Center Text Content -->
+                            <div class="my-auto px-2 overflow-y-auto max-h-[180px]">
+                                <p class="text-xl sm:text-2xl font-black leading-relaxed" id="flash-card-desc-en">This is the English description for the science concept.</p>
+                                <p class="text-base sm:text-lg font-bold text-teal-100 mt-4 leading-relaxed border-t border-dashed border-teal-400/50 pt-3" id="flash-card-desc-zh">這是繁體中文說明的核心內容，適合小朋友記憶與溫習。</p>
+                            </div>
+                            
+                            <span class="text-sm font-bold text-teal-200/85 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP BACK / 點擊翻回</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Navigation Controls for Cards -->
-                <div class="flex items-center gap-6 mt-6">
-                    <button onclick="prevFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-lg">
+                <div class="flex items-center gap-8 mt-6">
+                    <button onclick="prevFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-xl">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <span class="font-extrabold text-amber-900 text-lg shadow-sm px-4 py-2 rounded-full bg-white border border-amber-200" id="flashcard-index">1 / 10</span>
-                    <button onclick="nextFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-lg">
+                    <span class="font-extrabold text-amber-950 text-xl shadow-sm px-6 py-2.5 rounded-full bg-white border-2 border-amber-200" id="flashcard-index">1 / 10</span>
+                    <button onclick="nextFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-xl">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -266,27 +290,25 @@
         <section id="screen-matching" class="hidden transition-all duration-300">
             <!-- Navigation -->
             <div class="flex items-center justify-between mb-4">
-                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-4 py-2 rounded-2xl font-bold transition flex items-center gap-2 shadow-md">
+                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
                     <i class="fa-solid fa-arrow-left"></i>
-                    <span class="lang-zh">返回主頁</span>
-                    <span class="lang-en hidden">Main Menu</span>
+                    <span>Main Menu / 返回主頁</span>
                 </button>
-                <div class="bg-purple-100 border-2 border-purple-300 px-4 py-1.5 rounded-full font-bold text-purple-800 text-sm shadow">
-                    ⭐ <span class="lang-zh">成功分類所有卡片可得星星！</span><span class="lang-en hidden">Sort cards to earn stars!</span>
+                <div class="bg-purple-100 border-2 border-purple-300 px-4 py-2 rounded-full font-bold text-purple-800 text-sm sm:text-base shadow">
+                    ⭐ Sort cards to earn stars! / 成功分類卡片可得星星！
                 </div>
             </div>
 
             <!-- Mascot Guide -->
-            <div class="bg-purple-50 border-4 border-purple-200 rounded-2xl p-4 mb-6 flex items-start gap-3">
-                <span class="text-3xl bounce-owl">🦉</span>
+            <div class="bg-purple-50 border-4 border-purple-200 rounded-2xl p-5 mb-6 flex items-start gap-4">
+                <span class="text-4xl bounce-owl">🦉</span>
                 <div>
-                    <h4 class="font-bold text-purple-800">
-                        <span class="lang-zh">貓頭鷹博士的配對任務：</span>
-                        <span class="lang-en hidden">Dr. Owl's Sorting Mission:</span>
+                    <h4 class="font-bold text-purple-800 text-lg">
+                        Dr. Owl's Sorting Mission / 貓頭鷹博士的配對任務：
                     </h4>
-                    <p class="text-sm text-purple-700">
-                        <span class="lang-zh">點選底部的卡片，然後點選適當的分類框（自然 vs 人造），將它們成功歸類！</span>
-                        <span class="lang-en hidden">Click a card below, then select the matching container (Natural or Man-made)!</span>
+                    <p class="text-base text-purple-700 mt-1">
+                        Select an object card below, hear its English pronunciation, then click the correct container to categorize it! <br>
+                        <span class="text-sm font-semibold text-purple-600">點選底部的卡片，聆聽發音，然後點選分類框以進行歸類！</span>
                     </p>
                 </div>
             </div>
@@ -294,33 +316,32 @@
             <!-- Game Board Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <!-- Dropzone 1: Natural Objects -->
-                <div id="drop-natural" class="bg-emerald-50 border-4 border-dashed border-emerald-300 rounded-3xl p-6 min-h-[180px] shadow-inner flex flex-col transition-all">
-                    <h3 class="text-xl font-black text-emerald-800 text-center mb-4">
-                        🌿 <span class="lang-zh">自然物體 (Natural Objects)</span>
-                        <span class="lang-en hidden">Natural Objects</span>
+                <div id="drop-natural" class="bg-emerald-50 border-4 border-dashed border-emerald-300 rounded-[2rem] p-6 min-h-[200px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-emerald-100/50">
+                    <h3 class="text-xl sm:text-2xl font-black text-emerald-800 text-center mb-4">
+                        🌿 Natural Objects
+                        <span class="block text-sm sm:text-base font-bold text-emerald-600 mt-0.5">自然物體</span>
                     </h3>
-                    <div id="zone-natural" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[80px]">
+                    <div id="zone-natural" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[100px]">
                         <!-- Cards dropped here -->
                     </div>
                 </div>
 
                 <!-- Dropzone 2: Man-made Objects -->
-                <div id="drop-manmade" class="bg-orange-50 border-4 border-dashed border-orange-300 rounded-3xl p-6 min-h-[180px] shadow-inner flex flex-col transition-all">
-                    <h3 class="text-xl font-black text-orange-800 text-center mb-4">
-                        🤖 <span class="lang-zh">人造物體 (Man-made Objects)</span>
-                        <span class="lang-en hidden">Man-made Objects</span>
+                <div id="drop-manmade" class="bg-orange-50 border-4 border-dashed border-orange-300 rounded-[2rem] p-6 min-h-[200px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-orange-100/50">
+                    <h3 class="text-xl sm:text-2xl font-black text-orange-800 text-center mb-4">
+                        🤖 Man-made Objects
+                        <span class="block text-sm sm:text-base font-bold text-orange-600 mt-0.5">人造物體</span>
                     </h3>
-                    <div id="zone-manmade" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[80px]">
+                    <div id="zone-manmade" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[100px]">
                         <!-- Cards dropped here -->
                     </div>
                 </div>
             </div>
 
             <!-- Cards to be sorted -->
-            <div class="bg-white border-4 border-purple-200 rounded-3xl p-6 shadow-md">
-                <h4 class="font-black text-purple-900 mb-4 text-center">
-                    <span class="lang-zh">👉 待分類的卡片 (Click to Select, then Click Destination):</span>
-                    <span class="lang-en hidden">👉 Cards to classify (Click to select, then click box):</span>
+            <div class="bg-white border-4 border-purple-200 rounded-[2rem] p-6 shadow-md">
+                <h4 class="font-black text-purple-900 mb-4 text-center text-lg sm:text-xl">
+                    👉 Cards to classify (Click to Hear & Select) / 待分類的卡片：
                 </h4>
                 <div id="match-cards-pool" class="flex flex-wrap gap-4 justify-center">
                     <!-- Loaded dynamically via JavaScript -->
@@ -328,16 +349,14 @@
             </div>
 
             <!-- Action buttons -->
-            <div class="flex justify-center gap-4 mt-6">
-                <button onclick="checkMatchingResult()" class="bg-purple-500 hover:bg-purple-600 text-white font-extrabold px-8 py-3 rounded-2xl shadow-md transition active:scale-95 text-lg">
-                    <i class="fa-solid fa-check-double mr-2"></i>
-                    <span class="lang-zh">檢查結果</span>
-                    <span class="lang-en hidden">Submit Answer</span>
+            <div class="flex justify-center gap-6 mt-8">
+                <button onclick="checkMatchingResult()" class="bg-purple-500 hover:bg-purple-600 text-white font-extrabold px-10 py-4 rounded-2xl shadow-md transition active:scale-95 text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-check-double text-xl"></i>
+                    <span>Submit Answer / 檢查結果</span>
                 </button>
-                <button onclick="initMatchingGame()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-extrabold px-6 py-3 rounded-2xl shadow border border-gray-300 transition active:scale-95 text-base">
-                    <i class="fa-solid fa-arrows-rotate mr-1"></i>
-                    <span class="lang-zh">重新洗牌</span>
-                    <span class="lang-en hidden">Reset Deck</span>
+                <button onclick="initMatchingGame()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-extrabold px-8 py-4 rounded-2xl shadow border border-gray-300 transition active:scale-95 text-base flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span>Reset Deck / 重新洗牌</span>
                 </button>
             </div>
         </section>
@@ -346,23 +365,29 @@
         <section id="screen-quiz" class="hidden transition-all duration-300">
             <!-- Navigation -->
             <div class="flex items-center justify-between mb-4">
-                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-4 py-2 rounded-2xl font-bold transition flex items-center gap-2 shadow-md">
+                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
                     <i class="fa-solid fa-arrow-left"></i>
-                    <span class="lang-zh">返回主頁</span>
-                    <span class="lang-en hidden">Main Menu</span>
+                    <span>Main Menu / 返回主頁</span>
                 </button>
-                <div class="text-sm font-bold text-orange-700 bg-orange-100 border border-orange-200 px-3 py-1 rounded-full shadow" id="quiz-progress-badge">
+                <div class="text-base font-black text-orange-700 bg-orange-100 border border-orange-200 px-4 py-2 rounded-full shadow" id="quiz-progress-badge">
                     Question 1 / 10
                 </div>
             </div>
 
             <!-- Quiz Layout Container -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border-4 border-orange-300">
-                <!-- Question Title Block -->
-                <div class="mb-6">
-                    <span class="text-xs bg-orange-400 text-white font-extrabold px-3 py-1 rounded-full uppercase" id="quiz-cat-label">Water and Air</span>
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-teal-900 mt-3" id="quiz-question-zh">繁體中文問題文字</h2>
-                    <h3 class="text-base sm:text-lg font-bold text-teal-700 mt-1" id="quiz-question-en">English Question Text</h3>
+            <div class="bg-white rounded-[2.5rem] p-6 sm:p-10 shadow-2xl border-4 border-orange-300">
+                <!-- Question Title Block with Speak Button -->
+                <div class="mb-6 bg-orange-50/50 p-6 rounded-3xl border-2 border-orange-100">
+                    <div class="flex items-center justify-between gap-3">
+                        <span class="text-xs sm:text-sm bg-orange-400 text-white font-extrabold px-4 py-1.5 rounded-full uppercase" id="quiz-cat-label">Water and Air</span>
+                        <button id="btn-speak-question" onclick="speakCurrentQuestion(this)" class="bg-orange-400 hover:bg-orange-500 text-white w-12 h-12 rounded-full shadow-md transition active:scale-90 flex items-center justify-center">
+                            <i class="fa-solid fa-volume-high text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Question in Large English, Muted Chinese -->
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-teal-950 mt-4 leading-relaxed" id="quiz-question-en">English Question Text</h2>
+                    <h3 class="text-lg sm:text-xl font-bold text-teal-700 mt-2 border-t border-dashed border-teal-200/50 pt-2" id="quiz-question-zh">繁體中文問題文字</h3>
                 </div>
 
                 <!-- Answer options -->
@@ -370,25 +395,25 @@
                     <!-- Button options generated dynamically -->
                 </div>
 
-                <!-- Dr. Owl Tips Board -->
-                <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-4 mt-6 flex items-start gap-3 transition-all">
-                    <span class="text-3xl bounce-owl">🦉</span>
+                <!-- Dr. Owl Tips Board (Bilingual facts stacked) -->
+                <div class="bg-amber-50 border-4 border-amber-200 rounded-3xl p-5 mt-6 flex items-start gap-4">
+                    <span class="text-4xl bounce-owl">🦉</span>
                     <div>
-                        <h4 class="font-bold text-orange-800 flex items-center gap-1">
+                        <h4 class="font-extrabold text-amber-900 text-lg flex items-center gap-2">
                             <span>💡</span>
-                            <span class="lang-zh">貓頭鷹博士的提示：</span>
-                            <span class="lang-en hidden">Dr. Owl's Tip:</span>
+                            <span>Dr. Owl's Tip / 貓頭鷹博士的提示：</span>
                         </h4>
-                        <p class="text-sm text-orange-700" id="quiz-tip-text">博士會在這裡給提示幫助小朋友答對題目喔！</p>
+                        <!-- Stacked Tips -->
+                        <p class="text-base sm:text-lg font-bold text-amber-850 mt-1 leading-relaxed" id="quiz-tip-en">English tips</p>
+                        <p class="text-sm sm:text-base font-semibold text-amber-700 mt-1 leading-relaxed border-t border-dashed border-amber-300/50 pt-1" id="quiz-tip-zh">中文提示</p>
                     </div>
                 </div>
 
                 <!-- Control buttons inside Quiz -->
-                <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
-                    <div id="quiz-score-indicator" class="font-bold text-yellow-600">⭐ +10 stars for correct answer</div>
-                    <button id="btn-next-question" onclick="nextQuestion()" class="bg-orange-500 hover:bg-orange-600 text-white font-extrabold px-6 py-2.5 rounded-xl shadow transition active:scale-95 hidden flex items-center gap-2">
-                        <span class="lang-zh">下一題</span>
-                        <span class="lang-en hidden">Next</span>
+                <div class="flex items-center justify-between mt-8 pt-4 border-t border-gray-100">
+                    <div id="quiz-score-indicator" class="font-extrabold text-lg text-yellow-600">⭐ Earn +10 stars for correct answer</div>
+                    <button id="btn-next-question" onclick="nextQuestion()" class="bg-orange-500 hover:bg-orange-600 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-lg transition active:scale-95 hidden flex items-center gap-2 text-lg">
+                        <span>Next Question / 下一題</span>
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -397,39 +422,37 @@
 
         <!-- ================= SCREEN: CONGRATULATIONS / STATS ================= -->
         <section id="screen-congrats" class="hidden transition-all duration-300">
-            <div class="bg-white rounded-3xl p-8 shadow-2xl border-4 border-yellow-400 text-center max-w-xl mx-auto">
-                <span class="text-7xl">🎉</span>
-                <h2 class="text-3xl font-extrabold text-teal-900 mt-4 mb-2">
-                    <span class="lang-zh">超級科學探險家！</span>
-                    <span class="lang-en hidden">Super Science Explorer!</span>
+            <div class="bg-white rounded-[2.5rem] p-10 shadow-2xl border-4 border-yellow-400 text-center max-w-xl mx-auto">
+                <span class="text-8xl">🎉</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-teal-900 mt-6 mb-2">
+                    Super Science Explorer!
+                    <span class="block text-xl sm:text-2xl font-bold text-teal-700 mt-1">超級科學探險家！</span>
                 </h2>
-                <p class="text-lg font-bold text-teal-700 mb-6">
-                    <span class="lang-zh">你成功完成了所有溫習和問答測試！太厲害了！</span>
-                    <span class="lang-en hidden">You completed all learning modules and exam simulators! Fantastic job!</span>
+                <p class="text-lg font-semibold text-teal-700 mb-8">
+                    You completed all learning modules and exam simulators! Fantastic job! <br>
+                    <span class="text-base font-medium text-teal-600">你成功完成了所有溫習和問答測試！太厲害了！</span>
                 </p>
 
                 <!-- Stars summary card -->
-                <div class="bg-yellow-50 border-4 border-dashed border-yellow-300 rounded-2xl p-6 mb-6">
-                    <span class="text-xs bg-yellow-300 text-yellow-800 font-extrabold px-3 py-1 rounded-full uppercase">Current Score</span>
-                    <h3 class="text-5xl font-black text-amber-600 my-4 title-font">
+                <div class="bg-yellow-50 border-4 border-dashed border-yellow-300 rounded-3xl p-8 mb-8">
+                    <span class="text-xs sm:text-sm bg-yellow-300 text-yellow-900 font-extrabold px-4 py-1.5 rounded-full uppercase">Current Score</span>
+                    <h3 class="text-5xl sm:text-6xl font-black text-amber-600 my-4 title-font">
                         ⭐ <span id="congrats-stars">0</span> Stars
                     </h3>
-                    <p class="text-sm text-amber-800">
-                        <span class="lang-zh">貓頭鷹博士為你頒發了榮譽金牌！繼續保持熱情學習科學！</span>
-                        <span class="lang-en hidden">Dr. Owl has awarded you a gold badge! Keep exploring the world of science!</span>
+                    <p class="text-sm sm:text-base font-bold text-amber-850">
+                        Dr. Owl has awarded you a gold badge! Keep exploring science! <br>
+                        <span class="text-xs sm:text-sm font-semibold text-amber-700">貓頭鷹博士為你頒發了榮譽金牌！繼續保持熱情學習科學！</span>
                     </p>
                 </div>
 
                 <div class="flex flex-col gap-4">
-                    <button onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-3 rounded-2xl flex items-center justify-center gap-2 shadow transition active:scale-95">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span class="lang-zh">即刻分享好成績給爸爸媽媽！</span>
-                        <span class="lang-en hidden">Send Progress to Parents</span>
+                    <button onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-4 rounded-2xl flex items-center justify-center gap-3 shadow transition active:scale-95 text-lg">
+                        <i class="fa-brands fa-whatsapp text-3xl"></i>
+                        <span>Send Progress to Parents / 分享成績給爸爸媽媽！</span>
                     </button>
                     
-                    <button onclick="switchScreen('home')" class="bg-teal-400 hover:bg-teal-500 text-white font-extrabold px-6 py-3 rounded-2xl shadow transition active:scale-95">
-                        <span class="lang-zh">回到主頁重新挑戰</span>
-                        <span class="lang-en hidden">Play Again</span>
+                    <button onclick="switchScreen('home')" class="bg-teal-400 hover:bg-teal-500 text-white font-extrabold px-6 py-4 rounded-2xl shadow transition active:scale-95 text-lg">
+                        Play Again / 回到主頁重新挑戰
                     </button>
                 </div>
             </div>
@@ -438,14 +461,51 @@
     </main>
 
     <!-- Global Sound Effects/Notification banner -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/90 text-white px-6 py-3 rounded-full font-bold shadow-xl flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none text-base sm:text-lg">
         <span id="toast-icon">⭐</span>
         <span id="toast-text">Toast Message</span>
     </div>
 
     <script>
+        // ---------------- TEXT TO SPEECH UTILITY ----------------
+        // Reliable English TTS engine using Web Speech API
+        function speakEnglish(text, btnElement) {
+            if ('speechSynthesis' in window) {
+                // Cancel ongoing narration to prevent overlap
+                window.speechSynthesis.cancel();
+                
+                // Clear out highlight effects from other audio play buttons
+                document.querySelectorAll('.speak-active').forEach(el => {
+                    el.classList.remove('speak-active');
+                    el.innerHTML = '<i class="fa-solid fa-volume-high text-xl"></i>';
+                });
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85; // Relaxed speed optimal for children's digestion
+                utterance.pitch = 1.1; // Friendly friendly kid tone
+                
+                if (btnElement) {
+                    btnElement.classList.add('speak-active');
+                    btnElement.innerHTML = '<i class="fa-solid fa-waveform text-xl animate-pulse"></i> Speaking...';
+                    
+                    utterance.onend = () => {
+                        btnElement.classList.remove('speak-active');
+                        btnElement.innerHTML = '<i class="fa-solid fa-volume-high text-xl"></i>';
+                    };
+                    utterance.onerror = () => {
+                        btnElement.classList.remove('speak-active');
+                        btnElement.innerHTML = '<i class="fa-solid fa-volume-high text-xl"></i>';
+                    };
+                }
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                showToast("⚠️ Your browser doesn't support pronunciation.", "⚠️ 您的瀏覽器不支援語音合成功能。");
+            }
+        }
+
         // Global State variables
-        let currentLang = 'zh';
         let totalStars = 0;
         let visitedFlashcards = new Set();
 
@@ -455,87 +515,87 @@
             {
                 cat: 'Water & Air / 水和空氣',
                 icon: '💧',
-                title_zh: '水的特性 (Water)',
                 title_en: 'Properties of Water',
-                desc_zh: '水沒有顏色、沒有氣味、沒有味道。水會流動，而且沒有固定的形狀。我們可以用眼睛看見水。',
-                desc_en: 'Water has no colour, no smell, and no taste. Water can flow and does not have a fixed shape. We can see water.'
+                title_zh: '水的特性 (Water)',
+                desc_en: 'Water has no colour, no smell, and no taste. Water can flow and does not have a fixed shape. We can see water.',
+                desc_zh: '水沒有顏色、沒有氣味、沒有味道。水會流動，而且沒有固定的形狀。我們可以用眼睛看見水。'
             },
             {
                 cat: 'Water & Air / 水和空氣',
                 icon: '💨',
-                title_zh: '空氣的特性 (Air)',
                 title_en: 'Properties of Air',
-                desc_zh: '空氣沒有顏色、沒有氣味、沒有味道。空氣會流動，而且沒有固定的形狀。但是，我們看不見空氣。',
-                desc_en: 'Air has no colour, no smell, and no taste. Air can flow and does not have a fixed shape. We cannot see air.'
+                title_zh: '空氣的特性 (Air)',
+                desc_en: 'Air has no colour, no smell, and no taste. Air can flow and does not have a fixed shape. We cannot see air.',
+                desc_zh: '空氣沒有顏色、沒有氣味、沒有味道。空氣會流動，而且沒有固定的形狀。但是，我們看不見空氣。'
             },
             // Category: Everyday Objects
             {
                 cat: 'Everyday Objects / 日常物品',
                 icon: '🪵',
-                title_zh: '自然與人造 (Natural vs Man-made)',
                 title_en: 'Natural vs Man-made',
-                desc_zh: '自然物體來自大自然（例如鴿子、大樹）。人造物體是由人類設計和製造的（例如桌子、衣服）。人造物體有時來自自然物體（例如木課桌來自樹木）。',
-                desc_en: 'Natural objects come from nature (e.g., pigeons, trees). Man-made objects are designed and made by people (e.g., desks, shirts). Some man-made objects come from natural materials (e.g., wooden desks).'
+                title_zh: '自然與人造 (Natural vs Man-made)',
+                desc_en: 'Natural objects come from nature (e.g. pigeons, trees). Man-made objects are designed and made by people (e.g. desks, shirts). Some man-made objects come from natural materials.',
+                desc_zh: '自然物體來自大自然（例如鴿子、大樹）。人造物體是由人類設計和製造的（例如桌子、衣服）。人造物體有時來自自然物體（如木製桌椅來自樹木）。'
             },
             {
                 cat: 'Everyday Objects / 日常物品',
                 icon: '🔍',
-                title_zh: '描述物品屬性 (Object Properties)',
                 title_en: 'Describing Properties',
-                desc_zh: '我們可以用硬度（軟/硬）、重量（輕/重）、彈性（有/無）和透明度（透明/半透明/不透明）來描述日常生活中的物品。我們可以使用天平更精確地測量重量。',
-                desc_en: 'We describe properties using hardness (soft/hard), weight (light/heavy), elasticity, and transparency. A balance scales weight more accurately than hands.'
+                title_zh: '描述物品屬性 (Object Properties)',
+                desc_en: 'We describe properties using hardness (soft or hard), weight (light or heavy), elasticity, and transparency. A balance scales weight more accurately than hands.',
+                desc_zh: '我們可以用硬度（軟/硬）、重量（輕/重）、彈性（有/無）和透明度（透明/半透明/不透明）來描述物品。使用天平能更精確地測量重量。'
             },
             // Category: Electronic Products
             {
                 cat: 'Electronic Products / 電子產品',
                 icon: '📱',
-                title_zh: '健康與安全使用 (Proper Use)',
                 title_en: 'Proper Use & Manners',
-                desc_zh: '長時間使用（不間斷超過1小時，或每天超過2小時）會損害視力與骨骼，導致肌肉疼痛。使用時應保持正確坐姿，走路時切勿看手機，拍照前先獲得允許。',
-                desc_en: 'Using screens for too long (over 1 hour non-stop, or 2+ hours daily) hurts eyesight, muscles, and bones. Maintain correct posture, never use phones while walking, and ask before taking pictures.'
+                title_zh: '健康與安全使用 (Proper Use)',
+                desc_en: 'Using screens for too long (over 1 hour non-stop, or 2+ hours daily) hurts eyesight, muscles, and bones. Maintain correct posture, never walk while using phones, and ask before taking pictures.',
+                desc_zh: '長時間使用（不間斷超過1小時，或每天超過2小時）會損害視力與骨骼。使用時應保持正確坐姿，走路切勿看手機，拍照前先獲得允許。'
             },
             // Category: Positions & Motion
             {
                 cat: 'Positions & Motion / 位置與運動',
                 icon: '🏃',
-                title_zh: '描述位置與運動 (Positions & Speed)',
                 title_en: 'Positions & Speed',
-                desc_zh: '我們用方向（前後左右）和距離（遠近）來描述位置。當物體改變位置，它就在運動。運動的速度是通過比較得出的（例如騎巴士比步行快，但比飛機慢）。',
-                desc_en: 'We use directions (front, back, left, right) and distances (near, far) to describe positions. An object is in motion when it changes position. Speed is relative after comparison.'
+                title_zh: '描述位置與運動 (Positions & Speed)',
+                desc_en: 'We use directions (front, back, left, right) and distances (near, far) to describe positions. An object is in motion when it changes position. Speed is relative after comparison.',
+                desc_zh: '我們用方向（前後左右）和距離（遠近）來描述位置。當物體改變位置時就是處於運動狀態。速度快慢是透過相互比較而得出的。'
             },
             // Category: Light & Shadow
             {
                 cat: 'Light & Shadow / 光與影子',
                 icon: '🔦',
-                title_zh: '影子的特徵 (Shadows)',
                 title_en: 'Features of Shadows',
-                desc_zh: '當光照在不透明物體上時就會產生影子。影子與物體形狀相似。將物體移向光源，影子會變大。物體與影子移動的方向是相反的。',
-                desc_en: 'A shadow appears when light shines on an opaque object. The shapes are similar. The shadow gets larger when the object is moved closer to light. Object and shadow move in opposite directions.'
+                title_zh: '影子的特徵 (Shadows)',
+                desc_en: 'A shadow appears when light shines on an opaque object. The shape is similar. The shadow gets larger when the object is moved closer to light. Object and shadow move in opposite directions.',
+                desc_zh: '當光照在不透明物體上時就會產生影子。影子形狀與物體相似。把物體移近光源，影子會變大。物體與影子移動的方向是相反的。'
             },
             {
                 cat: 'Light & Shadow / 光與影子',
                 icon: '🌈',
-                title_zh: '陽光與彩虹 (Sunlight & Prism)',
                 title_en: 'Colors of Sunlight',
-                desc_zh: '陽光由多種顏色的光組成，可用三稜鏡折射出紅、橙、黃、綠、藍、靛、紫七色。雨後陽光在空氣中折射，便會形成美麗的彩虹。',
-                desc_en: 'Sunlight consists of light of different colors. A prism splits sunlight into red, orange, yellow, green, blue, indigo, and purple. This split of light forms rainbows.'
+                title_zh: '陽光與彩虹 (Sunlight & Prism)',
+                desc_en: 'Sunlight consists of light of different colors. A prism splits sunlight into red, orange, yellow, green, blue, indigo, and purple. This split forms rainbows.',
+                desc_zh: '陽光由多種顏色的光組成，可用三稜鏡折射出紅、橙、黃、綠、藍、靛、紫七色。雨後陽光在空氣中折射，便會形成美麗的彩虹。'
             },
             // Category: Day & Night
             {
                 cat: 'Day & Night / 白天與黑夜',
                 icon: '☀️',
-                title_zh: '太陽的東升西落 (Sunrise & Sunset)',
                 title_en: 'Sunrise & Sunset',
-                desc_zh: '太陽每天早上從東方升起，黃昏從西方落下。觀察太陽的位置能幫助我們分辨方向（面朝太陽升起的東方，背後就是西方）。',
-                desc_en: 'The Sun rises in the east in the morning and sets in the west in the evening everyday. Looking at the positions of the Sun helps us find directions.'
+                title_zh: '太陽的東升西落 (Sunrise & Sunset)',
+                desc_en: 'The Sun rises in the east in the morning and sets in the west in the evening everyday. Looking at the positions of the Sun helps us find directions.',
+                desc_zh: '太陽每天早上從東方升起，黃昏從西方落下。觀察太陽的位置能幫助我們分辨方向（面朝太陽升起的東方，背後就是西方）。'
             },
             {
                 cat: 'Day & Night / 白天與黑夜',
                 icon: '🦉',
-                title_zh: '晝夜規律 (Diurnal Patterns)',
                 title_en: 'Day and Night Activities',
-                desc_zh: '白天有充足陽光，人類上學和工作，蝴蝶、麻雀也很活躍。黑夜適合休息，而貓頭鷹、飛蛾等夜行性動物在此時活動。部分人如警察和便利店職員需要夜間工作。',
-                desc_en: 'Daytime has sunlight and is suitable for school, work, and diurnal animals (sparrows, butterflies). Nighttime is dark and suitable for resting, and nocturnal animals (owls, moths). Some people work at night.'
+                title_zh: '晝夜規律 (Diurnal Patterns)',
+                desc_en: 'Daytime has sunlight and is suitable for school, work, and diurnal animals (sparrows, butterflies). Nighttime is dark and suitable for resting, and nocturnal animals (owls, moths). Some people work at night.',
+                desc_zh: '白天有充足陽光，人類上學和工作，蝴蝶和麻雀也很活躍。黑夜適合休息，貓頭鷹和飛蛾等夜行性動物在此時活動。少部分人如警察和便利店職員需要夜間工作。'
             }
         ];
 
@@ -544,14 +604,14 @@
 
         // ---------------- DATA STRUCTURES: MATCHING GAME ----------------
         const matchingItems = [
-            { id: 1, name_zh: '鴿子 (Pigeon)', name_en: 'Pigeon', type: 'natural', icon: '🐦' },
-            { id: 2, name_zh: '大樹 (Tree)', name_en: 'Tree', type: 'natural', icon: '🌳' },
-            { id: 3, name_zh: '竹子 (Bamboo)', name_en: 'Bamboo', type: 'natural', icon: '🎋' },
-            { id: 4, name_zh: '石頭 (Rock)', name_en: 'Rock', type: 'natural', icon: '🪨' },
-            { id: 5, name_zh: '玩具兔 (Toy Rabbit)', name_en: 'Toy Rabbit', type: 'manmade', icon: '🧸' },
-            { id: 6, name_zh: '襯衫 (Shirt)', name_en: 'Shirt', type: 'manmade', icon: '👕' },
-            { id: 7, name_zh: '水樽 (Water Bottle)', name_en: 'Water Bottle', type: 'manmade', icon: '🍼' },
-            { id: 8, name_zh: '垃圾桶 (Rubbish Bin)', name_en: 'Rubbish Bin', type: 'manmade', icon: '🗑️' }
+            { id: 1, name_en: 'Pigeon', name_zh: '鴿子', type: 'natural', icon: '🐦' },
+            { id: 2, name_en: 'Tree', name_zh: '大樹', type: 'natural', icon: '🌳' },
+            { id: 3, name_en: 'Bamboo', name_zh: '竹子', type: 'natural', icon: '🎋' },
+            { id: 4, name_en: 'Rock', name_zh: '石頭', type: 'natural', icon: '🪨' },
+            { id: 5, name_en: 'Toy Rabbit', name_zh: '玩具兔', type: 'manmade', icon: '🧸' },
+            { id: 6, name_en: 'Shirt', name_zh: '襯衫', type: 'manmade', icon: '👕' },
+            { id: 7, name_en: 'Water Bottle', name_zh: '水樽', type: 'manmade', icon: '🍼' },
+            { id: 8, name_en: 'Rubbish Bin', name_zh: '垃圾桶', type: 'manmade', icon: '🗑️' }
         ];
 
         let selectedMatchingCardId = null;
@@ -561,226 +621,197 @@
         const quizQuestions = [
             {
                 cat: 'Light & Shadow / 光與影子',
-                q_zh: '物體和它的影子的移動方向是怎樣的？',
                 q_en: 'What are the moving directions of the object and its shadow?',
+                q_zh: '物體和它的影子的移動方向是怎樣的？',
                 options: [
-                    { key: 'A', zh: '相同的', en: 'The same' },
-                    { key: 'B', zh: '相反的', en: 'Opposite' },
-                    { key: 'C', zh: '隨機沒有規律', en: 'Random' }
+                    { key: 'A', en: 'The same', zh: '相同的' },
+                    { key: 'B', en: 'Opposite', zh: '相反的' },
+                    { key: 'C', en: 'Random', zh: '隨機沒有規律' }
                 ],
                 correct: 'B',
-                tip_zh: '試一下在燈光下把你的手向左移，牆上的影子是不是也向右移？所以答案是「相反的」喔！',
-                tip_en: 'Try moving your hand to the left under a lamp. The shadow moves in the opposite direction!'
+                tip_en: 'Try moving your hand to the left under a lamp. The shadow moves in the opposite direction! So they move in opposite directions.',
+                tip_zh: '試一下在燈光下把你的手向左移，牆上的影子是不是向右移？所以答案是「相反的」喔！'
             },
             {
                 cat: 'Positions & Motion / 位置與運動',
-                q_zh: '當物體改變了它的位置，這代表物體處於什麼狀態？',
                 q_en: 'When an object changes its position, it is in...',
+                q_zh: '當物體改變了它的位置，這代表物體處於什麼狀態？',
                 options: [
-                    { key: 'A', zh: '靜止中', en: 'Rest' },
-                    { key: 'B', zh: '運動中', en: 'Motion' },
-                    { key: 'C', zh: '消失了', en: 'Disappeared' }
+                    { key: 'A', en: 'Rest', zh: '靜止中' },
+                    { key: 'B', en: 'Motion', zh: '運動中' },
+                    { key: 'C', en: 'Disappeared', zh: '消失了' }
                 ],
                 correct: 'B',
-                tip_zh: 'Booklet 第 10 單元提到，改變位置（Position）就表示物體正在進行「運動（Motion）」。',
-                tip_en: 'Unit 10 Booklet states that changing position means the object is in motion.'
+                tip_en: 'Booklet Unit 10 states that changing position means the object is in motion.',
+                tip_zh: '溫習手冊第 10 單元提到，改變位置（Position）就表示物體正在進行「運動（Motion）」。'
             },
             {
                 cat: 'Light & Shadow / 光與影子',
-                q_zh: '陽光/日光是由多少種顏色的光組成的？',
                 q_en: 'Sunlight is made up of how many colors?',
+                q_zh: '陽光/日光是由多少種顏色的光組成的？',
                 options: [
-                    { key: 'A', zh: '只有一種顏色', en: 'One color only' },
-                    { key: 'B', zh: '多種顏色（紅、橙、黃、綠、藍、靛、紫）', en: 'Multiple colors' },
-                    { key: 'C', zh: '完全沒有顏色', en: 'No color' }
+                    { key: 'A', en: 'One color only', zh: '只有一種顏色' },
+                    { key: 'B', en: 'Multiple colors (Red, Orange, Yellow, Green, Blue, Indigo, Purple)', zh: '多種顏色（紅、橙、黃、綠、藍、靛、紫）' },
+                    { key: 'C', en: 'No color at all', zh: '完全沒有顏色' }
                 ],
                 correct: 'B',
-                tip_zh: '這在 Practice Paper 第一大題也有提到。太陽光看似白色，但它其實藏着像彩虹一樣的多種顏色！我們可以用三稜鏡把它們分開。',
-                tip_en: 'Sunlight consists of light of different colors, which can be split by a prism.'
+                tip_en: 'Sunlight looks white but actually consists of different colors that can be split by a prism.',
+                tip_zh: '這在 Practice Paper 第一大題也有提到。太陽光看似白色，但它其實藏着像彩虹一樣的多種顏色！我們可以用三稜鏡把它們分開。'
             },
             {
                 cat: 'Water & Air / 水和空氣',
-                q_zh: '以下哪一項是空氣的特點？',
                 q_en: 'Which of the following is a property of air?',
+                q_zh: '以下哪一項是空氣的特點？',
                 options: [
-                    { key: 'A', zh: '我們可以輕易看見它', en: 'We can see air' },
-                    { key: 'B', zh: '空氣有固定的形狀', en: 'Air has a fixed shape' },
-                    { key: 'C', zh: '空氣可以流動', en: 'Air can flow' }
+                    { key: 'A', en: 'We can easily see air', zh: '我們可以輕易看見它' },
+                    { key: 'B', fontClass: 'text-sm', en: 'Air has a fixed shape', zh: '空氣有固定的形狀' },
+                    { key: 'C', en: 'Air can flow', zh: '空氣可以流動' }
                 ],
                 correct: 'C',
-                tip_zh: '空氣沒有固定形狀，而且看不見、摸不著。但只要我們擠壓吹滿氣的夾鏈袋，就能感覺到空氣正在「流動」！',
-                tip_en: 'Air has no fixed shape and is invisible, but we can feel it flow when pressing a sealed bag.'
+                tip_en: 'Air has no fixed shape and is invisible, but we can feel it flow when pressing a sealed bag.',
+                tip_zh: '空氣沒有固定形狀，而且看不見、摸不著。但只要我們擠壓吹滿氣的夾鏈袋，就能感覺到空氣正在「流動」！'
             },
             {
                 cat: 'Everyday Objects / 日常物品',
-                q_zh: '在選擇做襪子的材料時，以下哪些屬性最合適？',
                 q_en: 'Considering the materials for making socks, what properties are best?',
+                q_zh: '在選擇做襪子的材料時，以下哪些屬性最合適？',
                 options: [
-                    { key: 'A', zh: '堅硬又透明', en: 'Hard and transparent' },
-                    { key: 'B', zh: '柔軟又具有彈性', en: 'Soft and elastic' },
-                    { key: 'C', zh: '沉重又冰冷', en: 'Heavy and cold' }
+                    { key: 'A', en: 'Hard and transparent', zh: '堅硬又透明' },
+                    { key: 'B', en: 'Soft and elastic', zh: '柔軟又具有彈性' },
+                    { key: 'C', en: 'Heavy and cold', zh: '沉重又冰冷' }
                 ],
                 correct: 'B',
-                tip_zh: '這是模擬考卷第2題！襪子要穿在腳上保護腳部，一定要選「柔軟（Soft）」和「有彈性（Elastic）」的材料才舒服。',
-                tip_en: 'This is Practice Paper Q2. Socks must be soft and stretchable to protect our feet comfortably!'
+                tip_en: 'Socks must be soft and stretchable to protect our feet comfortably! This is Q2 in your Practice Paper.',
+                tip_zh: '這是模擬考卷第2題！襪子要穿在腳上保護腳部，一定要選「柔軟（Soft）」和「有彈性（Elastic）」的材料才舒服。'
             },
             {
                 cat: 'Electronic Products / 電子產品',
+                q_en: 'Which is a proper way to use electronic products safely?',
                 q_zh: '以下哪一項是正確且安全地使用電子產品的方法？',
-                q_en: 'Which is a proper way to use electronic products?',
                 options: [
-                    { key: 'A', zh: '邊走路邊看手機', en: 'Use your phone while walking' },
-                    { key: 'B', zh: '保持正確的坐姿', en: 'Keep correct sitting posture' },
-                    { key: 'C', zh: '每天不停玩平板電腦4小時以上', en: 'Play tablet for over 4 hours non-stop' }
+                    { key: 'A', en: 'Look at your phone while walking', zh: '邊走路邊看手機' },
+                    { key: 'B', en: 'Maintain correct sitting posture', zh: '保持正確的坐姿' },
+                    { key: 'C', en: 'Play tablet for over 4 hours non-stop daily', zh: '每天不停玩平板電腦4小時以上' }
                 ],
                 correct: 'B',
-                tip_zh: '這是試卷中很重要的健康安全題。我們用電子產品一定要保持腰背挺直，保護眼睛和脊椎。絕對不能邊走路邊看屏幕，否則容易發生交通意外！',
-                tip_en: 'Maintain correct sitting posture to protect spine and neck. Avoid screening while walking!'
+                tip_en: 'Maintain correct sitting posture to protect your spine. Never look at screens while walking!',
+                tip_zh: '這是試卷中很重要的健康安全題。我們用電子產品一定要保持腰背挺直，保護眼睛和脊椎。絕對不能邊走路邊看屏幕！'
             },
             {
                 cat: 'Light & Shadow / 光與影子',
-                q_zh: '以下哪一個「不是」光源？',
                 q_en: 'Which of the following is NOT a light source?',
+                q_zh: '以下哪一個「不是」光源？',
                 options: [
-                    { key: 'A', zh: '太陽 (The Sun)', en: 'The Sun' },
-                    { key: 'B', zh: '發光的電筒 (A shining torch)', en: 'A shining torch' },
-                    { key: 'C', zh: '金屬鑰匙 (A key)', en: 'A key' }
+                    { key: 'A', en: 'The Sun', zh: '太陽' },
+                    { key: 'B', en: 'A shining torch', zh: '發光的電筒' },
+                    { key: 'C', en: 'A metal key', zh: '金屬鑰匙' }
                 ],
                 correct: 'C',
-                tip_zh: '只有自己能發出光芒的物體才叫光源。鑰匙只是反射了室內光，它自己是不會發光喔！',
-                tip_en: 'Only objects that emit their own light are light sources. A key just reflects light.'
+                tip_en: 'Only objects that emit their own light are light sources. A key just reflects light from surroundings.',
+                tip_zh: '只有自己能發出光芒的物體才叫光源。鑰匙只是反射了室內光，它自己是不會發光喔！'
             },
             {
                 cat: 'Light & Shadow / 光與影子',
-                q_zh: '在三稜鏡折射實驗中，什麼物體會阻擋光線並產生黑暗的影子？',
                 q_en: 'A shadow is formed when light is blocked by which kind of object?',
+                q_zh: '在影子實驗中，什麼物體會阻擋光線並產生黑暗的影子？',
                 options: [
-                    { key: 'A', zh: '透明物體', en: 'A transparent object' },
-                    { key: 'B', zh: '不透明物體', en: 'An opaque object' },
-                    { key: 'C', zh: '透明空氣', en: 'Transparent air' }
+                    { key: 'A', en: 'A transparent object', zh: '透明物體' },
+                    { key: 'B', en: 'An opaque object', zh: '不透明物體' },
+                    { key: 'C', en: 'Transparent air', zh: '透明空氣' }
                 ],
                 correct: 'B',
-                tip_zh: 'Practice Paper 的填空題有考。光能穿過透明物體（如玻璃盒），但不透明物體（如木盒或我們的手）會把光完全擋住，從而在後面留下黑黑的影子。',
-                tip_en: 'Opaque objects block the light completely, leaving a dark shadow behind.'
+                tip_en: 'Opaque objects block the light completely, leaving a dark shadow behind. Transparent objects let light pass through.',
+                tip_zh: 'Practice Paper 填空題有考。光能穿過透明物體（如玻璃盒），但不透明物體（如木盒或我們的手）會把光完全擋住，從而在後面留下黑黑的影子。'
             },
             {
                 cat: 'Positions & Motion / 位置與運動',
-                q_zh: '我們用什麼詞語來描述物體的「距離」？',
                 q_en: 'Which words do we use to describe "distances"?',
+                q_zh: '我們用什麼詞語來描述物體的「距離」？',
                 options: [
-                    { key: 'A', zh: '前和後', en: 'Front and back' },
-                    { key: 'B', zh: '遠和近', en: 'Far and near' },
-                    { key: 'C', zh: '快和慢', en: 'Fast and slow' }
+                    { key: 'A', en: 'Front and back', zh: '前和後' },
+                    { key: 'B', en: 'Far and near', zh: '遠和近' },
+                    { key: 'C', en: 'Fast and slow', zh: '快和慢' }
                 ],
                 correct: 'B',
-                tip_zh: 'Booklet 第 10 單元中，方向用「前後左右」，而距離（Distances）則用「遠（Far）」和「近（Near）」來形容。',
-                tip_en: 'We use direction descriptors like front/back, but distance uses far/near.'
+                tip_en: 'Directions use words like front/back/left/right, while distance uses far/near.',
+                tip_zh: '溫習手冊第 10 單元中，方向用「前後左右」，而距離（Distances）則用「遠（Far）」和「近（Near）」來形容。'
             },
             {
                 cat: 'Day & Night / 白天與黑夜',
+                q_en: 'The Sun rises and sets in which directions every day?',
                 q_zh: '太陽在早晨和黃昏分別從什麼方向升起和落下？',
-                q_en: 'The Sun rises and sets in which directions?',
                 options: [
-                    { key: 'A', zh: '東方升起，西方落下', en: 'Rises in east, sets in west' },
-                    { key: 'B', zh: '西方升起，東方落下', en: 'Rises in west, sets in east' },
-                    { key: 'C', zh: '北方升起，南方落下', en: 'Rises in north, sets in south' }
+                    { key: 'A', en: 'Rises in east, sets in west', zh: '東方升起，西方落下' },
+                    { key: 'B', en: 'Rises in west, sets in east', zh: '西方升起，東方落下' },
+                    { key: 'C', en: 'Rises in north, sets in south', zh: '北方升起，南方落下' }
                 ],
                 correct: 'A',
-                tip_zh: '太陽伯伯每天都非常守規律，早晨在東邊(East)升起，黃昏在西邊(West)落下。這在 SA2 考試中是非常高頻的基本題！',
-                tip_en: 'The Sun rises in the East in the morning and sets in the West in the evening.'
+                tip_en: 'The Sun rises in the East in the morning and sets in the West in the evening. This is a highly tested concept.',
+                tip_zh: '太陽伯伯每天都非常守規律，早晨在東邊(East)升起，黃昏在西邊(West)落下。這在 SA2 考試中是非常高頻的基本題！'
             }
         ];
 
-        let currentQuizIndex = 0;
-        let selectedQuizOption = null;
-        let answeredQuestionsCount = 0;
+        // Greetings database containing bilingual keys
+        const greetingsList = [
+            {
+                en: "Hello! I am Dr. Owl! Let's revise the Science SA2 exam topics together today!",
+                zh: "你好！我是貓頭鷹博士！今天我們一起來温習 Science SA2 考試重點吧！"
+            },
+            {
+                en: "Ready for an adventure in nature and daily life? Let's go!",
+                zh: "準備好去大自然和日常生活中探險了嗎？讓我們出發吧！"
+            },
+            {
+                en: "Review Flashcards, play sorting, or challenge the quiz to win shiny stars!",
+                zh: "你可以看閃卡、玩配對或挑戰問答比賽，為自己贏得許多閃亮的星星！"
+            }
+        ];
+        let randomGreetingObj = greetingsList[0];
 
-        // ---------------- SYSTEM INIT & NAV ----------------
+        // ---------------- SYSTEM INIT ----------------
         window.onload = function() {
-            setLanguage('zh');
+            setRandomGreeting();
             initFlashcards();
             initMatchingGame();
             resetQuiz();
         };
 
-        const greetings = {
-            zh: [
-                "你好！我是貓頭鷹博士！今天我們一起來温習 Science SA2 考試重點吧！",
-                "準備好去大自然和日常生活中探險了嗎？讓我們出發吧！",
-                "你可以看閃卡、玩配對或挑戰問答比賽，為自己贏得許多閃亮的星星！"
-            ],
-            en: [
-                "Hello! I am Dr. Owl! Let's revise the SA2 Science topics together today!",
-                "Ready for an adventure in nature and daily life? Let's go!",
-                "Check out the Flashcards, play Sorting, or challenge the Quiz to win shiny stars!"
-            ]
-        };
+        function setRandomGreeting() {
+            randomGreetingObj = greetingsList[Math.floor(Math.random() * greetingsList.length)];
+            document.getElementById('owl-greeting-en').innerText = randomGreetingObj.en;
+            document.getElementById('owl-greeting-zh').innerText = randomGreetingObj.zh;
+        }
 
-        function setLanguage(lang) {
-            currentLang = lang;
-            
-            // Toggle HTML lang
-            document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
-
-            // Active button style
-            if(lang === 'zh') {
-                document.getElementById('btn-zh').className = "px-4 py-1.5 font-bold transition text-xs sm:text-sm bg-yellow-300 text-teal-900 shadow";
-                document.getElementById('btn-en').className = "px-4 py-1.5 font-bold transition text-xs sm:text-sm text-white hover:bg-white/10";
-                
-                // Show/hide translation tags
-                document.querySelectorAll('.lang-zh').forEach(el => el.classList.remove('hidden'));
-                document.querySelectorAll('.lang-en').forEach(el => el.classList.add('hidden'));
-            } else {
-                document.getElementById('btn-zh').className = "px-4 py-1.5 font-bold transition text-xs sm:text-sm text-white hover:bg-white/10";
-                document.getElementById('btn-en').className = "px-4 py-1.5 font-bold transition text-xs sm:text-sm bg-yellow-300 text-teal-900 shadow";
-                
-                document.querySelectorAll('.lang-zh').forEach(el => el.classList.add('hidden'));
-                document.querySelectorAll('.lang-en').forEach(el => el.classList.remove('hidden'));
-            }
-
-            // Set random mascot greeting speech
-            const speechList = greetings[lang];
-            const randomGreeting = speechList[Math.floor(Math.random() * speechList.length)];
-            document.getElementById('owl-greeting').innerText = randomGreeting;
-
-            // Refresh UI components for multi-language
-            renderFlashcard();
-            renderMatchingUI();
-            renderQuizQuestion();
+        function speakGreeting(btn) {
+            speakEnglish(randomGreetingObj.en, btn);
         }
 
         function switchScreen(screenId) {
-            // Hide all screen divs
             document.getElementById('screen-home').classList.add('hidden');
             document.getElementById('screen-flashcards').classList.add('hidden');
             document.getElementById('screen-matching').classList.add('hidden');
             document.getElementById('screen-quiz').classList.add('hidden');
             document.getElementById('screen-congrats').classList.add('hidden');
 
-            // Show active screen
             const activeScreen = document.getElementById(`screen-${screenId}`);
             if (activeScreen) {
                 activeScreen.classList.remove('hidden');
             }
 
-            // Extra initialization if needed
             if (screenId === 'home') {
-                // Pick a new random mascot greeting
-                const speechList = greetings[currentLang];
-                document.getElementById('owl-greeting').innerText = speechList[Math.floor(Math.random() * speechList.length)];
+                setRandomGreeting();
             }
         }
 
-        // ---------------- LOGIC: FLASHCARDS ----------------
+        // ---------------- FLASHCARDS SECTION ----------------
         function initFlashcards() {
-            // Generate category filter pills
             const cats = ['ALL', 'Water & Air', 'Everyday Objects', 'Electronic Products', 'Positions & Motion', 'Light & Shadow', 'Day & Night'];
             const container = document.getElementById('flashcard-categories');
             container.innerHTML = '';
             
             cats.forEach((cat, index) => {
                 const btn = document.createElement('button');
-                btn.className = `px-4 py-2 rounded-full font-bold text-sm border-2 whitespace-nowrap shadow-sm transition active:scale-95 ${index === 0 ? 'bg-amber-400 text-white border-amber-300' : 'bg-white text-amber-700 border-amber-200 hover:bg-amber-50'}`;
+                btn.className = `px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 ${index === 0 ? 'bg-amber-400 text-amber-950 border-amber-300' : 'bg-white text-amber-800 border-amber-200 hover:bg-amber-50'}`;
                 btn.innerText = cat;
                 btn.onclick = () => filterFlashcards(cat, btn);
                 container.appendChild(btn);
@@ -793,12 +824,11 @@
         let filteredFlashcards = [...flashcardData];
 
         function filterFlashcards(category, btnElement) {
-            // Highlight active button
             const buttons = document.getElementById('flashcard-categories').getElementsByTagName('button');
             for(let btn of buttons) {
-                btn.className = "px-4 py-2 rounded-full font-bold text-sm border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-white text-amber-700 border-amber-200 hover:bg-amber-50";
+                btn.className = "px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-white text-amber-800 border-amber-200 hover:bg-amber-50";
             }
-            btnElement.className = "px-4 py-2 rounded-full font-bold text-sm border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-amber-400 text-white border-amber-300";
+            btnElement.className = "px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-amber-400 text-amber-950 border-amber-300";
 
             if (category === 'ALL') {
                 filteredFlashcards = [...flashcardData];
@@ -817,13 +847,29 @@
 
             document.getElementById('flash-card-cat-label').innerText = card.cat;
             document.getElementById('flash-card-icon').innerText = card.icon;
-            document.getElementById('flash-card-title-zh').innerText = card.title_zh;
+            
+            // Big English on top, auxiliary Chinese on bottom
             document.getElementById('flash-card-title-en').innerText = card.title_en;
+            document.getElementById('flash-card-title-zh').innerText = card.title_zh;
 
-            document.getElementById('flash-card-desc-zh').innerText = card.desc_zh;
             document.getElementById('flash-card-desc-en').innerText = card.desc_en;
+            document.getElementById('flash-card-desc-zh').innerText = card.desc_zh;
 
             document.getElementById('flashcard-index').innerText = `${currentFlashcardIndex + 1} / ${filteredFlashcards.length}`;
+        }
+
+        function speakFlashcardFront(event) {
+            event.stopPropagation(); // Avoid flipping the card
+            const card = filteredFlashcards[currentFlashcardIndex];
+            const activeBtn = event.currentTarget;
+            speakEnglish(card.title_en, activeBtn);
+        }
+
+        function speakFlashcardBack(event) {
+            event.stopPropagation(); // Avoid flipping the card
+            const card = filteredFlashcards[currentFlashcardIndex];
+            const activeBtn = event.currentTarget;
+            speakEnglish(card.desc_en, activeBtn);
         }
 
         function flipFlashcard() {
@@ -832,11 +878,10 @@
             if (isFlashcardFlipped) {
                 inner.classList.add('card-flipped');
                 
-                // Reward star for first time reading a card in this session
-                const cardKey = filteredFlashcards[currentFlashcardIndex].title_zh;
+                const cardKey = filteredFlashcards[currentFlashcardIndex].title_en;
                 if (!visitedFlashcards.has(cardKey)) {
                     visitedFlashcards.add(cardKey);
-                    addStars(5, currentLang === 'zh' ? '翻開新閃卡，學到新知識！' : 'Flipped a card! Nice learning!');
+                    addStars(5, 'Discovered new card / 翻開新閃卡，學到新知識！');
                 }
             } else {
                 inner.classList.remove('card-flipped');
@@ -861,16 +906,14 @@
             }, 200);
         }
 
-        // ---------------- LOGIC: MATCHING GAME ----------------
+        // ---------------- MATCHING GAME SECTION ----------------
         function initMatchingGame() {
             selectedMatchingCardId = null;
             userAssignments = {};
             
-            // Clear current droppings
             document.getElementById('zone-natural').innerHTML = '';
             document.getElementById('zone-manmade').innerHTML = '';
 
-            // Render Card Pool with a shuffled deck
             const pool = document.getElementById('match-cards-pool');
             pool.innerHTML = '';
 
@@ -878,100 +921,116 @@
             shuffled.forEach(item => {
                 const card = document.createElement('div');
                 card.id = `match-card-${item.id}`;
-                card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-900 font-bold px-4 py-2.5 rounded-2xl cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center gap-2 text-sm";
-                card.onclick = () => selectMatchingCard(item.id);
+                card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[160px]";
+                
+                // Allow card click to select & speak
+                card.onclick = () => selectMatchingCard(item.id, item.name_en);
                 
                 card.innerHTML = `
-                    <span class="text-xl">${item.icon}</span>
-                    <span>
-                        <span class="lang-zh">${item.name_zh}</span>
-                        <span class="lang-en hidden">${item.name_en}</span>
-                    </span>
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl">${item.icon}</span>
+                        <div class="text-left leading-snug">
+                            <span class="block text-lg font-black">${item.name_en}</span>
+                            <span class="block text-sm font-bold text-purple-700/80">${item.name_zh}</span>
+                        </div>
+                    </div>
+                    <button class="bg-purple-300/50 hover:bg-purple-300 p-2 rounded-full flex items-center justify-center w-8 h-8 select-none pointer-events-none">
+                        <i class="fa-solid fa-volume-high text-sm text-purple-900"></i>
+                    </button>
                 `;
                 pool.appendChild(card);
             });
 
-            // Setup click listeners for drop zones as fallback click targets
             document.getElementById('drop-natural').onclick = () => assignCardToZone('natural');
             document.getElementById('drop-manmade').onclick = () => assignCardToZone('manmade');
-
-            // Force language text refresh
-            setLanguage(currentLang);
         }
 
-        function selectMatchingCard(cardId) {
-            // Unhighlight previous
+        function selectMatchingCard(cardId, speakText) {
             if (selectedMatchingCardId) {
                 const prev = document.getElementById(`match-card-${selectedMatchingCardId}`);
-                if (prev) prev.classList.remove('ring-4', 'ring-purple-500', 'bg-purple-300');
+                if (prev) {
+                    prev.classList.remove('ring-4', 'ring-purple-500', 'bg-purple-300');
+                    prev.classList.add('bg-purple-100');
+                }
             }
 
             selectedMatchingCardId = cardId;
             const current = document.getElementById(`match-card-${cardId}`);
             if (current) {
+                current.classList.remove('bg-purple-100');
                 current.classList.add('ring-4', 'ring-purple-500', 'bg-purple-300');
             }
+
+            // Speak word on click to reinforce pronunciation
+            speakEnglish(speakText);
         }
 
         function assignCardToZone(targetType) {
             if (!selectedMatchingCardId) {
-                showToast("👉 請先在下方點選一張物體卡片！", "👉 Please select an item card first!");
+                showToast("👉 Please select an item card first!", "👉 請先在下方點選一張物體卡片！");
                 return;
             }
 
             const cardId = selectedMatchingCardId;
             const item = matchingItems.find(i => i.id === cardId);
             
-            // Remove previous assignment from pool/DOM if exist
             const cardEl = document.getElementById(`match-card-${cardId}`);
             if (cardEl) {
                 cardEl.remove();
             }
 
-            // Create placed card item
             const placedCard = document.createElement('div');
-            placedCard.className = "bg-white border-2 border-gray-300 rounded-full px-3 py-1.5 flex items-center gap-1 text-xs font-black shadow-sm cursor-pointer hover:bg-red-50";
-            placedCard.innerHTML = `<span class="text-base">${item.icon}</span> ${currentLang === 'zh' ? item.name_zh : item.name_en} <i class="fa-solid fa-circle-xmark text-red-400 text-xs ml-1"></i>`;
+            placedCard.className = "bg-white border-2 border-gray-300 rounded-full px-4 py-2 flex items-center justify-between gap-3 text-sm md:text-base font-black shadow-sm cursor-pointer hover:bg-red-50 hover:border-red-300 transition duration-150";
+            placedCard.innerHTML = `
+                <div class="flex items-center gap-1.5">
+                    <span class="text-xl">${item.icon}</span> 
+                    <span class="text-teal-950 font-black">${item.name_en}</span> 
+                    <span class="text-teal-600/80 font-bold">(${item.name_zh})</span>
+                </div>
+                <i class="fa-solid fa-circle-xmark text-red-400 text-lg hover:text-red-500"></i>
+            `;
             
-            // Allow returning card back to the pool
             placedCard.onclick = (e) => {
-                e.stopPropagation(); // Avoid triggering container clicks
+                e.stopPropagation(); 
                 placedCard.remove();
                 delete userAssignments[cardId];
                 returnCardToPool(item);
             };
 
-            // Drop to target container
             const targetContainer = document.getElementById(`zone-${targetType}`);
             targetContainer.appendChild(placedCard);
 
             userAssignments[cardId] = targetType;
-            selectedMatchingCardId = null; // Unselect
+            selectedMatchingCardId = null; 
         }
 
         function returnCardToPool(item) {
             const pool = document.getElementById('match-cards-pool');
             const card = document.createElement('div');
             card.id = `match-card-${item.id}`;
-            card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-900 font-bold px-4 py-2.5 rounded-2xl cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center gap-2 text-sm";
-            card.onclick = () => selectMatchingCard(item.id);
+            card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[160px]";
+            
+            card.onclick = () => selectMatchingCard(item.id, item.name_en);
             
             card.innerHTML = `
-                <span class="text-xl">${item.icon}</span>
-                <span>
-                    <span class="lang-zh">${item.name_zh}</span>
-                    <span class="lang-en hidden">${item.name_en}</span>
-                </span>
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">${item.icon}</span>
+                    <div class="text-left leading-snug">
+                        <span class="block text-lg font-black">${item.name_en}</span>
+                        <span class="block text-sm font-bold text-purple-700/80">${item.name_zh}</span>
+                    </div>
+                </div>
+                <button class="bg-purple-300/50 hover:bg-purple-300 p-2 rounded-full flex items-center justify-center w-8 h-8 select-none pointer-events-none">
+                    <i class="fa-solid fa-volume-high text-sm text-purple-900"></i>
+                </button>
             `;
             pool.appendChild(card);
-            setLanguage(currentLang);
         }
 
         function checkMatchingResult() {
-            // Count total cards sorted
             const assignedCount = Object.keys(userAssignments).length;
             if (assignedCount < matchingItems.length) {
-                showToast("⚠️ 請將所有卡片都放進分類盒中再檢查！", "⚠️ Please sort all cards first!");
+                showToast("⚠️ Please sort all cards first!", "⚠️ 請將所有卡片都放進分類盒中再檢查！");
                 return;
             }
 
@@ -983,27 +1042,14 @@
             });
 
             if (correctCount === matchingItems.length) {
-                addStars(30, currentLang === 'zh' ? '🎉 太完美了！你成功分類了所有自然和人造物體！' : '🎉 Outstanding! Classified all objects correctly!');
-                initMatchingGame(); // Reset board on success
+                addStars(30, '🎉 Outstanding! Classified all objects correctly! / 太完美了！你成功分類了所有自然和人造物體！');
+                initMatchingGame(); 
             } else {
-                showToast(`❌ 有些卡片放錯地方了喔！再想一想（答對 ${correctCount}/${matchingItems.length} 題）`, `❌ Some items are incorrectly placed (${correctCount}/${matchingItems.length} correct)`);
+                showToast(`❌ Some items are incorrectly placed (${correctCount}/${matchingItems.length} correct)`, `❌ 有些卡片放錯地方了喔！再想一想（答對 ${correctCount}/${matchingItems.length} 題）`);
             }
         }
 
-        function renderMatchingUI() {
-            // Redraw containers' title dynamically
-            const elements = document.getElementById('match-cards-pool').children;
-            for(let el of elements) {
-                const id = parseInt(el.id.replace('match-card-', ''));
-                const item = matchingItems.find(i => i.id === id);
-                if(item) {
-                    el.querySelector('.lang-zh').innerText = item.name_zh;
-                    el.querySelector('.lang-en').innerText = item.name_en;
-                }
-            }
-        }
-
-        // ---------------- LOGIC: QUIZ ----------------
+        // ---------------- QUIZ SECTION ----------------
         function resetQuiz() {
             currentQuizIndex = 0;
             selectedQuizOption = null;
@@ -1015,46 +1061,54 @@
         function renderQuizQuestion() {
             const q = quizQuestions[currentQuizIndex];
             
-            // Set Progress Indicators
-            document.getElementById('quiz-progress-badge').innerText = currentLang === 'zh' ? `問題 ${currentQuizIndex + 1} / ${quizQuestions.length}` : `Question ${currentQuizIndex + 1} / ${quizQuestions.length}`;
-            document.getElementById('quiz-score-indicator').innerText = currentLang === 'zh' ? `⭐ 答對將會獲得 +10 顆星星` : `⭐ Earn +10 stars for correct answer`;
+            document.getElementById('quiz-progress-badge').innerText = `Question ${currentQuizIndex + 1} / ${quizQuestions.length} | 問題 ${currentQuizIndex + 1} / ${quizQuestions.length}`;
+            document.getElementById('quiz-score-indicator').innerText = `⭐ Earn +10 stars for correct answer / 答對獲得 +10 顆星星`;
 
-            // Set categories, title & tips
             document.getElementById('quiz-cat-label').innerText = q.cat;
-            document.getElementById('quiz-question-zh').innerText = q.q_zh;
             document.getElementById('quiz-question-en').innerText = q.q_en;
+            document.getElementById('quiz-question-zh').innerText = q.q_zh;
 
-            document.getElementById('quiz-tip-text').innerText = currentLang === 'zh' ? q.tip_zh : q.tip_en;
+            document.getElementById('quiz-tip-en').innerText = q.tip_en;
+            document.getElementById('quiz-tip-zh').innerText = q.tip_zh;
 
-            // Generate option buttons
             const container = document.getElementById('quiz-options-container');
             container.innerHTML = '';
 
             q.options.forEach(opt => {
                 const btn = document.createElement('button');
                 btn.id = `quiz-opt-${opt.key}`;
-                btn.className = "bg-orange-50 hover:bg-orange-100 border-2 border-orange-200 text-teal-900 font-extrabold p-4 rounded-2xl text-left shadow transition duration-200 active:scale-98 flex items-center justify-between";
+                btn.className = "bg-orange-50 hover:bg-orange-100 border-2 border-orange-200 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow transition duration-200 active:scale-98 flex items-center justify-between gap-4 w-full";
                 btn.onclick = () => selectQuizOption(opt.key);
 
                 btn.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-orange-400 text-white font-black flex items-center justify-center">${opt.key}</span>
-                        <div>
-                            <p class="text-base font-black">${opt.zh}</p>
-                            <p class="text-xs font-bold text-teal-700/80 mt-0.5">${opt.en}</p>
+                    <div class="flex items-center gap-4 text-left">
+                        <span class="w-10 h-10 rounded-full bg-orange-400 text-white font-black flex items-center justify-center text-lg shrink-0">${opt.key}</span>
+                        <div class="leading-relaxed">
+                            <p class="text-xl font-black text-teal-950">${opt.en}</p>
+                            <p class="text-base font-bold text-teal-700/90 mt-1 border-t border-dashed border-teal-200/50 pt-1">${opt.zh}</p>
                         </div>
                     </div>
-                    <i class="fa-solid fa-circle-question text-orange-300 text-lg" id="quiz-opt-icon-${opt.key}"></i>
+                    <button onclick="speakOption(event, '${opt.en.replace(/'/g, "\\'")}', this)" class="bg-orange-200/60 hover:bg-orange-300 text-orange-950 w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-sm" title="Pronounce Option">
+                        <i class="fa-solid fa-volume-high text-base"></i>
+                    </button>
                 `;
                 container.appendChild(btn);
             });
 
-            // Adjust buttons next logic
             document.getElementById('btn-next-question').classList.add('hidden');
         }
 
+        function speakCurrentQuestion(btn) {
+            const q = quizQuestions[currentQuizIndex];
+            speakEnglish(q.q_en, btn);
+        }
+
+        function speakOption(event, englishText, btn) {
+            event.stopPropagation(); // Avoid triggering option click
+            speakEnglish(englishText, btn);
+        }
+
         function selectQuizOption(key) {
-            // Avoid selecting multiple times if question already answered
             if(document.getElementById('btn-next-question').classList.contains('hidden') === false) {
                 return;
             }
@@ -1062,32 +1116,26 @@
             const q = quizQuestions[currentQuizIndex];
             const isCorrect = (key === q.correct);
             
-            // Highlight selected options
             const buttons = document.getElementById('quiz-options-container').getElementsByTagName('button');
             for(let btn of buttons) {
-                btn.disabled = true; // Disable all
+                // Disable option clicking but keep sound clicks if available
+                btn.disabled = true; 
             }
 
             const targetBtn = document.getElementById(`quiz-opt-${key}`);
-            const iconEl = document.getElementById(`quiz-opt-icon-${key}`);
-
             if (isCorrect) {
-                targetBtn.className = "bg-emerald-100 border-4 border-emerald-400 text-teal-900 font-extrabold p-4 rounded-2xl text-left shadow flex items-center justify-between";
-                iconEl.className = "fa-solid fa-circle-check text-emerald-500 text-2xl animate-bounce";
-                addStars(10, currentLang === 'zh' ? '🎯 太聰明了！回答正確！' : '🎯 Bingo! Answer is Correct!');
+                targetBtn.className = "bg-emerald-100 border-4 border-emerald-400 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow flex items-center justify-between gap-4 w-full";
+                addStars(10, '🎯 Bingo! Answer is Correct! / 太聰明了！回答正確！');
             } else {
-                targetBtn.className = "bg-red-100 border-4 border-red-400 text-teal-900 font-extrabold p-4 rounded-2xl text-left shadow flex items-center justify-between";
-                iconEl.className = "fa-solid fa-circle-xmark text-red-500 text-2xl animate-shake";
-                showToast("❌ 答錯了，不要氣餒！再看看提示！", "❌ Not correct, Dr. Owl tip will help!");
+                targetBtn.className = "bg-red-100 border-4 border-red-400 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow flex items-center justify-between gap-4 w-full";
+                showToast("❌ Not correct! Let's read Dr. Owl's tip!", "❌ 答錯了，不要氣餒！再看看博士的提示！");
 
-                // Highlight correct answer in green as feedback
                 const correctBtn = document.getElementById(`quiz-opt-${q.correct}`);
                 if (correctBtn) {
-                    correctBtn.className = "bg-emerald-100 border-2 border-emerald-400 text-teal-900 font-extrabold p-4 rounded-2xl text-left shadow flex items-center justify-between";
+                    correctBtn.className = "bg-emerald-100 border-4 border-emerald-400 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow flex items-center justify-between gap-4 w-full";
                 }
             }
 
-            // Reveal "Next" button
             document.getElementById('btn-next-question').classList.remove('hidden');
         }
 
@@ -1096,18 +1144,16 @@
                 currentQuizIndex++;
                 renderQuizQuestion();
             } else {
-                // Game finished! Show Congratulations screen
                 switchScreen('congrats');
                 document.getElementById('congrats-stars').innerText = totalStars;
             }
         }
 
-        // ---------------- STARS & TOAST RECORD ----------------
+        // ---------------- UTILS: STARS & TOAST ----------------
         function addStars(num, messageText) {
             totalStars += num;
             document.getElementById('star-count').innerText = totalStars;
             
-            // Sparkle effect
             const starCountEl = document.getElementById('star-count');
             starCountEl.classList.add('text-yellow-300', 'scale-125');
             setTimeout(() => {
@@ -1117,27 +1163,25 @@
             showToast(`⭐ +${num} Stars! ${messageText}`, `⭐ +${num} Stars! ${messageText}`);
         }
 
-        function showToast(zhMsg, enMsg) {
+        function showToast(enMsg, zhMsg) {
             const toast = document.getElementById('toast');
             const txt = document.getElementById('toast-text');
             
-            txt.innerText = currentLang === 'zh' ? zhMsg : enMsg;
-            toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-3 rounded-full font-bold shadow-xl flex items-center gap-3 transition-all duration-300 opacity-100 translate-y-0";
+            txt.innerHTML = `<span class="block text-base font-black">${enMsg}</span> <span class="block text-xs font-semibold text-teal-200 mt-0.5">${zhMsg}</span>`;
+            toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex flex-col items-center gap-1 text-center transition-all duration-300 opacity-100 translate-y-0 max-w-[90%]";
 
             setTimeout(() => {
-                toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-3 rounded-full font-bold shadow-xl flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none";
-            }, 3000);
+                toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex flex-col items-center gap-1 text-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none max-w-[90%]";
+            }, 3500);
         }
 
-        // ---------------- SHARE PROGRESS via WHATSAPP ----------------
+        // ---------------- PARENTS SHARE SYSTEM ----------------
         function shareProgressWhatsApp() {
             const currentStars = totalStars;
             
-            let msgZh = `爸媽好！我今天在「科學探險家：貓頭鷹博士的學堂」完成了小學科學 SA2 的大溫習！\n\n我今天學到了：\n💧 水和空氣的屬性\n🧸 日常物品（自然與人造）分類\n📱 電子產品安全守則\n🏃 物體的位置與運動速度\n🔦 光與影子的折射奧秘\n\n⭐ 我一共獲得了 ${currentStars} 顆星星！貓頭鷹博士誇我是聰明的科學探險家！`;
-            let msgEn = `Hi Mom and Dad! I completed my Primary Science SA2 revision at "Dr. Owl's Academy" today!\n\nI reviewed:\n💧 Water & Air Properties\n🧸 Everyday Objects sorting\n📱 Screens Safety Use rules\n🏃 Object Motion and Speeds\n🔦 Light and Shadows features\n\n⭐ I earned ${currentStars} Stars! Dr. Owl says I am a brilliant Science Explorer!`;
+            let message = `Hi Mom and Dad! I completed my Primary Science SA2 revision at "Dr. Owl's Academy" today!\n\nI reviewed:\n💧 Water & Air Properties\n🧸 Everyday Objects sorting\n📱 Screens Safety Use rules\n🏃 Object Motion and Speeds\n🔦 Light and Shadows features\n\n⭐ I earned ${currentStars} Stars! Dr. Owl says I am a brilliant Science Explorer!\n\n----------------\n\n爸媽好！我今天在「科學探險家：貓頭鷹博士的學堂」完成了小學科學 SA2 的大溫習！\n\n我今天學到了：\n💧 水和空氣的屬性\n🧸 日常物品（自然與人造）分類\n📱 電子產品安全守則\n🏃 物體的位置與運動速度\n🔦 光與影子的折射奧秘\n\n⭐ 我一共獲得了 ${currentStars} 顆星星！貓頭鷹博士誇我是聰明的科學探險家！`;
 
-            const chosenMessage = currentLang === 'zh' ? msgZh : msgEn;
-            const encoded = encodeURIComponent(chosenMessage);
+            const encoded = encodeURIComponent(message);
             window.open(`https://wa.me/?text=${encoded}`, '_blank');
         }
     </script>
