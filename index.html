@@ -663,7 +663,7 @@
         let selectedMatchingCardId = null;
         let userAssignments = {};
 
-        // ---------------- DATA STRUCTURES: QUIZ (32 Questions Database) ----------------
+        // ---------------- DATA STRUCTURES: QUIZ (50 Questions Database) ----------------
         const quizQuestionsMaster = [
             {
                 cat: 'Light & Shadow / 光與影子',
@@ -775,7 +775,7 @@
                 q_zh: '我們用什麼詞語來描述物體的「距離」？',
                 options: [
                     { key: 'A', en: 'Front and back', zh: '前和後' },
-                    { key: 'B', en: 'Far and near', zh: '遠和近' },
+                    { key: 'B', en: 'Far and near', zh: '遠 and 近' },
                     { key: 'C', en: 'Fast and slow', zh: '快和慢' }
                 ],
                 correct: 'B',
@@ -1080,6 +1080,241 @@
                 correct: 'A',
                 tip_en: 'An iron spoon is refined and manufactured by people for eating.',
                 tip_zh: '鐵勺是人類開採鐵礦後製造加工出來的，是典型的「人造物體（Man-made objects）」。'
+            },
+            // NEW ADDED QUESTIONS TO REACH 50 (Q33 - Q50)
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which material is strong, heavy, and sinks in water easily?',
+                q_zh: '哪種材料非常堅硬、沉重，而且容易在水中下沉？',
+                options: [
+                    { key: 'A', en: 'Wood', zh: '木頭' },
+                    { key: 'B', en: 'Iron / Metal', zh: '鐵 / 金屬' },
+                    { key: 'C', en: 'Paper', zh: '紙張' }
+                ],
+                correct: 'B',
+                tip_en: 'Metals like iron are dense, very hard, heavy, and easily sink in water.',
+                tip_zh: '像鐵這樣的金屬密度很大，質地堅硬且沉重，放入水中會很快沉下去！'
+            },
+            {
+                cat: 'Water & Air / 水和空氣',
+                q_en: 'If you block the tip of a syringe and compress the air inside, what happens?',
+                q_zh: '如果你封住針筒口並向下擠壓裡面的空氣，會發生什麼事？',
+                options: [
+                    { key: 'A', en: 'The air gets compressed (smaller volume)', zh: '空氣被壓縮了（體積變小）' },
+                    { key: 'B', en: 'The volume stays exactly the same', zh: '體積完全保持不變' },
+                    { key: 'C', en: 'The air instantly turns into water', zh: '空氣立刻變成了水' }
+                ],
+                correct: 'A',
+                tip_en: 'Unlike water, air can be compressed easily because there is a lot of space between air particles.',
+                tip_zh: '跟水不同，空氣的微粒之間有很大空隙，因此可以被輕易地「壓縮」喔！'
+            },
+            {
+                cat: 'Water & Air / 水和空氣',
+                q_en: 'What happens to water if we pour it from a round bowl into a square cup?',
+                q_zh: '如果我們把水從一個圓形碗倒進一個方形杯子裡，水會怎麼樣？',
+                options: [
+                    { key: 'A', en: 'Its shape changes to square', zh: '它的形狀會變成方形' },
+                    { key: 'B', en: 'Its total volume changes', zh: '它的總體積會改變' },
+                    { key: 'C', en: 'Its color changes', zh: '它的顏色會改變' }
+                ],
+                correct: 'A',
+                tip_en: 'Water has no fixed shape, so it changes its shape to fit any container. But its volume remains the same!',
+                tip_zh: '水沒有固定形狀，所以會隨容器改變。但不管怎麼倒，它的總量（體積）都不會變多或變少。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which of these man-made objects is made from wool (natural material from sheep)?',
+                q_zh: '以下哪個人造物品是由大自然中羊身上的羊毛（天然材料）製成的？',
+                options: [
+                    { key: 'A', en: 'A plastic water bottle', zh: '塑膠水樽' },
+                    { key: 'B', en: 'A warm woolen sweater', zh: '溫暖的羊毛衣' },
+                    { key: 'C', en: 'A clear glass window', zh: '透明的玻璃窗' }
+                ],
+                correct: 'B',
+                tip_en: 'Wool is a natural material obtained from sheep. We use it to knit warm sweaters!',
+                tip_zh: '羊毛是來自綿羊的天然纖維材料，我們可以用它來編織出暖和的毛衣。'
+            },
+            {
+                cat: 'Day & Night / 白天與黑夜',
+                q_en: 'When we look at the night sky, why does the Moon seem to shine?',
+                q_zh: '當我們看著夜空時，為什麼月亮看起來會發光？',
+                options: [
+                    { key: 'A', en: 'It produces its own light', zh: '它自己會發出光芒' },
+                    { key: 'B', en: 'It reflects the light from the Sun', zh: '它反射了來自太陽的光' },
+                    { key: 'C', en: 'It has electricity inside', zh: '它裡面裝了電燈泡' }
+                ],
+                correct: 'B',
+                tip_en: 'The Moon is not a light source! It looks bright because it reflects the light of the Sun.',
+                tip_zh: '月亮本身並非光源喔！它能發亮，是因為它像鏡子一樣把太陽的光反射到我們眼睛裡。'
+            },
+            {
+                cat: 'Light & Shadow / 光與影子',
+                q_en: 'If we want to make a very clear, dark shadow of a toy, what should we do?',
+                q_zh: '如果我們想為玩具做出一個非常清晰、黑暗的影子，應該怎麼做？',
+                options: [
+                    { key: 'A', en: 'Shine a strong, direct light source on it', zh: '用強烈、直接的光線照射它' },
+                    { key: 'B', en: 'Turn off all the lights in the room', zh: '把房間裡所有的燈都關掉' },
+                    { key: 'C', en: 'Use a colorful, faint ambient light', zh: '使用彩色而微弱的環境光' }
+                ],
+                correct: 'A',
+                tip_en: 'Clear, dark shadows are formed when a strong light source shines directly on an opaque object.',
+                tip_zh: '當強光源直接照射在不透明物體上，光線被徹底阻擋，就會投射出最黑、最明顯的影子。'
+            },
+            {
+                cat: 'Positions & Motion / 位置與運動',
+                q_en: 'If you walk towards the front, which direction is behind your back?',
+                q_zh: '如果你一直朝著前面走，你的背後是什麼方向？',
+                options: [
+                    { key: 'A', en: 'Left', zh: '左邊' },
+                    { key: 'B', en: 'Right', zh: '右邊' },
+                    { key: 'C', en: 'Back / Rear', zh: '後面' }
+                ],
+                correct: 'C',
+                tip_en: 'The opposite direction of front is always back! This helps us describe our orientation.',
+                tip_zh: '前面（Front）的相反方向就是後面（Back），這能幫助我們建立正確的空間感。'
+            },
+            {
+                cat: 'Electronic Products / 電子產品',
+                q_en: 'Why should we keep a safe distance (about 30-40cm) from our screens?',
+                q_zh: '為什麼我們看螢幕時應該保持安全的距離（大約30到40厘米）？',
+                options: [
+                    { key: 'A', en: 'To protect our eyes from strain and damage', zh: '保護眼睛免於疲勞與損害' },
+                    { key: 'B', en: 'To make the tablet sound louder', zh: '為了讓平板的聲音更大' },
+                    { key: 'C', en: 'To make the screen look bigger', zh: '為了讓螢幕看起來更大' }
+                ],
+                correct: 'A',
+                tip_en: 'Keeping a safe distance helps prevent eye strain, dry eyes, and near-sightedness.',
+                tip_zh: '眼睛離螢幕太近容易造成疲勞和近視，保持距離可以好好保護我們寶貴的靈魂之窗！'
+            },
+            {
+                cat: 'Day & Night / 白天與黑夜',
+                q_en: 'Which of these activities is best suited for the daytime?',
+                q_zh: '以下哪一項活動最適合在白天進行？',
+                options: [
+                    { key: 'A', en: 'Sleeping for the main night rest', zh: '進行夜間主要的睡眠休息' },
+                    { key: 'B', en: 'Studying and playing at school', zh: '在學校學習和玩耍' },
+                    { key: 'C', en: 'Hunting prey like a wild owl', zh: '像野生貓頭鷹一樣捕食' }
+                ],
+                correct: 'B',
+                tip_en: 'Daytime has plenty of natural light, making it the perfect time for learning, playing, and working!',
+                tip_zh: '白天有明亮的陽光，是人類精力最充沛、最適合上學和運動的黃金時間。'
+            },
+            {
+                cat: 'Water & Air / 水和空氣',
+                q_en: 'Why does a balloon grow bigger when we blow air into it?',
+                q_zh: '當我們朝氣球吹氣時，為什麼氣球會越變越大？',
+                options: [
+                    { key: 'A', en: 'Because air takes up space inside', zh: '因為空氣佔據了裡面的空間' },
+                    { key: 'B', en: 'Because the balloon gets lighter', zh: '因為氣球變得越來越輕' },
+                    { key: 'C', en: 'Because the air turns into solid plastic', zh: '因為空氣在裡面變成了塑料' }
+                ],
+                correct: 'A',
+                tip_en: 'Air is a substance! Even though we cannot see it, it takes up space inside the balloon.',
+                tip_zh: '空氣也是一種物質喔！雖然看不見，但它被吹進去後會「佔據空間」，把氣球撐大！'
+            },
+            {
+                cat: 'Light & Shadow / 光與影子',
+                q_en: 'If you place a transparent plastic wrap in front of a torch, will there be a dark shadow?',
+                q_zh: '如果你把一張全透明的保鮮紙放在手電筒前面，會產生深色的影子嗎？',
+                options: [
+                    { key: 'A', en: 'Yes, a very dark shadow', zh: '會，產生一個很深色的影子' },
+                    { key: 'B', en: 'No, because light passes through transparent materials', zh: '不會，因為光線會穿過透明物體' },
+                    { key: 'C', en: 'Yes, but only a red shadow', zh: '會，但只有紅色的影子' }
+                ],
+                correct: 'B',
+                tip_en: 'Transparent materials let almost all light pass through, so they do not cast a dark shadow.',
+                tip_zh: '透明（Transparent）材料能讓光線完全穿過，光沒有被阻擋，所以是不會形成黑影子的。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Why are window panes usually made of glass instead of wood?',
+                q_zh: '為什麼教室的窗戶通常是用玻璃而不是木頭做的？',
+                options: [
+                    { key: 'A', en: 'Because glass is soft and light', zh: '因為玻璃又軟又輕' },
+                    { key: 'B', en: 'Because glass is transparent and lets light in', zh: '因為玻璃是透明的，可以讓光線進來' },
+                    { key: 'C', en: 'Because wood sinks too easily', zh: '因為木頭太容易下沉了' }
+                ],
+                correct: 'B',
+                tip_en: 'We want sunlight to enter our rooms, so we use transparent glass for windows!',
+                tip_zh: '我們希望陽光照進室內保持明亮，所以窗戶要選用「透明（Transparent）」的玻璃。'
+            },
+            {
+                cat: 'Day & Night / 白天與黑夜',
+                q_en: 'If you face East in the morning to watch sunrise, which direction is on your left-hand side?',
+                q_zh: '如果早上你面向東方看日出，你的左手邊是什麼方向？',
+                options: [
+                    { key: 'A', en: 'West', zh: '西方' },
+                    { key: 'B', en: 'South', zh: '南方' },
+                    { key: 'C', en: 'North', zh: '北方' }
+                ],
+                correct: 'C',
+                tip_en: 'When you face East, West is behind you, North is on your left, and South is on your right!',
+                tip_zh: '面東（East）時，你的後面是西，右手邊是南，左手邊則一定是北（North）方。'
+            },
+            {
+                cat: 'Positions & Motion / 位置與運動',
+                q_en: 'A snail crawls 1 meter in 1 hour. A rabbit runs 10 kilometers in 1 hour. Who is faster?',
+                q_zh: '蝸牛一小時爬行一米。兔子一小時奔跑十公里。誰的速度比較快？',
+                options: [
+                    { key: 'A', en: 'The snail', zh: '蝸牛' },
+                    { key: 'B', en: 'The rabbit', zh: '兔子' },
+                    { key: 'C', en: 'Their speed is exactly the same', zh: '她們的速度完全一樣' }
+                ],
+                correct: 'B',
+                tip_en: 'The rabbit travels a much longer distance in the same amount of time, so it has a faster speed.',
+                tip_zh: '在相同的時間內，兔子跑過的距離遠遠多於蝸牛，所以兔子的速度快得多！'
+            },
+            {
+                cat: 'Water & Air / 水和空氣',
+                q_en: 'Can we pour water easily from one cup to another? Why?',
+                q_zh: '我們能輕鬆地把水從一個杯子倒到另一個杯子嗎？為什麼？',
+                options: [
+                    { key: 'A', en: 'No, because water is solid', zh: '不能，因為水是固體' },
+                    { key: 'B', en: 'Yes, because water can flow', zh: '能，因為水會流動' },
+                    { key: 'C', en: 'Only when we are in a dark room', zh: '只有在黑暗的房間裡才能' }
+                ],
+                correct: 'B',
+                tip_en: 'Water is a liquid. One of the main properties of liquids is that they can flow easily.',
+                tip_zh: '水是一種液體，而液體最重要的特點之一就是「會流動（Can flow）」。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which of the following is a natural material obtained directly from the ground?',
+                q_zh: '以下哪一項是直接從土壤或地底下獲得的「天然材料」？',
+                options: [
+                    { key: 'A', en: 'Plastic', zh: '塑膠' },
+                    { key: 'B', en: 'Clay / Soil', zh: '黏土 / 泥土' },
+                    { key: 'C', en: 'Nylon fabric', zh: '尼龍布料' }
+                ],
+                correct: 'B',
+                tip_en: 'Clay is a natural soil found in the ground. We use it to make beautiful pottery and bricks!',
+                tip_zh: '黏土（Clay）是直接來自大地的天然泥土，可以用來燒製精美的瓷器和磚塊。'
+            },
+            {
+                cat: 'Electronic Products / 電子產品',
+                q_en: 'If a stranger online asks for your school name or photo, what should you do?',
+                q_zh: '如果有網上的陌生人問你的學校名字或索取照片，你該怎麼辦？',
+                options: [
+                    { key: 'A', en: 'Send it to them immediately', zh: '立刻傳送給他們' },
+                    { key: 'B', en: 'Ignore them and tell your parents or teachers immediately', zh: '不理會他們，並立刻告訴家長或老師' },
+                    { key: 'C', en: 'Give them a fake friend\'s photo', zh: '傳一張假的朋友照片給他們' }
+                ],
+                correct: 'B',
+                tip_en: 'This is an important digital safety rule! Never share personal info with strangers online.',
+                tip_zh: '這是非常關鍵的網絡安全守則！絕對不能向網絡上的陌生人透露隱私，有任何不妥應立即告訴家長。'
+            },
+            {
+                cat: 'Positions & Motion / 位置與運動',
+                q_en: 'If a book is placed on top of a table, the table is ________ the book.',
+                q_zh: '如果一本書放在桌子的上面，那麼桌子是在書本的________。',
+                options: [
+                    { key: 'A', en: 'Above', zh: '上面' },
+                    { key: 'B', en: 'Below', zh: '下面' },
+                    { key: 'C', en: 'Next to', zh: '旁邊' }
+                ],
+                correct: 'B',
+                tip_en: 'Position words help us describe where things are. The book is above the table, which means the table is below.',
+                tip_zh: '空間關係是相對的。書在桌上，也就是說桌子在書的「下面（Below）」。'
             }
         ];
 
@@ -1110,7 +1345,7 @@
             initFlashcards();
             initMatchingGame();
             
-            // Randomly select 10 questions from our 32-question bank on launch
+            // Randomly select 10 questions from our 50-question bank on launch
             shuffleAndRestartQuiz();
         };
 
@@ -1390,7 +1625,7 @@
 
         // ---------------- QUIZ SECTION (RANDOM SHUFFLE SYSTEM) ----------------
         
-        // NEW function: Shuffles the 32 questions master array, selects 10, and resets quiz
+        // Shuffles the 50 questions master array, selects 10, and resets quiz
         function shuffleAndRestartQuiz() {
             // Shuffle copy of master array
             const shuffledMaster = [...quizQuestionsMaster].sort(() => Math.random() - 0.5);
@@ -1404,7 +1639,7 @@
             
             // Load current UI
             renderQuizQuestion();
-            showToast("🔄 Quiz Reset! 10 new random questions loaded!", "🔄 題庫已重整！32題庫中已隨機抽出10題新題目！");
+            showToast("🔄 Quiz Reset! 10 new random questions loaded!", "🔄 題庫已重整！50題庫中已隨機抽出10題新題目！");
         }
 
         function renderQuizQuestion() {
