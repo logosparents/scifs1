@@ -45,7 +45,7 @@
         
         /* Pulse Ring Animation for Speaking Audio Buttons */
         @keyframes speak-pulse-ring {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            0 { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
         }
@@ -113,7 +113,6 @@
         
         <!-- ================= HOME SCREEN ================= -->
         <section id="screen-home" class="transition-all duration-300">
-            <!-- Hero Mascot and Greeting Speech bubble -->
             <div class="bg-white rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border-4 border-teal-400 text-center relative overflow-hidden mb-8">
                 <div class="absolute -top-12 -left-12 w-28 h-28 bg-yellow-200 rounded-full opacity-50"></div>
                 <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-teal-100 rounded-full opacity-50"></div>
@@ -203,29 +202,15 @@
                 </div>
             </div>
 
-            <!-- Dr. Owl Tips inside Flashcard -->
-            <div class="bg-teal-50 border-4 border-teal-200 rounded-2xl p-5 mb-6 flex items-start gap-4">
-                <span class="text-5xl bounce-owl">🦉</span>
-                <div>
-                    <h4 class="font-extrabold text-teal-800 text-xl">
-                        Dr. Owl's Tips / 貓頭鷹博士的提示：
-                    </h4>
-                    <p class="text-base text-teal-700 mt-1">
-                        Tap any card to flip it! The back contains critical Booklet takeaways! Click the speaker 🔊 button to hear pronunciation.<br>
-                        <span class="text-sm font-semibold text-teal-600 block mt-1">點擊卡片就可以將它翻過來！背面有手冊精華內容喔！點擊喇叭 🔊 可聽取英語讀音。</span>
-                    </p>
-                </div>
-            </div>
-
             <!-- Flashcard Deck Selector (Horizontal Scrollable) -->
             <div class="flex gap-3 overflow-x-auto pb-3 mb-6" id="flashcard-categories">
                 <!-- Filled dynamically by JavaScript -->
             </div>
 
-            <!-- Single Card Box with English Primary layout -->
+            <!-- Single Card Box with English Primary layout - Expanded dimensions & height for high readability -->
             <div class="flex flex-col items-center">
-                <div class="card-perspective w-full max-w-xl aspect-[4/3] cursor-pointer" onclick="flipFlashcard()">
-                    <div id="flashcard-inner" class="card-inner w-full h-full relative duration-500 shadow-2xl rounded-[2.5rem] border-4 border-yellow-400">
+                <div class="card-perspective w-full max-w-xl min-h-[460px] md:min-h-[500px] cursor-pointer" onclick="flipFlashcard()">
+                    <div id="flashcard-inner" class="card-inner w-full h-full min-h-[460px] md:min-h-[500px] relative duration-500 shadow-2xl rounded-[2.5rem] border-4 border-yellow-400">
                         
                         <!-- FRONT FACE: English Dominant, Chinese Auxiliary -->
                         <div id="flashcard-front" class="card-front absolute inset-0 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-[2.2rem] p-8 flex flex-col justify-between items-center text-center">
@@ -238,40 +223,40 @@
                                 </button>
                             </div>
                             
-                            <!-- Center Title Content (Font Size increased) -->
-                            <div class="my-auto flex flex-col items-center">
+                            <!-- Center Title Content (Enlarged and optimized) -->
+                            <div class="my-auto flex flex-col items-center w-full">
                                 <span class="text-8xl mb-4" id="flash-card-icon">💧</span>
-                                <h3 class="text-3xl sm:text-4xl font-black text-amber-950" id="flash-card-title-en">English Title</h3>
-                                <h4 class="text-xl sm:text-2xl font-bold text-amber-800/80 mt-2" id="flash-card-title-zh">繁體中文標題</h4>
+                                <h3 class="text-3xl sm:text-4xl font-black text-amber-950 leading-snug" id="flash-card-title-en">English Title</h3>
+                                <h4 class="text-xl sm:text-2xl font-bold text-amber-800/80 mt-3" id="flash-card-title-zh">繁體中文標題</h4>
                             </div>
                             
                             <span class="text-sm font-bold text-amber-600/80 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP / 點擊卡片翻轉</span>
                         </div>
 
-                        <!-- BACK FACE: English Dominant, Chinese Auxiliary -->
+                        <!-- BACK FACE: English Dominant, Chinese Auxiliary with auto scroll viewport -->
                         <div id="flashcard-back" class="card-back absolute inset-0 bg-gradient-to-tr from-teal-500 to-cyan-600 rounded-[2.2rem] p-8 text-white flex flex-col justify-between items-center text-center">
                             
                             <!-- Category label & Pronunciation row -->
-                            <div class="w-full flex items-center justify-between">
+                            <div class="w-full flex items-center justify-between shrink-0">
                                 <span class="bg-teal-400/40 border border-teal-300 text-teal-100 text-sm font-bold px-4 py-1.5 rounded-full">💡 KEY FACTS / 重點核心</span>
                                 <button type="button" onclick="speakFlashcardBack(event)" class="bg-teal-400 hover:bg-teal-300 text-white p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Content">
                                     <i class="fa-solid fa-volume-high text-xl"></i>
                                 </button>
                             </div>
                             
-                            <!-- Center Text Content (Font Size increased) -->
-                            <div class="my-auto px-2 overflow-y-auto max-h-[200px] w-full">
+                            <!-- Center Text Content (Highly responsive, scrolling enabled if overflowing) -->
+                            <div class="my-auto px-1 overflow-y-auto max-h-[300px] w-full text-left sm:text-center">
                                 <p class="text-2xl sm:text-3xl font-black leading-relaxed" id="flash-card-desc-en">This is the English description for the science concept.</p>
                                 <p class="text-lg sm:text-xl font-bold text-teal-100 mt-4 leading-relaxed border-t border-dashed border-teal-400/50 pt-3" id="flash-card-desc-zh">這是繁體中文說明的核心內容，適合小朋友記憶與溫習。</p>
                             </div>
                             
-                            <span class="text-sm font-bold text-teal-200/85 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP BACK / 點擊翻回</span>
+                            <span class="text-sm font-bold text-teal-200/85 animate-pulse shrink-0"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP BACK / 點擊翻回</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Navigation Controls for Cards -->
-                <div class="flex items-center gap-8 mt-6">
+                <div class="flex items-center gap-8 mt-6 mb-8">
                     <button type="button" onclick="prevFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-2xl">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
@@ -280,12 +265,25 @@
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
+
+                <!-- Dr. Owl Tips inside Flashcard Screen - MOVED TO THE BOTTOM as requested -->
+                <div class="bg-teal-50 border-4 border-teal-200 rounded-2xl p-5 w-full max-w-xl shadow-md flex items-start gap-4">
+                    <span class="text-5xl bounce-owl">🦉</span>
+                    <div>
+                        <h4 class="font-extrabold text-teal-800 text-xl">
+                            Dr. Owl's Tips / 貓頭鷹博士的提示：
+                        </h4>
+                        <p class="text-base text-teal-700 mt-1 leading-relaxed">
+                            Tap any card to flip it! The back contains critical Booklet takeaways! Click the speaker 🔊 button to hear pronunciation.<br>
+                            <span class="text-sm font-semibold text-teal-600 block mt-1.5">點擊卡片就可以將它翻過來！背面有手冊精華內容喔！點擊喇叭 🔊 可聽取英語讀音。</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- ================= SCREEN: MATCHING ================= -->
         <section id="screen-matching" class="hidden transition-all duration-300">
-            <!-- Navigation -->
             <div class="flex items-center justify-between mb-4">
                 <button type="button" onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
                     <i class="fa-solid fa-arrow-left"></i>
@@ -303,7 +301,7 @@
                     <h4 class="font-extrabold text-purple-800 text-xl">
                         Dr. Owl's Sorting Mission / 貓頭鷹博士的配對任務：
                     </h4>
-                    <p class="text-base text-purple-700 mt-1">
+                    <p class="text-base text-purple-700">
                         Select an object card below, hear its English pronunciation, then click the correct box to categorize it!<br>
                         <span class="text-sm font-semibold text-purple-600 block mt-1">點選底部的卡片，聆聽發音，然後點選分類框以進行歸類！</span>
                     </p>
@@ -360,15 +358,22 @@
 
         <!-- ================= SCREEN: QUIZ ================= -->
         <section id="screen-quiz" class="hidden transition-all duration-300">
-            <!-- Navigation -->
-            <div class="flex items-center justify-between mb-4">
-                <button type="button" onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Main Menu / 返回主頁</span>
-                </button>
-                <div class="text-lg font-black text-orange-700 bg-orange-100 border border-orange-200 px-5 py-2.5 rounded-full shadow" id="quiz-progress-badge">
-                    Question 1 / 10
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
+                <div class="flex items-center justify-between sm:justify-start gap-4">
+                    <button type="button" onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Main Menu / 返回主頁</span>
+                    </button>
+                    <div class="text-base font-black text-orange-700 bg-orange-100 border border-orange-200 px-4 py-2.5 rounded-full shadow" id="quiz-progress-badge">
+                        Question 1 / 10
+                    </div>
                 </div>
+                
+                <!-- NEW: Random Refresh Button to Shuffle Question Bank -->
+                <button type="button" onclick="shuffleAndRestartQuiz()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-black px-6 py-3.5 rounded-2xl shadow-md transition active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg border-b-4 border-indigo-900">
+                    <i class="fa-solid fa-shuffle text-xl"></i>
+                    <span>🔄 Random Refresh / 隨機刷新題目</span>
+                </button>
             </div>
 
             <!-- Quiz Layout Container -->
@@ -398,7 +403,7 @@
                     <div>
                         <h4 class="font-extrabold text-amber-900 text-xl flex items-center gap-2">
                             <span>💡</span>
-                            <span>Dr. Owl\'s Tip / 貓頭鷹博士的提示：</span>
+                            <span>Dr. Owl's Tip / 貓頭鷹博士的提示：</span>
                         </h4>
                         <!-- Stacked Tips -->
                         <p class="text-lg sm:text-xl font-bold text-amber-950 mt-2 leading-relaxed" id="quiz-tip-en">English tips</p>
@@ -464,7 +469,6 @@
     </div>
 
     <script>
-        // ---------------- THE ROBUST AUDIO TTS ENGINE (BUG FREE) ----------------
         // Prevents garbage collection on speech objects by keeping references in a global array
         window.activeUtterances = [];
 
@@ -659,8 +663,8 @@
         let selectedMatchingCardId = null;
         let userAssignments = {};
 
-        // ---------------- DATA STRUCTURES: QUIZ ----------------
-        const quizQuestions = [
+        // ---------------- DATA STRUCTURES: QUIZ (32 Questions Database) ----------------
+        const quizQuestionsMaster = [
             {
                 cat: 'Light & Shadow / 光與影子',
                 q_en: 'What are the moving directions of the object and its shadow?',
@@ -790,8 +794,298 @@
                 correct: 'A',
                 tip_en: 'The Sun rises in the East in the morning and sets in the West in the evening. This is a highly tested concept.',
                 tip_zh: '太陽伯伯每天都非常守規律，早晨在東邊(East)升起，黃昏在西邊(West)落下。這在 SA2 考試中是非常高頻的基本題！'
+            },
+            {
+                cat: 'Water & Air / 水和空氣',
+                q_en: 'Does water have a fixed shape?',
+                q_zh: '水有固定的形狀嗎？',
+                options: [
+                    { key: 'A', en: 'Yes, it does', zh: '有的' },
+                    { key: 'B', en: 'No, it does not', zh: '沒有' },
+                    { key: 'C', en: 'Only when heated', zh: '只有受熱時才有' }
+                ],
+                correct: 'B',
+                tip_en: 'Water has no fixed shape. It takes the shape of the container it is poured into.',
+                tip_zh: '水是液體，沒有固定的形狀。不論你把水倒進杯子還是盤子裡，它都會變成那個容器的形狀！'
+            },
+            {
+                cat: 'Water & Air / 水和空氣',
+                q_en: 'Can we see air directly with our eyes?',
+                q_zh: '我們能直接用眼睛看見空氣嗎？',
+                options: [
+                    { key: 'A', en: 'Yes, because it is colorful', zh: '可以，因為它五顏六色' },
+                    { key: 'B', en: 'No, because it is invisible', zh: '不可以，因為它是看不見的' },
+                    { key: 'C', en: 'Only at night', zh: '只有在晚上可以' }
+                ],
+                correct: 'B',
+                tip_en: 'Air is colorless and transparent, which means it is invisible and we cannot see it.',
+                tip_zh: '空氣沒有顏色且完全透明，它是「看不見的（invisible）」，但我們能感覺到它的流動。'
+            },
+            {
+                cat: 'Water & Air / 水和空氣',
+                q_en: 'When we blow bubbles in water, what is inside the bubbles?',
+                q_zh: '當我們往水裡吹氣吹出泡泡時，泡泡裡面裝的是什麼？',
+                options: [
+                    { key: 'A', en: 'Water', zh: '水' },
+                    { key: 'B', en: 'Air', zh: '空氣' },
+                    { key: 'C', en: 'Juice', zh: '果汁' }
+                ],
+                correct: 'B',
+                tip_en: 'The bubbles are filled with the air that we blow into the water.',
+                tip_zh: '吹氣時我們把空氣送進水裡，就被水包裹形成一個個充滿「空氣（Air）」的小泡泡！'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which material is best and waterproof for making raincoats?',
+                q_zh: '製作雨衣時，最好選用哪種防水的材料？',
+                options: [
+                    { key: 'A', en: 'Paper', zh: '紙張' },
+                    { key: 'B', en: 'Plastic', zh: '塑料/膠' },
+                    { key: 'C', en: 'Cotton fabric', zh: '棉布' }
+                ],
+                correct: 'B',
+                tip_en: 'Plastic is waterproof and blocks water, keeping us dry in the rain.',
+                tip_zh: '塑料（Plastic）具有不透水、防水的特點，最適合用來做擋雨的雨衣！'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'What tool is used to measure and compare the weight of objects accurately?',
+                q_zh: '我們可以用哪種工具更準確地測量和比較物體的重量？',
+                options: [
+                    { key: 'A', en: 'A ruler', zh: '直尺' },
+                    { key: 'B', en: 'A balance scale', zh: '天平' },
+                    { key: 'C', en: 'A magnifying glass', zh: '放大鏡' }
+                ],
+                correct: 'B',
+                tip_en: 'A balance scale measures weight accurately by comparing objects with standard weights.',
+                tip_zh: '直尺量長度，天平（Balance scale）則可以用來精準地測量和比較物體的「重量」。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which object has elasticity (can stretch and return to its shape)?',
+                q_zh: '以下哪一個物體具有彈性（拉伸後能恢復原狀）？',
+                options: [
+                    { key: 'A', en: 'A rubber band', zh: '橡皮筋' },
+                    { key: 'B', en: 'A metal spoon', zh: '金屬勺子' },
+                    { key: 'C', en: 'A paper box', zh: '紙盒' }
+                ],
+                correct: 'A',
+                tip_en: 'Rubber bands are elastic. They stretch when pulled and return to normal when released.',
+                tip_zh: '橡皮筋具有優良的彈性（Elasticity），用力拉會變長，放手後又會自動彈回原來的長度。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which material is transparent and easy to break?',
+                q_zh: '哪種材料是透明但很容易摔碎的？',
+                options: [
+                    { key: 'A', en: 'Wood', zh: '木頭' },
+                    { key: 'B', en: 'Glass', zh: '玻璃' },
+                    { key: 'C', en: 'Iron', zh: '鐵' }
+                ],
+                correct: 'B',
+                tip_en: 'Glass lets light pass through (transparent) but is fragile and breaks easily.',
+                tip_zh: '玻璃（Glass）能讓光線穿過所以非常透明，但它也是一種容易碎裂、使用時要小心的材料。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Wood comes from which natural source?',
+                q_zh: '木材（Wood）是來自大自然的哪裡？',
+                options: [
+                    { key: 'A', en: 'Trees', zh: '大樹' },
+                    { key: 'B', en: 'Rocks', zh: '岩石' },
+                    { key: 'C', en: 'Rivers', zh: '河流' }
+                ],
+                correct: 'A',
+                tip_en: 'Wood is a natural material obtained directly from tree trunks.',
+                tip_zh: '大樹的樹幹為我們提供了天然的木材（Wood），木材常被用來造桌子和鉛筆。'
+            },
+            {
+                cat: 'Electronic Products / 電子產品',
+                q_en: 'What is the recommended maximum non-stop screen time for kids?',
+                q_zh: '建議小朋友持續看電子螢幕不間斷的最長時間是多少？',
+                options: [
+                    { key: 'A', en: 'Not more than 1 hour', zh: '不超過 1 小時' },
+                    { key: 'B', en: 'Up to 5 hours', zh: '長達 5 小時' },
+                    { key: 'C', en: 'All day long', zh: '一整天' }
+                ],
+                correct: 'A',
+                tip_en: 'Continuous screen use should not exceed 1 hour to protect eyes and prevent muscle fatigue.',
+                tip_zh: '為了保護眼睛不近視，每看螢幕一小時，一定要休息十分鐘，每天累積看螢幕也不應超過兩小時。'
+            },
+            {
+                cat: 'Electronic Products / 電子產品',
+                q_en: 'What should you do before taking a photo of someone with a tablet?',
+                q_zh: '用平板電腦給別人拍照之前，正確的禮貌做法是什麼？',
+                options: [
+                    { key: 'A', en: 'Take it quickly without telling them', zh: '迅速拍下，不告訴對方' },
+                    { key: 'B', en: 'Ask for their permission first', zh: '先徵得對方的同意' },
+                    { key: 'C', en: 'Hide and take it secretly', zh: '躲起來偷偷拍' }
+                ],
+                correct: 'B',
+                tip_en: 'Always respect privacy and ask for permission before taking photographs of other people.',
+                tip_zh: '這是溫習手冊提倡的電子禮儀（Manners）—— 拍照前一定要先有禮貌地「詢問並取得允許」。'
+            },
+            {
+                cat: 'Electronic Products / 電子產品',
+                q_en: 'What can happen to your body if you look down at a screen for too long?',
+                q_zh: '如果長時間低頭看手機或平板電腦，身體可能會發生什麼問題？',
+                options: [
+                    { key: 'A', en: 'Nothing at all', zh: '完全沒有問題' },
+                    { key: 'B', en: 'Neck and shoulder pain', zh: '頸部和肩膀酸痛' },
+                    { key: 'C', en: 'Grow taller instantly', zh: '立刻長高' }
+                ],
+                correct: 'B',
+                tip_en: 'Looking down for long periods strains your neck muscles and spine, leading to muscle pain.',
+                tip_zh: '長時間做低頭族會讓頸椎負重過大，容易引起頸部和肩膀的肌肉肌肉勞損與痛楚！'
+            },
+            {
+                cat: 'Positions & Motion / 位置與運動',
+                q_en: 'If a car is faster than a bicycle, and a plane is faster than a car, which is the fastest?',
+                q_zh: '如果汽車比單車快，飛機又比汽車快，哪一個的速度是最快的？',
+                options: [
+                    { key: 'A', en: 'The plane', zh: '飛機' },
+                    { key: 'B', en: 'The car', zh: '汽車' },
+                    { key: 'C', en: 'The bicycle', zh: '單車' }
+                ],
+                correct: 'A',
+                tip_en: 'Comparing speed shows that the plane is faster than both the car and bicycle.',
+                tip_zh: '通過比較（Comparison）可以得出，飛機的速度比汽車與單車都快得多，因此是最快的。'
+            },
+            {
+                cat: 'Positions & Motion / 位置與運動',
+                q_en: 'Which words describe "directions"?',
+                q_zh: '以下哪一組詞語是用來描述物體的「方向」？',
+                options: [
+                    { key: 'A', en: 'Heavy and light', zh: '重和輕' },
+                    { key: 'B', en: 'Front, back, left, and right', zh: '前、後、左、右' },
+                    { key: 'C', en: 'Far and near', zh: '遠和近' },
+                ],
+                correct: 'B',
+                tip_en: 'Front, back, left, and right are terms used to describe directions.',
+                tip_zh: '前後左右、東南西北都是描述「方向（Directions）」的，而遠近是描述距離的。'
+            },
+            {
+                cat: 'Positions & Motion / 位置與運動',
+                q_en: 'When we say "the dog is near the tree", we are describing its...',
+                q_zh: '當我們說「小狗在樹木的附近」，我們是在描述小狗的什麼？',
+                options: [
+                    { key: 'A', en: 'Weight', zh: '重量' },
+                    { key: 'B', en: 'Position', zh: '位置' },
+                    { key: 'C', en: 'Color', zh: '顏色' }
+                ],
+                correct: 'B',
+                tip_en: 'Saying an object is near or far from a reference point describes its position.',
+                tip_zh: '我們以大樹作為參考物，描述小狗的距離遠近，這就是在說明它的「位置（Position）」。'
+            },
+            {
+                cat: 'Light & Shadow / 光與影子',
+                q_en: 'How does a shadow change when an object is moved closer to the light source?',
+                q_zh: '當把一個不透明物體慢慢移近光源時，影子會發生什麼變化？',
+                options: [
+                    { key: 'A', en: 'It becomes smaller', zh: '變小' },
+                    { key: 'B', en: 'It becomes larger', zh: '變大' },
+                    { key: 'C', en: 'It stays the same', zh: '保持不變' }
+                ],
+                correct: 'B',
+                tip_en: 'Moving the object closer to the light source blocks more light, making the shadow larger.',
+                tip_zh: '物體離手電筒等光源越近，阻擋的光線就越多，在後方投影出來的影子就會「變大（Larger）」。'
+            },
+            {
+                cat: 'Light & Shadow / 光與影子',
+                q_en: 'What splits sunlight into seven beautiful rainbow colors?',
+                q_zh: '哪種科學儀器可以把太陽光折射並拆分出彩虹的七種顏色？',
+                options: [
+                    { key: 'A', en: 'A prism', zh: '三稜鏡' },
+                    { key: 'B', en: 'A mirror', zh: '鏡子' },
+                    { key: 'C', en: 'A ruler', zh: '直尺' }
+                ],
+                correct: 'A',
+                tip_en: 'A glass prism refracts and splits white sunlight into rainbow colors.',
+                tip_zh: '陽光穿過「三稜鏡（Prism）」時會產生折射，從而分散出紅、橙、黃、綠、藍、靛、紫七色！'
+            },
+            {
+                cat: 'Day & Night / 白天與黑夜',
+                q_en: 'Which of the following is a nocturnal animal (active at night)?',
+                q_zh: '以下哪一種動物是夜行性動物（在黑夜活動，白天睡覺）？',
+                options: [
+                    { key: 'A', en: 'Sparrow', zh: '麻雀' },
+                    { key: 'B', en: 'Owl', zh: '貓頭鷹' },
+                    { key: 'C', en: 'Butterfly', zh: '蝴蝶' }
+                ],
+                correct: 'B',
+                tip_en: 'Owls are nocturnal. They have great night vision and hunt for food in the dark.',
+                tip_zh: '貓頭鷹博士和飛蛾都在夜間活動，屬於「夜行性動物（Nocturnal animals）」，而蝴蝶和麻雀則是白天活動的。'
+            },
+            {
+                cat: 'Day & Night / 白天與黑夜',
+                q_en: 'Which animal is active during the daytime (diurnal)?',
+                q_zh: '以下哪種動物是晝行性動物（在陽光充足的白天活動）？',
+                options: [
+                    { key: 'A', en: 'Moth', zh: '飛蛾' },
+                    { key: 'B', en: 'Butterfly', zh: '蝴蝶' },
+                    { key: 'C', en: 'Bat', zh: '蝙蝠' }
+                ],
+                correct: 'B',
+                tip_en: 'Butterflies feed on flowers during the sunny day, making them diurnal.',
+                tip_zh: '蝴蝶喜愛溫暖的陽光，白天在花叢間採蜜，是典型的「晝行性動物（Diurnal animals）」。'
+            },
+            {
+                cat: 'Day & Night / 白天與黑夜',
+                q_en: 'What important gifts does the Earth get from the Sun?',
+                q_zh: '地球每天從太陽那裡獲得哪兩種對生命至關重要的禮物？',
+                options: [
+                    { key: 'A', en: 'Water and air', zh: '水分和空氣' },
+                    { key: 'B', en: 'Light and heat', zh: '光線和熱能' },
+                    { key: 'C', en: 'Soil and rocks', zh: '泥土和岩石' }
+                ],
+                correct: 'B',
+                tip_en: 'The Sun gives light to illuminate the day and heat to keep the Earth warm.',
+                tip_zh: '太陽為地球帶來了「光線（Light）」讓我們看清世界，並帶來「熱能（Heat）」提供溫暖。'
+            },
+            {
+                cat: 'Day & Night / 白天與黑夜',
+                q_en: 'Why is it dark at night?',
+                q_zh: '為什麼到了晚上天空就會變黑？',
+                options: [
+                    { key: 'A', en: 'The Sun turns off its light', zh: '太陽把自己的燈關掉了' },
+                    { key: 'B', en: 'The Sun shines on the other side of the Earth', zh: '太陽照到地球的另外一面去了' },
+                    { key: 'C', en: 'Clouds block all the light', zh: '烏雲把所有光線都永遠擋住了' }
+                ],
+                correct: 'B',
+                tip_en: 'The Earth rotates. When our side faces away from the Sun, it is nighttime for us.',
+                tip_zh: '因為地球會自轉。當我們所在的這一面轉到背對太陽的一側時，太陽光照不到這裡，就是我們的夜晚了。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which object is a natural object?',
+                q_zh: '以下哪一個物體是完全來自大自然的「自然物體」？',
+                options: [
+                    { key: 'A', en: 'A book', zh: '一本圖書' },
+                    { key: 'B', en: 'A natural rock', zh: '一塊天然岩石' },
+                    { key: 'C', en: 'A plastic pen', zh: '一支塑膠筆' }
+                ],
+                correct: 'B',
+                tip_en: 'Rocks are natural materials formed by nature without human processing.',
+                tip_zh: '岩石是自然形成的，沒有經過人類重新設計和製作，屬於「自然物體（Natural objects）」。'
+            },
+            {
+                cat: 'Everyday Objects / 日常物品',
+                q_en: 'Which object is a man-made object?',
+                q_zh: '以下哪一個物體是由人類設計和製造的「人造物體」？',
+                options: [
+                    { key: 'A', en: 'An iron spoon', zh: '一個鐵茶匙' },
+                    { key: 'B', en: 'A bird feather', zh: '一片小鳥羽毛' },
+                    { key: 'C', en: 'A tree leaf', zh: '一片大樹樹葉' }
+                ],
+                correct: 'A',
+                tip_en: 'An iron spoon is refined and manufactured by people for eating.',
+                tip_zh: '鐵勺是人類開採鐵礦後製造加工出來的，是典型的「人造物體（Man-made objects）」。'
             }
         ];
+
+        // Active questions slice (will contain 10 questions randomized from master)
+        let quizQuestions = [];
+        let currentQuizIndex = 0;
 
         // Greetings database containing bilingual keys
         const greetingsList = [
@@ -815,7 +1109,9 @@
             setRandomGreeting();
             initFlashcards();
             initMatchingGame();
-            resetQuiz();
+            
+            // Randomly select 10 questions from our 32-question bank on launch
+            shuffleAndRestartQuiz();
         };
 
         function setRandomGreeting() {
@@ -1092,16 +1388,27 @@
             }
         }
 
-        // ---------------- QUIZ SECTION ----------------
-        function resetQuiz() {
+        // ---------------- QUIZ SECTION (RANDOM SHUFFLE SYSTEM) ----------------
+        
+        // NEW function: Shuffles the 32 questions master array, selects 10, and resets quiz
+        function shuffleAndRestartQuiz() {
+            // Shuffle copy of master array
+            const shuffledMaster = [...quizQuestionsMaster].sort(() => Math.random() - 0.5);
+            
+            // Draw first 10 questions
+            quizQuestions = shuffledMaster.slice(0, 10);
+            
             currentQuizIndex = 0;
             selectedQuizOption = null;
-            answeredQuestionsCount = 0;
             document.getElementById('btn-next-question').classList.add('hidden');
+            
+            // Load current UI
             renderQuizQuestion();
+            showToast("🔄 Quiz Reset! 10 new random questions loaded!", "🔄 題庫已重整！32題庫中已隨機抽出10題新題目！");
         }
 
         function renderQuizQuestion() {
+            if (quizQuestions.length === 0) return;
             const q = quizQuestions[currentQuizIndex];
             
             document.getElementById('quiz-progress-badge').innerText = `Question ${currentQuizIndex + 1} / ${quizQuestions.length} | 問題 ${currentQuizIndex + 1} / ${quizQuestions.length}`;
@@ -1153,7 +1460,7 @@
         }
 
         function selectQuizOption(key) {
-            if(document.getElementById('btn-next-question').classList.contains('hidden') === false) {
+            if (document.getElementById('btn-next-question').classList.contains('hidden') === false) {
                 return;
             }
 
