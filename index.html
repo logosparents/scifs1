@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Science Explorer: Dr. Owl's Academy</title>
-    <!-- Tailwind CSS for vibrant UI -->
+    <!-- Tailwind CSS for vibrant, child-friendly UI -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for cute icons -->
+    <!-- FontAwesome for interactive cute icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for friendly rounded text -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700;900&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts for big, friendly, and readable fonts suitable for kids -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -20,7 +20,7 @@
             font-family: 'Fredoka One', 'Noto Sans TC', sans-serif;
         }
         .card-perspective {
-            perspective: 1000px;
+            perspective: 1200px;
         }
         .card-inner {
             transition: transform 0.6s;
@@ -43,21 +43,21 @@
             animation: bounce-slow 2.5s infinite ease-in-out;
         }
         
-        /* Pulse Animation for Speaking Buttons */
+        /* Pulse Ring Animation for Speaking Audio Buttons */
         @keyframes speak-pulse-ring {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+            70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
         }
         .speak-active {
             animation: speak-pulse-ring 1.2s infinite ease-in-out;
-            background-color: #fbbf24 !important;
-            color: #78350f !important;
+            background-color: #f59e0b !important;
+            color: #ffffff !important;
         }
         
-        /* Custom scrollbar for horizontal category filter */
+        /* Custom horizontal category scrollbar styling */
         ::-webkit-scrollbar {
-            height: 8px;
+            height: 10px;
         }
         ::-webkit-scrollbar-track {
             background: #fef3c7;
@@ -71,21 +71,20 @@
 </head>
 <body class="min-h-screen pb-16 select-none text-teal-950">
 
-    <!-- Sparkle Stars Background Effect -->
     <div class="absolute inset-0 pointer-events-none opacity-25 overflow-hidden">
-        <i class="fa-solid fa-star text-yellow-400 absolute text-3xl" style="top: 8%; left: 6%; animation: pulse 2s infinite;"></i>
-        <i class="fa-solid fa-star text-yellow-400 absolute text-4xl" style="top: 14%; right: 8%; animation: pulse 2.5s infinite;"></i>
-        <i class="fa-solid fa-star text-yellow-400 absolute text-2xl" style="bottom: 18%; left: 12%; animation: pulse 1.8s infinite;"></i>
-        <i class="fa-solid fa-star text-yellow-400 absolute text-3xl" style="bottom: 12%; right: 10%; animation: pulse 2.2s infinite;"></i>
+        <i class="fa-solid fa-star text-yellow-400 absolute text-4xl" style="top: 8%; left: 6%; animation: pulse 2s infinite;"></i>
+        <i class="fa-solid fa-star text-yellow-400 absolute text-5xl" style="top: 14%; right: 8%; animation: pulse 2.5s infinite;"></i>
+        <i class="fa-solid fa-star text-yellow-400 absolute text-3xl" style="bottom: 18%; left: 12%; animation: pulse 1.8s infinite;"></i>
+        <i class="fa-solid fa-star text-yellow-400 absolute text-4xl" style="bottom: 12%; right: 10%; animation: pulse 2.2s infinite;"></i>
     </div>
 
-    <!-- Header Block (English on top, Chinese below) -->
     <header class="bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500 p-6 text-white text-center shadow-xl border-b-8 border-cyan-400 relative z-10">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-4">
-                <span class="text-5xl sm:text-6xl bounce-owl cursor-pointer" onclick="speakEnglish('Welcome to Dr. Owls Academy! Let\'s learn science together!')">🦉</span>
+                <!-- Mascot 🦉 acting as global welcome audio clicker -->
+                <span class="text-6xl sm:text-7xl bounce-owl cursor-pointer" onclick="speakEnglish('Welcome to Dr. Owls Academy! Let\'s learn science together!')">🦉</span>
                 <div class="text-left">
-                    <h1 class="text-3xl sm:text-4xl font-extrabold title-font tracking-wide text-yellow-100 drop-shadow">
+                    <h1 class="text-3xl sm:text-4xl font-black title-font tracking-wide text-yellow-100 drop-shadow">
                         Science Explorer: Dr. Owl's Academy
                     </h1>
                     <p class="text-lg sm:text-xl font-bold text-teal-50 mt-1">
@@ -97,11 +96,11 @@
                 </div>
             </div>
             
-            <!-- Stars Count & Mode Indicator -->
+            <!-- Stars Count Panel & Mode Info -->
             <div class="flex items-center gap-3">
                 <div class="bg-amber-500/30 border-2 border-amber-300 px-5 py-2.5 rounded-full flex items-center gap-2 shadow-inner">
                     <span class="text-3xl text-yellow-300 drop-shadow"><i class="fa-solid fa-star animate-spin" style="animation-duration: 4s;"></i></span>
-                    <span id="star-count" class="text-2xl font-black text-yellow-100 title-font">0</span>
+                    <span id="star-count" class="text-3xl font-black text-yellow-100 title-font">0</span>
                 </div>
                 <div class="bg-white/20 border-2 border-white/40 px-4 py-2 rounded-full font-bold text-xs sm:text-sm text-white flex items-center gap-1.5">
                     🇺🇸 🗣️ Audio Mode
@@ -110,84 +109,83 @@
         </div>
     </header>
 
-    <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-4 mt-8 relative z-10">
         
         <!-- ================= HOME SCREEN ================= -->
         <section id="screen-home" class="transition-all duration-300">
-            <!-- Hero Mascot and Greeting -->
+            <!-- Hero Mascot and Greeting Speech bubble -->
             <div class="bg-white rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border-4 border-teal-400 text-center relative overflow-hidden mb-8">
                 <div class="absolute -top-12 -left-12 w-28 h-28 bg-yellow-200 rounded-full opacity-50"></div>
                 <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-teal-100 rounded-full opacity-50"></div>
                 
                 <div class="relative z-10 flex flex-col items-center">
-                    <div class="text-7xl sm:text-8xl mb-4 bounce-owl cursor-pointer" onclick="speakGreeting()">🦉</div>
+                    <div class="text-8xl sm:text-9xl mb-4 bounce-owl cursor-pointer" onclick="speakGreeting()">🦉</div>
                     
-                    <!-- Bubble with Pronunciation Button inside -->
-                    <div class="inline-block bg-yellow-50 border-4 border-yellow-300 rounded-[2rem] p-6 mb-8 relative max-w-2xl shadow-md">
+                    <!-- Bubble with English-primary stacked text and a dedicated pronunciation button -->
+                    <div class="inline-block bg-yellow-50 border-4 border-yellow-300 rounded-[2rem] p-6 mb-8 relative w-full max-w-2xl shadow-md">
                         <div class="absolute w-4 h-4 bg-yellow-50 border-t-4 border-l-4 border-yellow-300 rotate-45 -bottom-2.5 left-1/2 -translate-x-1/2"></div>
                         
-                        <!-- Speaker play button -->
-                        <button onclick="speakGreeting(this)" id="btn-speak-greeting" class="mb-3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-5 py-2 rounded-full flex items-center gap-2 mx-auto shadow-md transition active:scale-95 text-base sm:text-lg">
-                            <i class="fa-solid fa-volume-high text-xl"></i> Listen to Dr. Owl / 聽聽博士說話
+                        <!-- Fixed audio click triggers with safe "type=button" to prevent app crash/reload -->
+                        <button type="button" onclick="speakGreeting(this)" id="btn-speak-greeting" class="mb-4 bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-6 py-3 rounded-full flex items-center gap-3 mx-auto shadow-md transition active:scale-95 text-lg sm:text-xl">
+                            <i class="fa-solid fa-volume-high text-2xl"></i> Listen / 聽英語發音
                         </button>
                         
-                        <!-- Stacked Text: English on top (Large), Chinese on bottom (Medium) -->
-                        <p id="owl-greeting-en" class="text-xl sm:text-2xl font-extrabold text-teal-900 leading-relaxed mb-2"></p>
-                        <p id="owl-greeting-zh" class="text-base sm:text-lg font-bold text-teal-700/90 leading-relaxed border-t border-dashed border-teal-200/50 pt-2"></p>
+                        <!-- Stacked Text: English on top (Huge), Chinese on bottom (Medium) -->
+                        <p id="owl-greeting-en" class="text-2xl sm:text-3xl font-black text-teal-900 leading-relaxed mb-3"></p>
+                        <p id="owl-greeting-zh" class="text-lg sm:text-xl font-bold text-teal-700/90 leading-relaxed border-t border-dashed border-teal-200/50 pt-3"></p>
                     </div>
                     
-                    <h3 class="text-xl sm:text-2xl font-black text-teal-800 mb-8 uppercase tracking-wider">
-                        🎒 Choose Your Learning Adventure: <br>
-                        <span class="text-lg font-bold text-teal-600">請選擇你想挑戰的探險關卡：</span>
+                    <h3 class="text-2xl sm:text-3xl font-black text-teal-800 mb-8 uppercase tracking-wider">
+                        🎒 Choose Your Learning Adventure:<br>
+                        <span class="text-lg sm:text-xl font-bold text-teal-600 mt-1 block">請選擇你想挑戰的探險關卡：</span>
                     </h3>
                     
-                    <!-- Quick Navigator Buttons -->
+                    <!-- Navigation Buttons (Larger text & type="button") -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl mx-auto">
                         <!-- Flashcard Button -->
-                        <button onclick="switchScreen('flashcards')" class="group relative bg-emerald-400 hover:bg-emerald-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-emerald-600 transition-all active:scale-95 flex flex-col items-center">
-                            <span class="text-6xl mb-4 group-hover:scale-110 transition">📚</span>
+                        <button type="button" onclick="switchScreen('flashcards')" class="group relative bg-emerald-400 hover:bg-emerald-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-emerald-600 transition-all active:scale-95 flex flex-col items-center">
+                            <span class="text-7xl mb-4 group-hover:scale-110 transition">📚</span>
                             <span class="text-2xl font-black">Science Flashcards</span>
-                            <span class="text-base font-bold text-emerald-100 mt-2">科學閃卡</span>
-                            <span class="text-xs text-emerald-50/80 mt-1 font-semibold">Quick Learning Cards / 基礎知識一覽</span>
+                            <span class="text-lg font-bold text-emerald-100 mt-2">科學閃卡</span>
+                            <span class="text-xs text-emerald-50/80 mt-1 font-semibold">Learn Key Facts / 基礎知識一覽</span>
                         </button>
 
                         <!-- Matching Button -->
-                        <button onclick="switchScreen('matching')" class="group relative bg-purple-400 hover:bg-purple-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-purple-600 transition-all active:scale-95 flex flex-col items-center">
-                            <span class="text-6xl mb-4 group-hover:scale-110 transition">🧩</span>
+                        <button type="button" onclick="switchScreen('matching')" class="group relative bg-purple-400 hover:bg-purple-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-purple-600 transition-all active:scale-95 flex flex-col items-center">
+                            <span class="text-7xl mb-4 group-hover:scale-110 transition">🧩</span>
                             <span class="text-2xl font-black">Natural vs Man-made</span>
-                            <span class="text-base font-bold text-purple-100 mt-2">自然與人造配對</span>
-                            <span class="text-xs text-purple-50/80 mt-1 font-semibold">Sorting Game / 配對大挑戰</span>
+                            <span class="text-lg font-bold text-purple-100 mt-2">自然與人造配對</span>
+                            <span class="text-xs text-purple-50/80 mt-1 font-semibold">Sorting Challenge / 配對大挑戰</span>
                         </button>
 
                         <!-- Quiz Button -->
-                        <button onclick="switchScreen('quiz')" class="group relative bg-orange-400 hover:bg-orange-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-orange-600 transition-all active:scale-95 flex flex-col items-center">
-                            <span class="text-6xl mb-4 group-hover:scale-110 transition">❓</span>
+                        <button type="button" onclick="switchScreen('quiz')" class="group relative bg-orange-400 hover:bg-orange-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-orange-600 transition-all active:scale-95 flex flex-col items-center">
+                            <span class="text-7xl mb-4 group-hover:scale-110 transition">❓</span>
                             <span class="text-2xl font-black">Dr. Owl's Quiz</span>
-                            <span class="text-base font-bold text-orange-100 mt-2">貓頭鷹問答比賽</span>
-                            <span class="text-xs text-orange-50/80 mt-1 font-semibold">SA2 Exam Simulator / SA2 仿真題庫</span>
+                            <span class="text-lg font-bold text-orange-100 mt-2">貓頭鷹問答比賽</span>
+                            <span class="text-xs text-orange-50/80 mt-1 font-semibold">Exam Practice / SA2 仿真題庫</span>
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- Parent Record Panel / Share Segment -->
-            <div class="bg-gradient-to-r from-amber-100 to-orange-100 rounded-[2rem] p-8 shadow-xl border-4 border-amber-300">
+            <div class="bg-gradient-to-r from-amber-100 to-orange-100 rounded-[2.5rem] p-8 shadow-xl border-4 border-amber-300">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div class="flex items-center gap-4 text-left">
-                        <span class="text-5xl">📊</span>
+                        <span class="text-6xl">📊</span>
                         <div>
-                            <h4 class="text-xl font-bold text-amber-900">
+                            <h4 class="text-2xl font-black text-amber-900">
                                 Dear Parents / 親愛的家長：
                             </h4>
-                            <p class="text-base text-amber-800 mt-1">
-                                Share your kid's study progress and stars earned! / 隨時分享小朋友在學堂獲得的星星和溫習進度！
+                            <p class="text-lg text-amber-800 mt-1">
+                                Share your kid's study progress and stars earned! / 傳送小朋友在學堂獲得的星星和溫習進度！
                             </p>
                         </div>
                     </div>
-                    <button onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-8 py-4 rounded-2xl flex items-center gap-3 shadow-lg transition active:scale-95 text-lg whitespace-nowrap">
+                    <button type="button" onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-8 py-5 rounded-2xl flex items-center gap-3 shadow-lg transition active:scale-95 text-lg whitespace-nowrap">
                         <i class="fa-brands fa-whatsapp text-3xl"></i>
-                        <span>Share to Parents / 傳送進度給家長</span>
+                        <span>Share Progress / 傳送進度給家長</span>
                     </button>
                 </div>
             </div>
@@ -195,9 +193,8 @@
 
         <!-- ================= SCREEN: FLASHCARDS ================= -->
         <section id="screen-flashcards" class="hidden transition-all duration-300">
-            <!-- Navigation -->
             <div class="flex items-center justify-between mb-4">
-                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
+                <button type="button" onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Main Menu / 返回主頁</span>
                 </button>
@@ -208,14 +205,14 @@
 
             <!-- Dr. Owl Tips inside Flashcard -->
             <div class="bg-teal-50 border-4 border-teal-200 rounded-2xl p-5 mb-6 flex items-start gap-4">
-                <span class="text-4xl bounce-owl">🦉</span>
+                <span class="text-5xl bounce-owl">🦉</span>
                 <div>
-                    <h4 class="font-bold text-teal-800 text-lg">
+                    <h4 class="font-extrabold text-teal-800 text-xl">
                         Dr. Owl's Tips / 貓頭鷹博士的提示：
                     </h4>
                     <p class="text-base text-teal-700 mt-1">
-                        Tap any card to flip it! The back contains critical Booklet takeaways! Click the speaker 🔊 button to hear pronunciation. <br>
-                        <span class="text-sm font-semibold text-teal-600">點擊卡片就可以將它翻過來！背面有手冊精華內容喔！點擊喇叭 🔊 可聽取英語讀音。</span>
+                        Tap any card to flip it! The back contains critical Booklet takeaways! Click the speaker 🔊 button to hear pronunciation.<br>
+                        <span class="text-sm font-semibold text-teal-600 block mt-1">點擊卡片就可以將它翻過來！背面有手冊精華內容喔！點擊喇叭 🔊 可聽取英語讀音。</span>
                     </p>
                 </div>
             </div>
@@ -225,25 +222,25 @@
                 <!-- Filled dynamically by JavaScript -->
             </div>
 
-            <!-- Single Card Box -->
+            <!-- Single Card Box with English Primary layout -->
             <div class="flex flex-col items-center">
                 <div class="card-perspective w-full max-w-xl aspect-[4/3] cursor-pointer" onclick="flipFlashcard()">
                     <div id="flashcard-inner" class="card-inner w-full h-full relative duration-500 shadow-2xl rounded-[2.5rem] border-4 border-yellow-400">
                         
-                        <!-- Front Face (English Primary on top, Chinese below) -->
+                        <!-- FRONT FACE: English Dominant, Chinese Auxiliary -->
                         <div id="flashcard-front" class="card-front absolute inset-0 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-[2.2rem] p-8 flex flex-col justify-between items-center text-center">
                             
                             <!-- Category label & Pronunciation row -->
                             <div class="w-full flex items-center justify-between">
                                 <span class="bg-yellow-300/80 border border-yellow-400 text-amber-900 text-sm font-black px-4 py-1.5 rounded-full" id="flash-card-cat-label">CATEGORY</span>
-                                <button onclick="speakFlashcardFront(event)" class="bg-amber-400 hover:bg-amber-500 text-amber-950 p-2.5 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-11 h-11" title="Pronounce Title">
+                                <button type="button" onclick="speakFlashcardFront(event)" class="bg-amber-400 hover:bg-amber-500 text-amber-950 p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Title">
                                     <i class="fa-solid fa-volume-high text-xl"></i>
                                 </button>
                             </div>
                             
-                            <!-- Center Title Content -->
+                            <!-- Center Title Content (Font Size increased) -->
                             <div class="my-auto flex flex-col items-center">
-                                <span class="text-7xl sm:text-8xl mb-4" id="flash-card-icon">💧</span>
+                                <span class="text-8xl mb-4" id="flash-card-icon">💧</span>
                                 <h3 class="text-3xl sm:text-4xl font-black text-amber-950" id="flash-card-title-en">English Title</h3>
                                 <h4 class="text-xl sm:text-2xl font-bold text-amber-800/80 mt-2" id="flash-card-title-zh">繁體中文標題</h4>
                             </div>
@@ -251,21 +248,21 @@
                             <span class="text-sm font-bold text-amber-600/80 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP / 點擊卡片翻轉</span>
                         </div>
 
-                        <!-- Back Face (Bilingual facts stacked) -->
+                        <!-- BACK FACE: English Dominant, Chinese Auxiliary -->
                         <div id="flashcard-back" class="card-back absolute inset-0 bg-gradient-to-tr from-teal-500 to-cyan-600 rounded-[2.2rem] p-8 text-white flex flex-col justify-between items-center text-center">
                             
                             <!-- Category label & Pronunciation row -->
                             <div class="w-full flex items-center justify-between">
                                 <span class="bg-teal-400/40 border border-teal-300 text-teal-100 text-sm font-bold px-4 py-1.5 rounded-full">💡 KEY FACTS / 重點核心</span>
-                                <button onclick="speakFlashcardBack(event)" class="bg-teal-400 hover:bg-teal-300 text-white p-2.5 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-11 h-11" title="Pronounce Content">
+                                <button type="button" onclick="speakFlashcardBack(event)" class="bg-teal-400 hover:bg-teal-300 text-white p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Content">
                                     <i class="fa-solid fa-volume-high text-xl"></i>
                                 </button>
                             </div>
                             
-                            <!-- Center Text Content -->
-                            <div class="my-auto px-2 overflow-y-auto max-h-[180px]">
-                                <p class="text-xl sm:text-2xl font-black leading-relaxed" id="flash-card-desc-en">This is the English description for the science concept.</p>
-                                <p class="text-base sm:text-lg font-bold text-teal-100 mt-4 leading-relaxed border-t border-dashed border-teal-400/50 pt-3" id="flash-card-desc-zh">這是繁體中文說明的核心內容，適合小朋友記憶與溫習。</p>
+                            <!-- Center Text Content (Font Size increased) -->
+                            <div class="my-auto px-2 overflow-y-auto max-h-[200px] w-full">
+                                <p class="text-2xl sm:text-3xl font-black leading-relaxed" id="flash-card-desc-en">This is the English description for the science concept.</p>
+                                <p class="text-lg sm:text-xl font-bold text-teal-100 mt-4 leading-relaxed border-t border-dashed border-teal-400/50 pt-3" id="flash-card-desc-zh">這是繁體中文說明的核心內容，適合小朋友記憶與溫習。</p>
                             </div>
                             
                             <span class="text-sm font-bold text-teal-200/85 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP BACK / 點擊翻回</span>
@@ -275,11 +272,11 @@
 
                 <!-- Navigation Controls for Cards -->
                 <div class="flex items-center gap-8 mt-6">
-                    <button onclick="prevFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-xl">
+                    <button type="button" onclick="prevFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-2xl">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <span class="font-extrabold text-amber-950 text-xl shadow-sm px-6 py-2.5 rounded-full bg-white border-2 border-amber-200" id="flashcard-index">1 / 10</span>
-                    <button onclick="nextFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-xl">
+                    <span class="font-extrabold text-amber-950 text-2xl shadow-sm px-6 py-3 rounded-full bg-white border-2 border-amber-200" id="flashcard-index">1 / 10</span>
+                    <button type="button" onclick="nextFlashcard()" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition active:scale-90 text-2xl">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -290,7 +287,7 @@
         <section id="screen-matching" class="hidden transition-all duration-300">
             <!-- Navigation -->
             <div class="flex items-center justify-between mb-4">
-                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
+                <button type="button" onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Main Menu / 返回主頁</span>
                 </button>
@@ -301,14 +298,14 @@
 
             <!-- Mascot Guide -->
             <div class="bg-purple-50 border-4 border-purple-200 rounded-2xl p-5 mb-6 flex items-start gap-4">
-                <span class="text-4xl bounce-owl">🦉</span>
+                <span class="text-5xl bounce-owl">🦉</span>
                 <div>
-                    <h4 class="font-bold text-purple-800 text-lg">
+                    <h4 class="font-extrabold text-purple-800 text-xl">
                         Dr. Owl's Sorting Mission / 貓頭鷹博士的配對任務：
                     </h4>
                     <p class="text-base text-purple-700 mt-1">
-                        Select an object card below, hear its English pronunciation, then click the correct container to categorize it! <br>
-                        <span class="text-sm font-semibold text-purple-600">點選底部的卡片，聆聽發音，然後點選分類框以進行歸類！</span>
+                        Select an object card below, hear its English pronunciation, then click the correct box to categorize it!<br>
+                        <span class="text-sm font-semibold text-purple-600 block mt-1">點選底部的卡片，聆聽發音，然後點選分類框以進行歸類！</span>
                     </p>
                 </div>
             </div>
@@ -316,23 +313,23 @@
             <!-- Game Board Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <!-- Dropzone 1: Natural Objects -->
-                <div id="drop-natural" class="bg-emerald-50 border-4 border-dashed border-emerald-300 rounded-[2rem] p-6 min-h-[200px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-emerald-100/50">
-                    <h3 class="text-xl sm:text-2xl font-black text-emerald-800 text-center mb-4">
+                <div id="drop-natural" class="bg-emerald-50 border-4 border-dashed border-emerald-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-emerald-100/50">
+                    <h3 class="text-2xl font-black text-emerald-800 text-center mb-4">
                         🌿 Natural Objects
-                        <span class="block text-sm sm:text-base font-bold text-emerald-600 mt-0.5">自然物體</span>
+                        <span class="block text-lg font-bold text-emerald-600 mt-1">自然物體</span>
                     </h3>
-                    <div id="zone-natural" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[100px]">
+                    <div id="zone-natural" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[120px]">
                         <!-- Cards dropped here -->
                     </div>
                 </div>
 
                 <!-- Dropzone 2: Man-made Objects -->
-                <div id="drop-manmade" class="bg-orange-50 border-4 border-dashed border-orange-300 rounded-[2rem] p-6 min-h-[200px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-orange-100/50">
-                    <h3 class="text-xl sm:text-2xl font-black text-orange-800 text-center mb-4">
+                <div id="drop-manmade" class="bg-orange-50 border-4 border-dashed border-orange-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-orange-100/50">
+                    <h3 class="text-2xl font-black text-orange-800 text-center mb-4">
                         🤖 Man-made Objects
-                        <span class="block text-sm sm:text-base font-bold text-orange-600 mt-0.5">人造物體</span>
+                        <span class="block text-lg font-bold text-orange-600 mt-1">人造物體</span>
                     </h3>
-                    <div id="zone-manmade" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[100px]">
+                    <div id="zone-manmade" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[120px]">
                         <!-- Cards dropped here -->
                     </div>
                 </div>
@@ -340,7 +337,7 @@
 
             <!-- Cards to be sorted -->
             <div class="bg-white border-4 border-purple-200 rounded-[2rem] p-6 shadow-md">
-                <h4 class="font-black text-purple-900 mb-4 text-center text-lg sm:text-xl">
+                <h4 class="font-black text-purple-900 mb-4 text-center text-xl">
                     👉 Cards to classify (Click to Hear & Select) / 待分類的卡片：
                 </h4>
                 <div id="match-cards-pool" class="flex flex-wrap gap-4 justify-center">
@@ -350,12 +347,12 @@
 
             <!-- Action buttons -->
             <div class="flex justify-center gap-6 mt-8">
-                <button onclick="checkMatchingResult()" class="bg-purple-500 hover:bg-purple-600 text-white font-extrabold px-10 py-4 rounded-2xl shadow-md transition active:scale-95 text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-check-double text-xl"></i>
+                <button type="button" onclick="checkMatchingResult()" class="bg-purple-500 hover:bg-purple-600 text-white font-extrabold px-10 py-5 rounded-2xl shadow-md transition active:scale-95 text-xl flex items-center gap-2">
+                    <i class="fa-solid fa-check-double text-2xl"></i>
                     <span>Submit Answer / 檢查結果</span>
                 </button>
-                <button onclick="initMatchingGame()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-extrabold px-8 py-4 rounded-2xl shadow border border-gray-300 transition active:scale-95 text-base flex items-center gap-2">
-                    <i class="fa-solid fa-arrows-rotate"></i>
+                <button type="button" onclick="initMatchingGame()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-extrabold px-8 py-5 rounded-2xl shadow border border-gray-300 transition active:scale-95 text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-rotate text-xl"></i>
                     <span>Reset Deck / 重新洗牌</span>
                 </button>
             </div>
@@ -365,11 +362,11 @@
         <section id="screen-quiz" class="hidden transition-all duration-300">
             <!-- Navigation -->
             <div class="flex items-center justify-between mb-4">
-                <button onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
+                <button type="button" onclick="switchScreen('home')" class="bg-white border-2 border-teal-300 text-teal-700 hover:bg-teal-50 px-5 py-3 rounded-2xl font-bold transition flex items-center gap-2 shadow-md text-base">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Main Menu / 返回主頁</span>
                 </button>
-                <div class="text-base font-black text-orange-700 bg-orange-100 border border-orange-200 px-4 py-2 rounded-full shadow" id="quiz-progress-badge">
+                <div class="text-lg font-black text-orange-700 bg-orange-100 border border-orange-200 px-5 py-2.5 rounded-full shadow" id="quiz-progress-badge">
                     Question 1 / 10
                 </div>
             </div>
@@ -379,40 +376,40 @@
                 <!-- Question Title Block with Speak Button -->
                 <div class="mb-6 bg-orange-50/50 p-6 rounded-3xl border-2 border-orange-100">
                     <div class="flex items-center justify-between gap-3">
-                        <span class="text-xs sm:text-sm bg-orange-400 text-white font-extrabold px-4 py-1.5 rounded-full uppercase" id="quiz-cat-label">Water and Air</span>
-                        <button id="btn-speak-question" onclick="speakCurrentQuestion(this)" class="bg-orange-400 hover:bg-orange-500 text-white w-12 h-12 rounded-full shadow-md transition active:scale-90 flex items-center justify-center">
-                            <i class="fa-solid fa-volume-high text-xl"></i>
+                        <span class="text-sm bg-orange-400 text-white font-extrabold px-4 py-1.5 rounded-full uppercase" id="quiz-cat-label">Water and Air</span>
+                        <button type="button" id="btn-speak-question" onclick="speakCurrentQuestion(this)" class="bg-orange-400 hover:bg-orange-500 text-white w-14 h-14 rounded-full shadow-md transition active:scale-90 flex items-center justify-center">
+                            <i class="fa-solid fa-volume-high text-2xl"></i>
                         </button>
                     </div>
                     
                     <!-- Question in Large English, Muted Chinese -->
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-teal-950 mt-4 leading-relaxed" id="quiz-question-en">English Question Text</h2>
-                    <h3 class="text-lg sm:text-xl font-bold text-teal-700 mt-2 border-t border-dashed border-teal-200/50 pt-2" id="quiz-question-zh">繁體中文問題文字</h3>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-teal-950 mt-4 leading-relaxed" id="quiz-question-en">English Question Text</h2>
+                    <h3 class="text-xl sm:text-2xl font-bold text-teal-700 mt-2 border-t border-dashed border-teal-200/50 pt-3" id="quiz-question-zh">繁體中文問題文字</h3>
                 </div>
 
                 <!-- Answer options -->
                 <div class="grid grid-cols-1 gap-4 mb-6" id="quiz-options-container">
-                    <!-- Button options generated dynamically -->
+                    <!-- Button options generated dynamically with type="button" and embedded Audio buttons -->
                 </div>
 
                 <!-- Dr. Owl Tips Board (Bilingual facts stacked) -->
-                <div class="bg-amber-50 border-4 border-amber-200 rounded-3xl p-5 mt-6 flex items-start gap-4">
-                    <span class="text-4xl bounce-owl">🦉</span>
+                <div class="bg-amber-50 border-4 border-amber-200 rounded-3xl p-6 mt-6 flex items-start gap-4">
+                    <span class="text-5xl bounce-owl">🦉</span>
                     <div>
-                        <h4 class="font-extrabold text-amber-900 text-lg flex items-center gap-2">
+                        <h4 class="font-extrabold text-amber-900 text-xl flex items-center gap-2">
                             <span>💡</span>
-                            <span>Dr. Owl's Tip / 貓頭鷹博士的提示：</span>
+                            <span>Dr. Owl\'s Tip / 貓頭鷹博士的提示：</span>
                         </h4>
                         <!-- Stacked Tips -->
-                        <p class="text-base sm:text-lg font-bold text-amber-850 mt-1 leading-relaxed" id="quiz-tip-en">English tips</p>
-                        <p class="text-sm sm:text-base font-semibold text-amber-700 mt-1 leading-relaxed border-t border-dashed border-amber-300/50 pt-1" id="quiz-tip-zh">中文提示</p>
+                        <p class="text-lg sm:text-xl font-bold text-amber-950 mt-2 leading-relaxed" id="quiz-tip-en">English tips</p>
+                        <p class="text-base sm:text-lg font-semibold text-amber-700 mt-1 leading-relaxed border-t border-dashed border-amber-300/50 pt-2" id="quiz-tip-zh">中文提示</p>
                     </div>
                 </div>
 
                 <!-- Control buttons inside Quiz -->
                 <div class="flex items-center justify-between mt-8 pt-4 border-t border-gray-100">
-                    <div id="quiz-score-indicator" class="font-extrabold text-lg text-yellow-600">⭐ Earn +10 stars for correct answer</div>
-                    <button id="btn-next-question" onclick="nextQuestion()" class="bg-orange-500 hover:bg-orange-600 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-lg transition active:scale-95 hidden flex items-center gap-2 text-lg">
+                    <div id="quiz-score-indicator" class="font-extrabold text-xl text-yellow-600">⭐ Earn +10 stars for correct answer</div>
+                    <button type="button" id="btn-next-question" onclick="nextQuestion()" class="bg-orange-500 hover:bg-orange-600 text-white font-extrabold px-8 py-4 rounded-2xl shadow-lg transition active:scale-95 hidden flex items-center gap-2 text-xl">
                         <span>Next Question / 下一題</span>
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
@@ -424,34 +421,34 @@
         <section id="screen-congrats" class="hidden transition-all duration-300">
             <div class="bg-white rounded-[2.5rem] p-10 shadow-2xl border-4 border-yellow-400 text-center max-w-xl mx-auto">
                 <span class="text-8xl">🎉</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-teal-900 mt-6 mb-2">
+                <h2 class="text-4xl font-extrabold text-teal-900 mt-6 mb-2">
                     Super Science Explorer!
-                    <span class="block text-xl sm:text-2xl font-bold text-teal-700 mt-1">超級科學探險家！</span>
+                    <span class="block text-2xl font-bold text-teal-700 mt-1">超級科學探險家！</span>
                 </h2>
-                <p class="text-lg font-semibold text-teal-700 mb-8">
-                    You completed all learning modules and exam simulators! Fantastic job! <br>
-                    <span class="text-base font-medium text-teal-600">你成功完成了所有溫習和問答測試！太厲害了！</span>
+                <p class="text-xl font-semibold text-teal-700 mb-8">
+                    You completed all learning modules and exam simulators! Fantastic job!<br>
+                    <span class="text-base font-medium text-teal-600 block mt-1">你成功完成了所有溫習和問答測試！太厲害了！</span>
                 </p>
 
                 <!-- Stars summary card -->
                 <div class="bg-yellow-50 border-4 border-dashed border-yellow-300 rounded-3xl p-8 mb-8">
-                    <span class="text-xs sm:text-sm bg-yellow-300 text-yellow-900 font-extrabold px-4 py-1.5 rounded-full uppercase">Current Score</span>
-                    <h3 class="text-5xl sm:text-6xl font-black text-amber-600 my-4 title-font">
+                    <span class="text-sm bg-yellow-300 text-yellow-900 font-extrabold px-4 py-1.5 rounded-full uppercase">Current Score</span>
+                    <h3 class="text-6xl sm:text-7xl font-black text-amber-600 my-4 title-font">
                         ⭐ <span id="congrats-stars">0</span> Stars
                     </h3>
-                    <p class="text-sm sm:text-base font-bold text-amber-850">
-                        Dr. Owl has awarded you a gold badge! Keep exploring science! <br>
-                        <span class="text-xs sm:text-sm font-semibold text-amber-700">貓頭鷹博士為你頒發了榮譽金牌！繼續保持熱情學習科學！</span>
+                    <p class="text-base font-bold text-amber-850">
+                        Dr. Owl has awarded you a gold badge! Keep exploring science!<br>
+                        <span class="text-sm font-semibold text-amber-700 block mt-1">貓頭鷹博士為你頒發了榮譽金牌！繼續保持熱情學習科學！</span>
                     </p>
                 </div>
 
                 <div class="flex flex-col gap-4">
-                    <button onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-4 rounded-2xl flex items-center justify-center gap-3 shadow transition active:scale-95 text-lg">
+                    <button type="button" onclick="shareProgressWhatsApp()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-5 rounded-2xl flex items-center justify-center gap-3 shadow transition active:scale-95 text-lg">
                         <i class="fa-brands fa-whatsapp text-3xl"></i>
-                        <span>Send Progress to Parents / 分享成績給爸爸媽媽！</span>
+                        <span>Send Progress / 分享成績給家長</span>
                     </button>
                     
-                    <button onclick="switchScreen('home')" class="bg-teal-400 hover:bg-teal-500 text-white font-extrabold px-6 py-4 rounded-2xl shadow transition active:scale-95 text-lg">
+                    <button type="button" onclick="switchScreen('home')" class="bg-teal-400 hover:bg-teal-500 text-white font-extrabold px-6 py-5 rounded-2xl shadow transition active:scale-95 text-lg">
                         Play Again / 回到主頁重新挑戰
                     </button>
                 </div>
@@ -461,57 +458,107 @@
     </main>
 
     <!-- Global Sound Effects/Notification banner -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none text-base sm:text-lg">
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex flex-col items-center gap-1 text-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none max-w-[90%]">
         <span id="toast-icon">⭐</span>
         <span id="toast-text">Toast Message</span>
     </div>
 
     <script>
-        // ---------------- TEXT TO SPEECH UTILITY ----------------
-        // Reliable English TTS engine using Web Speech API
+        // ---------------- THE ROBUST AUDIO TTS ENGINE (BUG FREE) ----------------
+        // Prevents garbage collection on speech objects by keeping references in a global array
+        window.activeUtterances = [];
+
+        // Safely cancels active audio without triggering thread memory allocation crash on iOS
+        function safeCancel() {
+            if ('speechSynthesis' in window) {
+                try {
+                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    if (isIOS) {
+                        // On iOS, if we are already speaking, we avoid calling .cancel() to prevent WebKit's
+                        // "Codec decoding is not started within 2s" BAD_ACCESS thread crash.
+                        if (window.speechSynthesis.speaking) {
+                            return true; // Return early, let the previous one finish or play naturally
+                        }
+                    } else {
+                        // Safe to cancel on standard Desktop and Android Chrome
+                        window.speechSynthesis.cancel();
+                    }
+                } catch (e) {
+                    console.warn("Speech Synthesis safe cancellation warning: ", e);
+                }
+            }
+            return false;
+        }
+
         function speakEnglish(text, btnElement) {
             if ('speechSynthesis' in window) {
-                // Cancel ongoing narration to prevent overlap
-                window.speechSynthesis.cancel();
-                
-                // Clear out highlight effects from other audio play buttons
-                document.querySelectorAll('.speak-active').forEach(el => {
-                    el.classList.remove('speak-active');
-                    el.innerHTML = '<i class="fa-solid fa-volume-high text-xl"></i>';
-                });
-                
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.85; // Relaxed speed optimal for children's digestion
-                utterance.pitch = 1.1; // Friendly friendly kid tone
-                
-                if (btnElement) {
-                    btnElement.classList.add('speak-active');
-                    btnElement.innerHTML = '<i class="fa-solid fa-waveform text-xl animate-pulse"></i> Speaking...';
+                try {
+                    // Prevent crash by safely inspecting playing threads
+                    const skippedCancel = safeCancel();
                     
-                    utterance.onend = () => {
-                        btnElement.classList.remove('speak-active');
-                        btnElement.innerHTML = '<i class="fa-solid fa-volume-high text-xl"></i>';
-                    };
-                    utterance.onerror = () => {
-                        btnElement.classList.remove('speak-active');
-                        btnElement.innerHTML = '<i class="fa-solid fa-volume-high text-xl"></i>';
-                    };
+                    // Clear out highlight effects from other audio play buttons
+                    document.querySelectorAll('.speak-active').forEach(el => {
+                        el.classList.remove('speak-active');
+                        const icon = el.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fa-solid fa-volume-high text-xl';
+                        }
+                    });
+                    
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.82; // Slightly relaxed reading speed for kids to comprehend
+                    utterance.pitch = 1.15; // Bright friendly kid frequency
+                    
+                    // Add reference to global array to prevent garbage collection crashes
+                    window.activeUtterances.push(utterance);
+                    
+                    if (btnElement) {
+                        btnElement.classList.add('speak-active');
+                        const icon = btnElement.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fa-solid fa-waveform text-xl animate-pulse';
+                        }
+                        
+                        const handleCleanUp = () => {
+                            btnElement.classList.remove('speak-active');
+                            if (icon) {
+                                icon.className = 'fa-solid fa-volume-high text-xl';
+                            }
+                            // Purge reference
+                            const idx = window.activeUtterances.indexOf(utterance);
+                            if (idx > -1) window.activeUtterances.splice(idx, 1);
+                        };
+
+                        utterance.onend = handleCleanUp;
+                        utterance.onerror = handleCleanUp;
+                    } else {
+                        utterance.onend = () => {
+                            const idx = window.activeUtterances.indexOf(utterance);
+                            if (idx > -1) window.activeUtterances.splice(idx, 1);
+                        };
+                        utterance.onerror = () => {
+                            const idx = window.activeUtterances.indexOf(utterance);
+                            if (idx > -1) window.activeUtterances.splice(idx, 1);
+                        };
+                    }
+                    
+                    window.speechSynthesis.speak(utterance);
+                } catch (e) {
+                    console.error("Critical Speech Engine Fault Safeguarded: ", e);
                 }
-                
-                window.speechSynthesis.speak(utterance);
             } else {
                 showToast("⚠️ Your browser doesn't support pronunciation.", "⚠️ 您的瀏覽器不支援語音合成功能。");
             }
         }
 
-        // Global State variables
+        // Global State counters
         let totalStars = 0;
         let visitedFlashcards = new Set();
 
         // ---------------- DATA STRUCTURES: FLASHCARDS ----------------
         const flashcardData = [
-            // Category: Water & Air
             {
                 cat: 'Water & Air / 水和空氣',
                 icon: '💧',
@@ -528,7 +575,6 @@
                 desc_en: 'Air has no colour, no smell, and no taste. Air can flow and does not have a fixed shape. We cannot see air.',
                 desc_zh: '空氣沒有顏色、沒有氣味、沒有味道。空氣會流動，而且沒有固定的形狀。但是，我們看不見空氣。'
             },
-            // Category: Everyday Objects
             {
                 cat: 'Everyday Objects / 日常物品',
                 icon: '🪵',
@@ -545,7 +591,6 @@
                 desc_en: 'We describe properties using hardness (soft or hard), weight (light or heavy), elasticity, and transparency. A balance scales weight more accurately than hands.',
                 desc_zh: '我們可以用硬度（軟/硬）、重量（輕/重）、彈性（有/無）和透明度（透明/半透明/不透明）來描述物品。使用天平能更精確地測量重量。'
             },
-            // Category: Electronic Products
             {
                 cat: 'Electronic Products / 電子產品',
                 icon: '📱',
@@ -554,7 +599,6 @@
                 desc_en: 'Using screens for too long (over 1 hour non-stop, or 2+ hours daily) hurts eyesight, muscles, and bones. Maintain correct posture, never walk while using phones, and ask before taking pictures.',
                 desc_zh: '長時間使用（不間斷超過1小時，或每天超過2小時）會損害視力與骨骼。使用時應保持正確坐姿，走路切勿看手機，拍照前先獲得允許。'
             },
-            // Category: Positions & Motion
             {
                 cat: 'Positions & Motion / 位置與運動',
                 icon: '🏃',
@@ -563,7 +607,6 @@
                 desc_en: 'We use directions (front, back, left, right) and distances (near, far) to describe positions. An object is in motion when it changes position. Speed is relative after comparison.',
                 desc_zh: '我們用方向（前後左右）和距離（遠近）來描述位置。當物體改變位置時就是處於運動狀態。速度快慢是透過相互比較而得出的。'
             },
-            // Category: Light & Shadow
             {
                 cat: 'Light & Shadow / 光與影子',
                 icon: '🔦',
@@ -580,7 +623,6 @@
                 desc_en: 'Sunlight consists of light of different colors. A prism splits sunlight into red, orange, yellow, green, blue, indigo, and purple. This split forms rainbows.',
                 desc_zh: '陽光由多種顏色的光組成，可用三稜鏡折射出紅、橙、黃、綠、藍、靛、紫七色。雨後陽光在空氣中折射，便會形成美麗的彩虹。'
             },
-            // Category: Day & Night
             {
                 cat: 'Day & Night / 白天與黑夜',
                 icon: '☀️',
@@ -615,7 +657,7 @@
         ];
 
         let selectedMatchingCardId = null;
-        let userAssignments = {}; // cardId -> 'natural' or 'manmade'
+        let userAssignments = {};
 
         // ---------------- DATA STRUCTURES: QUIZ ----------------
         const quizQuestions = [
@@ -664,7 +706,7 @@
                 q_zh: '以下哪一項是空氣的特點？',
                 options: [
                     { key: 'A', en: 'We can easily see air', zh: '我們可以輕易看見它' },
-                    { key: 'B', fontClass: 'text-sm', en: 'Air has a fixed shape', zh: '空氣有固定的形狀' },
+                    { key: 'B', en: 'Air has a fixed shape', zh: '空氣有固定的形狀' },
                     { key: 'C', en: 'Air can flow', zh: '空氣可以流動' }
                 ],
                 correct: 'C',
@@ -708,7 +750,7 @@
                 ],
                 correct: 'C',
                 tip_en: 'Only objects that emit their own light are light sources. A key just reflects light from surroundings.',
-                tip_zh: '只有自己能發出光芒的物體才叫光源。鑰匙只是反射了室內光，它自己是不會發光喔！'
+                tip_zh: '傳統必考題。只有自己能發出光芒的物體才叫光源。鑰匙只是反射了室內光，它自己是不會發光喔！'
             },
             {
                 cat: 'Light & Shadow / 光與影子',
@@ -811,7 +853,8 @@
             
             cats.forEach((cat, index) => {
                 const btn = document.createElement('button');
-                btn.className = `px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 ${index === 0 ? 'bg-amber-400 text-amber-950 border-amber-300' : 'bg-white text-amber-800 border-amber-200 hover:bg-amber-50'}`;
+                btn.type = 'button';
+                btn.className = `px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 ${index === 0 ? 'bg-amber-400 text-white border-amber-300' : 'bg-white text-amber-800 border-amber-200 hover:bg-amber-50'}`;
                 btn.innerText = cat;
                 btn.onclick = () => filterFlashcards(cat, btn);
                 container.appendChild(btn);
@@ -828,7 +871,7 @@
             for(let btn of buttons) {
                 btn.className = "px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-white text-amber-800 border-amber-200 hover:bg-amber-50";
             }
-            btnElement.className = "px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-amber-400 text-amber-950 border-amber-300";
+            btnElement.className = "px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-amber-400 text-white border-amber-300";
 
             if (category === 'ALL') {
                 filteredFlashcards = [...flashcardData];
@@ -848,7 +891,7 @@
             document.getElementById('flash-card-cat-label').innerText = card.cat;
             document.getElementById('flash-card-icon').innerText = card.icon;
             
-            // Big English on top, auxiliary Chinese on bottom
+            // Large English on top, auxiliary Chinese on bottom
             document.getElementById('flash-card-title-en').innerText = card.title_en;
             document.getElementById('flash-card-title-zh').innerText = card.title_zh;
 
@@ -921,21 +964,21 @@
             shuffled.forEach(item => {
                 const card = document.createElement('div');
                 card.id = `match-card-${item.id}`;
-                card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[160px]";
+                card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[200px]";
                 
                 // Allow card click to select & speak
                 card.onclick = () => selectMatchingCard(item.id, item.name_en);
                 
                 card.innerHTML = `
                     <div class="flex items-center gap-3">
-                        <span class="text-3xl">${item.icon}</span>
+                        <span class="text-4xl">${item.icon}</span>
                         <div class="text-left leading-snug">
-                            <span class="block text-lg font-black">${item.name_en}</span>
-                            <span class="block text-sm font-bold text-purple-700/80">${item.name_zh}</span>
+                            <span class="block text-xl font-black">${item.name_en}</span>
+                            <span class="block text-base font-bold text-purple-700/80 mt-0.5">${item.name_zh}</span>
                         </div>
                     </div>
-                    <button class="bg-purple-300/50 hover:bg-purple-300 p-2 rounded-full flex items-center justify-center w-8 h-8 select-none pointer-events-none">
-                        <i class="fa-solid fa-volume-high text-sm text-purple-900"></i>
+                    <button type="button" class="bg-purple-300/50 hover:bg-purple-300 p-2.5 rounded-full flex items-center justify-center w-10 h-10 select-none pointer-events-none">
+                        <i class="fa-solid fa-volume-high text-base text-purple-900"></i>
                     </button>
                 `;
                 pool.appendChild(card);
@@ -961,7 +1004,7 @@
                 current.classList.add('ring-4', 'ring-purple-500', 'bg-purple-300');
             }
 
-            // Speak word on click to reinforce pronunciation
+            // Speak word on click safely to reinforce pronunciation
             speakEnglish(speakText);
         }
 
@@ -980,14 +1023,14 @@
             }
 
             const placedCard = document.createElement('div');
-            placedCard.className = "bg-white border-2 border-gray-300 rounded-full px-4 py-2 flex items-center justify-between gap-3 text-sm md:text-base font-black shadow-sm cursor-pointer hover:bg-red-50 hover:border-red-300 transition duration-150";
+            placedCard.className = "bg-white border-2 border-gray-300 rounded-full px-5 py-2.5 flex items-center justify-between gap-3 text-base font-black shadow-sm cursor-pointer hover:bg-red-50 hover:border-red-300 transition duration-150";
             placedCard.innerHTML = `
-                <div class="flex items-center gap-1.5">
-                    <span class="text-xl">${item.icon}</span> 
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">${item.icon}</span> 
                     <span class="text-teal-950 font-black">${item.name_en}</span> 
                     <span class="text-teal-600/80 font-bold">(${item.name_zh})</span>
                 </div>
-                <i class="fa-solid fa-circle-xmark text-red-400 text-lg hover:text-red-500"></i>
+                <i class="fa-solid fa-circle-xmark text-red-400 text-xl hover:text-red-500"></i>
             `;
             
             placedCard.onclick = (e) => {
@@ -1008,20 +1051,20 @@
             const pool = document.getElementById('match-cards-pool');
             const card = document.createElement('div');
             card.id = `match-card-${item.id}`;
-            card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[160px]";
+            card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[200px]";
             
             card.onclick = () => selectMatchingCard(item.id, item.name_en);
             
             card.innerHTML = `
                 <div class="flex items-center gap-3">
-                    <span class="text-3xl">${item.icon}</span>
+                    <span class="text-4xl">${item.icon}</span>
                     <div class="text-left leading-snug">
-                        <span class="block text-lg font-black">${item.name_en}</span>
-                        <span class="block text-sm font-bold text-purple-700/80">${item.name_zh}</span>
+                        <span class="block text-xl font-black">${item.name_en}</span>
+                        <span class="block text-base font-bold text-purple-700/80 mt-0.5">${item.name_zh}</span>
                     </div>
                 </div>
-                <button class="bg-purple-300/50 hover:bg-purple-300 p-2 rounded-full flex items-center justify-center w-8 h-8 select-none pointer-events-none">
-                    <i class="fa-solid fa-volume-high text-sm text-purple-900"></i>
+                <button type="button" class="bg-purple-300/50 hover:bg-purple-300 p-2.5 rounded-full flex items-center justify-center w-10 h-10 select-none pointer-events-none">
+                    <i class="fa-solid fa-volume-high text-base text-purple-900"></i>
                 </button>
             `;
             pool.appendChild(card);
@@ -1076,20 +1119,21 @@
 
             q.options.forEach(opt => {
                 const btn = document.createElement('button');
+                btn.type = 'button';
                 btn.id = `quiz-opt-${opt.key}`;
                 btn.className = "bg-orange-50 hover:bg-orange-100 border-2 border-orange-200 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow transition duration-200 active:scale-98 flex items-center justify-between gap-4 w-full";
                 btn.onclick = () => selectQuizOption(opt.key);
 
                 btn.innerHTML = `
                     <div class="flex items-center gap-4 text-left">
-                        <span class="w-10 h-10 rounded-full bg-orange-400 text-white font-black flex items-center justify-center text-lg shrink-0">${opt.key}</span>
+                        <span class="w-12 h-12 rounded-full bg-orange-400 text-white font-black flex items-center justify-center text-xl shrink-0">${opt.key}</span>
                         <div class="leading-relaxed">
-                            <p class="text-xl font-black text-teal-950">${opt.en}</p>
+                            <p class="text-2xl font-black text-teal-950">${opt.en}</p>
                             <p class="text-base font-bold text-teal-700/90 mt-1 border-t border-dashed border-teal-200/50 pt-1">${opt.zh}</p>
                         </div>
                     </div>
-                    <button onclick="speakOption(event, '${opt.en.replace(/'/g, "\\'")}', this)" class="bg-orange-200/60 hover:bg-orange-300 text-orange-950 w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-sm" title="Pronounce Option">
-                        <i class="fa-solid fa-volume-high text-base"></i>
+                    <button type="button" onclick="speakOption(event, '${opt.en.replace(/'/g, "\\'")}', this)" class="bg-orange-200/60 hover:bg-orange-300 text-orange-950 w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm" title="Pronounce Option">
+                        <i class="fa-solid fa-volume-high text-lg"></i>
                     </button>
                 `;
                 container.appendChild(btn);
@@ -1104,7 +1148,7 @@
         }
 
         function speakOption(event, englishText, btn) {
-            event.stopPropagation(); // Avoid triggering option click
+            event.stopPropagation(); // Avoid triggering option selection click
             speakEnglish(englishText, btn);
         }
 
@@ -1118,7 +1162,6 @@
             
             const buttons = document.getElementById('quiz-options-container').getElementsByTagName('button');
             for(let btn of buttons) {
-                // Disable option clicking but keep sound clicks if available
                 btn.disabled = true; 
             }
 
@@ -1167,7 +1210,7 @@
             const toast = document.getElementById('toast');
             const txt = document.getElementById('toast-text');
             
-            txt.innerHTML = `<span class="block text-base font-black">${enMsg}</span> <span class="block text-xs font-semibold text-teal-200 mt-0.5">${zhMsg}</span>`;
+            txt.innerHTML = `<span class="block text-lg font-black">${enMsg}</span> <span class="block text-sm font-semibold text-teal-200 mt-1">${zhMsg}</span>`;
             toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex flex-col items-center gap-1 text-center transition-all duration-300 opacity-100 translate-y-0 max-w-[90%]";
 
             setTimeout(() => {
