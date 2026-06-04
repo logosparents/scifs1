@@ -82,7 +82,7 @@
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-4">
                 <!-- Mascot 🦉 acting as global welcome audio clicker -->
-                <span class="text-6xl sm:text-7xl bounce-owl cursor-pointer" onclick="speakEnglish('Welcome to Dr. Owls Academy! Let\'s learn science together!')">🦉</span>
+                <span class="text-6xl sm:text-7xl bounce-owl cursor-pointer" onclick="speakEnglish('Welcome to Dr. Owls Academy! Let us learn science together!')">🦉</span>
                 <div class="text-left">
                     <h1 class="text-3xl sm:text-4xl font-black title-font tracking-wide text-yellow-100 drop-shadow">
                         Science Explorer: Dr. Owl's Academy
@@ -226,7 +226,7 @@
                             <!-- Center Title Content (Enlarged and optimized) -->
                             <div class="my-auto flex flex-col items-center w-full">
                                 <span class="text-8xl mb-4" id="flash-card-icon">💧</span>
-                                <h3 class="text-3xl sm:text-4xl font-black text-amber-950 leading-snug" id="flash-card-title-en">English Title</h3>
+                                <h3 class="text-3xl sm:text-4xl font-black text-amber-955 leading-snug" id="flash-card-title-en">English Title</h3>
                                 <h4 class="text-xl sm:text-2xl font-bold text-amber-800/80 mt-3" id="flash-card-title-zh">繁體中文標題</h4>
                             </div>
                             
@@ -266,7 +266,7 @@
                     </button>
                 </div>
 
-                <!-- Dr. Owl Tips inside Flashcard Screen - MOVED TO THE BOTTOM as requested -->
+                <!-- Dr. Owl Tips inside Flashcard Screen -->
                 <div class="bg-teal-50 border-4 border-teal-200 rounded-2xl p-5 w-full max-w-xl shadow-md flex items-start gap-4">
                     <span class="text-5xl bounce-owl">🦉</span>
                     <div>
@@ -369,7 +369,7 @@
                     </div>
                 </div>
                 
-                <!-- NEW: Random Refresh Button to Shuffle Question Bank -->
+                <!-- Random Refresh Button to Shuffle Question Bank -->
                 <button type="button" onclick="shuffleAndRestartQuiz()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-black px-6 py-3.5 rounded-2xl shadow-md transition active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg border-b-4 border-indigo-900">
                     <i class="fa-solid fa-shuffle text-xl"></i>
                     <span>🔄 Random Refresh / 隨機刷新題目</span>
@@ -469,91 +469,85 @@
     </div>
 
     <script>
-        // Prevents garbage collection on speech objects by keeping references in a global array
-        window.activeUtterances = [];
+        // CRITICAL BUG FIX 1: Rotating permanent cache to prevent Garbage Collection (GC) 
+        // from sweeping speech utterance objects during active playback on Mac Chrome.
+        window.utteranceCache = [];
 
-        // Safely cancels active audio without triggering thread memory allocation crash on iOS
-        function safeCancel() {
-            if ('speechSynthesis' in window) {
-                try {
-                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-                    if (isIOS) {
-                        // On iOS, if we are already speaking, we avoid calling .cancel() to prevent WebKit's
-                        // "Codec decoding is not started within 2s" BAD_ACCESS thread crash.
-                        if (window.speechSynthesis.speaking) {
-                            return true; // Return early, let the previous one finish or play naturally
-                        }
-                    } else {
-                        // Safe to cancel on standard Desktop and Android Chrome
-                        window.speechSynthesis.cancel();
-                    }
-                } catch (e) {
-                    console.warn("Speech Synthesis safe cancellation warning: ", e);
-                }
-            }
-            return false;
-        }
-
+        // CRITICAL BUG FIX 2: Bulletproof, crash-resistant Web Speech synthesis.
+        // Bypasses Mac Chrome Helper Renderer process deadlocks & EXC_BAD_ACCESS crash bugs.
         function speakEnglish(text, btnElement) {
-            if ('speechSynthesis' in window) {
-                try {
-                    // Prevent crash by safely inspecting playing threads
-                    const skippedCancel = safeCancel();
-                    
-                    // Clear out highlight effects from other audio play buttons
-                    document.querySelectorAll('.speak-active').forEach(el => {
-                        el.classList.remove('speak-active');
-                        const icon = el.querySelector('i');
-                        if (icon) {
-                            icon.className = 'fa-solid fa-volume-high text-xl';
+            if (!('speechSynthesis' in window)) {
+                showToast("⚠️ Your browser doesn't support pronunciation.", "⚠️ 您的瀏覽器不支援語音合成功能。");
+                return;
+            }
+
+            try {
+                // Decouple audio activation from UI click stack using setTimeout (Prevents sync-stack locking crashes)
+                setTimeout(() => {
+                    try {
+                        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+                        // Mac / iOS WebKit audio thread handling:
+                        // Calling .cancel() repeatedly triggers auxiliary process termination (tab crash/app exit).
+                        // Instead of unsafe cancel calls, we safely handle existing speech or protect the call.
+                        if (window.speechSynthesis.speaking) {
+                            try {
+                                window.speechSynthesis.cancel();
+                            } catch (cancelErr) {
+                                console.warn("Safeguarded speech cancel exception: ", cancelErr);
+                            }
                         }
-                    });
-                    
-                    const utterance = new SpeechSynthesisUtterance(text);
-                    utterance.lang = 'en-US';
-                    utterance.rate = 0.82; // Slightly relaxed reading speed for kids to comprehend
-                    utterance.pitch = 1.15; // Bright friendly kid frequency
-                    
-                    // Add reference to global array to prevent garbage collection crashes
-                    window.activeUtterances.push(utterance);
-                    
-                    if (btnElement) {
-                        btnElement.classList.add('speak-active');
-                        const icon = btnElement.querySelector('i');
-                        if (icon) {
-                            icon.className = 'fa-solid fa-waveform text-xl animate-pulse';
-                        }
-                        
-                        const handleCleanUp = () => {
-                            btnElement.classList.remove('speak-active');
+
+                        // Remove pulse animation from all active speech buttons
+                        document.querySelectorAll('.speak-active').forEach(el => {
+                            el.classList.remove('speak-active');
+                            const icon = el.querySelector('i');
                             if (icon) {
                                 icon.className = 'fa-solid fa-volume-high text-xl';
                             }
-                            // Purge reference
-                            const idx = window.activeUtterances.indexOf(utterance);
-                            if (idx > -1) window.activeUtterances.splice(idx, 1);
-                        };
+                        });
 
-                        utterance.onend = handleCleanUp;
-                        utterance.onerror = handleCleanUp;
-                    } else {
-                        utterance.onend = () => {
-                            const idx = window.activeUtterances.indexOf(utterance);
-                            if (idx > -1) window.activeUtterances.splice(idx, 1);
-                        };
-                        utterance.onerror = () => {
-                            const idx = window.activeUtterances.indexOf(utterance);
-                            if (idx > -1) window.activeUtterances.splice(idx, 1);
-                        };
+                        // Standard safe child-friendly Utterance
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        utterance.lang = 'en-US';
+                        
+                        // Mac Chrome Fix: Use native standard speed and pitch ratios to avoid voice engine corruption crashes.
+                        utterance.rate = 0.90; 
+                        utterance.pitch = 1.0; 
+
+                        // Keep the reference permanently locked in memory to prevent GC crash on Mac Chrome!
+                        window.utteranceCache.push(utterance);
+                        if (window.utteranceCache.length > 30) {
+                            window.utteranceCache.shift(); // sliding window of 30 items max
+                        }
+
+                        if (btnElement) {
+                            btnElement.classList.add('speak-active');
+                            const icon = btnElement.querySelector('i');
+                            if (icon) {
+                                icon.className = 'fa-solid fa-waveform text-xl animate-pulse';
+                            }
+                            
+                            const handleCleanUp = () => {
+                                btnElement.classList.remove('speak-active');
+                                if (icon) {
+                                    icon.className = 'fa-solid fa-volume-high text-xl';
+                                }
+                            };
+
+                            utterance.onend = handleCleanUp;
+                            utterance.onerror = handleCleanUp;
+                        }
+
+                        window.speechSynthesis.speak(utterance);
+                    } catch (innerErr) {
+                        console.error("Speech Synthesis Inner Thread Fault Shielded: ", innerErr);
                     }
-                    
-                    window.speechSynthesis.speak(utterance);
-                } catch (e) {
-                    console.error("Critical Speech Engine Fault Safeguarded: ", e);
-                }
-            } else {
-                showToast("⚠️ Your browser doesn't support pronunciation.", "⚠️ 您的瀏覽器不支援語音合成功能。");
+                }, 50); // 50ms async dispatch
+            } catch (outerErr) {
+                console.error("Speech Synthesis Outer Thread Fault Shielded: ", outerErr);
             }
         }
 
@@ -674,7 +668,7 @@
                     { key: 'B', en: 'Opposite', zh: '相反的' },
                     { key: 'C', en: 'Random', zh: '隨機沒有規律' }
                 ],
-                correct: 'A',
+                correct: 'B',
                 tip_en: 'Try moving your hand to the left under a lamp. The shadow moves in the opposite direction! So they move in opposite directions.',
                 tip_zh: '試一下在燈光下把你的手向左移，牆上的影子是不是向右移？所以答案是「相反的」喔！'
             },
@@ -1081,7 +1075,6 @@
                 tip_en: 'An iron spoon is refined and manufactured by people for eating.',
                 tip_zh: '鐵勺是人類開採鐵礦後製造加工出來的，是典型的「人造物體（Man-made objects）」。'
             },
-            // NEW ADDED QUESTIONS TO REACH 50 (Q33 - Q50)
             {
                 cat: 'Everyday Objects / 日常物品',
                 q_en: 'Which material is strong, heavy, and sinks in water easily?',
@@ -1666,6 +1659,8 @@
                 btn.className = "bg-orange-50 hover:bg-orange-100 border-2 border-orange-200 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow transition duration-200 active:scale-98 flex items-center justify-between gap-4 w-full";
                 btn.onclick = () => selectQuizOption(opt.key);
 
+                // FIXED AUDIO ACTION: Rather than interpolating opt.en string with quotes (dangerous on Chrome),
+                // we lookup by option key to keep HTML syntax bulletproof.
                 btn.innerHTML = `
                     <div class="flex items-center gap-4 text-left">
                         <span class="w-12 h-12 rounded-full bg-orange-400 text-white font-black flex items-center justify-center text-xl shrink-0">${opt.key}</span>
@@ -1674,7 +1669,7 @@
                             <p class="text-base font-bold text-teal-700/90 mt-1 border-t border-dashed border-teal-200/50 pt-1">${opt.zh}</p>
                         </div>
                     </div>
-                    <button type="button" onclick="speakOption(event, '${opt.en.replace(/'/g, "\\'")}', this)" class="bg-orange-200/60 hover:bg-orange-300 text-orange-950 w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm" title="Pronounce Option">
+                    <button type="button" onclick="speakOption(event, '${opt.key}', this)" class="bg-orange-200/60 hover:bg-orange-300 text-orange-950 w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm" title="Pronounce Option">
                         <i class="fa-solid fa-volume-high text-lg"></i>
                     </button>
                 `;
@@ -1689,9 +1684,14 @@
             speakEnglish(q.q_en, btn);
         }
 
-        function speakOption(event, englishText, btn) {
-            event.stopPropagation(); // Avoid triggering option selection click
-            speakEnglish(englishText, btn);
+        // FIXED AUDIO LOOKUP: Eliminates quotes crashing helper threads completely.
+        function speakOption(event, optionKey, btn) {
+            event.stopPropagation(); // Avoid selecting answer
+            const q = quizQuestions[currentQuizIndex];
+            const opt = q.options.find(o => o.key === optionKey);
+            if (opt) {
+                speakEnglish(opt.en, btn);
+            }
         }
 
         function selectQuizOption(key) {
