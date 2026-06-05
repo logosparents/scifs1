@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Explorer: Dr. Owl's Academy</title>
+    <title>Science Explorer: Dr. Owl's Academy (Crash-Free Edition)</title>
     <!-- Tailwind CSS for vibrant, child-friendly UI -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for interactive cute icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for big, friendly, and readable fonts suitable for kids -->
+    <!-- Google Fonts for friendly, readable fonts suitable for kids -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -45,7 +45,7 @@
         
         /* Pulse Ring Animation for Speaking Audio Buttons */
         @keyframes speak-pulse-ring {
-            0 { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
         }
@@ -71,6 +71,7 @@
 </head>
 <body class="min-h-screen pb-16 select-none text-teal-950">
 
+    <!-- Decorative Stars background -->
     <div class="absolute inset-0 pointer-events-none opacity-25 overflow-hidden">
         <i class="fa-solid fa-star text-yellow-400 absolute text-4xl" style="top: 8%; left: 6%; animation: pulse 2s infinite;"></i>
         <i class="fa-solid fa-star text-yellow-400 absolute text-5xl" style="top: 14%; right: 8%; animation: pulse 2.5s infinite;"></i>
@@ -78,11 +79,12 @@
         <i class="fa-solid fa-star text-yellow-400 absolute text-4xl" style="bottom: 12%; right: 10%; animation: pulse 2.2s infinite;"></i>
     </div>
 
+    <!-- Header Section -->
     <header class="bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500 p-6 text-white text-center shadow-xl border-b-8 border-cyan-400 relative z-10">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-4">
                 <!-- Mascot 🦉 acting as global welcome audio clicker -->
-                <span class="text-6xl sm:text-7xl bounce-owl cursor-pointer" onclick="speakEnglish('Welcome to Dr. Owls Academy! Let us learn science together!')">🦉</span>
+                <span class="text-6xl sm:text-7xl bounce-owl cursor-pointer" onclick="speakText('Welcome to Dr. Owls Academy! Let us learn science together!')">🦉</span>
                 <div class="text-left">
                     <h1 class="text-3xl sm:text-4xl font-black title-font tracking-wide text-yellow-100 drop-shadow">
                         Science Explorer: Dr. Owl's Academy
@@ -118,20 +120,24 @@
                 <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-teal-100 rounded-full opacity-50"></div>
                 
                 <div class="relative z-10 flex flex-col items-center">
-                    <div class="text-8xl sm:text-9xl mb-4 bounce-owl cursor-pointer" onclick="speakGreeting()">🦉</div>
+                    <div class="text-8xl sm:text-9xl mb-4 bounce-owl cursor-pointer" onclick="speakHomeGreeting()">🦉</div>
                     
                     <!-- Bubble with English-primary stacked text and a dedicated pronunciation button -->
                     <div class="inline-block bg-yellow-50 border-4 border-yellow-300 rounded-[2rem] p-6 mb-8 relative w-full max-w-2xl shadow-md">
                         <div class="absolute w-4 h-4 bg-yellow-50 border-t-4 border-l-4 border-yellow-300 rotate-45 -bottom-2.5 left-1/2 -translate-x-1/2"></div>
                         
-                        <!-- Fixed audio click triggers with safe "type=button" to prevent app crash/reload -->
-                        <button type="button" onclick="speakGreeting(this)" id="btn-speak-greeting" class="mb-4 bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-6 py-3 rounded-full flex items-center gap-3 mx-auto shadow-md transition active:scale-95 text-lg sm:text-xl">
+                        <!-- Fixed audio click triggers with safe "type=button" -->
+                        <button type="button" onclick="speakHomeGreeting(this)" id="btn-speak-greeting" class="mb-4 bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-6 py-3 rounded-full flex items-center gap-3 mx-auto shadow-md transition active:scale-95 text-lg sm:text-xl">
                             <i class="fa-solid fa-volume-high text-2xl"></i> Listen / 聽英語發音
                         </button>
                         
                         <!-- Stacked Text: English on top (Huge), Chinese on bottom (Medium) -->
-                        <p id="owl-greeting-en" class="text-2xl sm:text-3xl font-black text-teal-900 leading-relaxed mb-3"></p>
-                        <p id="owl-greeting-zh" class="text-lg sm:text-xl font-bold text-teal-700/90 leading-relaxed border-t border-dashed border-teal-200/50 pt-3"></p>
+                        <p id="owl-greeting-en" class="text-2xl sm:text-3xl font-black text-teal-900 leading-relaxed mb-3">
+                            Hello explorers! Let's score maximum stars today!
+                        </p>
+                        <p id="owl-greeting-zh" class="text-lg sm:text-xl font-bold text-teal-700/90 leading-relaxed border-t border-dashed border-teal-200/50 pt-3">
+                            哈囉探險家們！今天讓我們一起贏取最多的小星星吧！
+                        </p>
                     </div>
                     
                     <h3 class="text-2xl sm:text-3xl font-black text-teal-800 mb-8 uppercase tracking-wider">
@@ -139,7 +145,7 @@
                         <span class="text-lg sm:text-xl font-bold text-teal-600 mt-1 block">請選擇你想挑戰的探險關卡：</span>
                     </h3>
                     
-                    <!-- Navigation Buttons (Larger text & type="button") -->
+                    <!-- Navigation Buttons -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl mx-auto">
                         <!-- Flashcard Button -->
                         <button type="button" onclick="switchScreen('flashcards')" class="group relative bg-emerald-400 hover:bg-emerald-500 text-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl border-b-[10px] border-emerald-600 transition-all active:scale-95 flex flex-col items-center">
@@ -207,7 +213,7 @@
                 <!-- Filled dynamically by JavaScript -->
             </div>
 
-            <!-- Single Card Box with English Primary layout - Expanded dimensions & height for high readability -->
+            <!-- Single Card Box with English Primary layout -->
             <div class="flex flex-col items-center">
                 <div class="card-perspective w-full max-w-xl min-h-[460px] md:min-h-[500px] cursor-pointer" onclick="flipFlashcard()">
                     <div id="flashcard-inner" class="card-inner w-full h-full min-h-[460px] md:min-h-[500px] relative duration-500 shadow-2xl rounded-[2.5rem] border-4 border-yellow-400">
@@ -217,34 +223,34 @@
                             
                             <!-- Category label & Pronunciation row -->
                             <div class="w-full flex items-center justify-between">
-                                <span class="bg-yellow-300/80 border border-yellow-400 text-amber-900 text-sm font-black px-4 py-1.5 rounded-full" id="flash-card-cat-label">CATEGORY</span>
-                                <button type="button" onclick="speakFlashcardFront(event)" class="bg-amber-400 hover:bg-amber-500 text-amber-950 p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Title">
+                                <span class="bg-yellow-300/80 border border-yellow-400 text-amber-900 text-sm font-black px-4 py-1.5 rounded-full uppercase" id="flash-card-cat-label">CATEGORY</span>
+                                <button type="button" id="btn-speak-flashcard-front" onclick="speakFlashcardFront(event)" class="bg-amber-400 hover:bg-amber-500 text-amber-950 p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Title">
                                     <i class="fa-solid fa-volume-high text-xl"></i>
                                 </button>
                             </div>
                             
-                            <!-- Center Title Content (Enlarged and optimized) -->
+                            <!-- Center Title Content -->
                             <div class="my-auto flex flex-col items-center w-full">
                                 <span class="text-8xl mb-4" id="flash-card-icon">💧</span>
-                                <h3 class="text-3xl sm:text-4xl font-black text-amber-955 leading-snug" id="flash-card-title-en">English Title</h3>
+                                <h3 class="text-3xl sm:text-4xl font-black text-amber-950 leading-snug" id="flash-card-title-en">English Title</h3>
                                 <h4 class="text-xl sm:text-2xl font-bold text-amber-800/80 mt-3" id="flash-card-title-zh">繁體中文標題</h4>
                             </div>
                             
                             <span class="text-sm font-bold text-amber-600/80 animate-pulse"><i class="fa-solid fa-arrows-rotate"></i> CLICK TO FLIP / 點擊卡片翻轉</span>
                         </div>
 
-                        <!-- BACK FACE: English Dominant, Chinese Auxiliary with auto scroll viewport -->
+                        <!-- BACK FACE: English Dominant, Chinese Auxiliary -->
                         <div id="flashcard-back" class="card-back absolute inset-0 bg-gradient-to-tr from-teal-500 to-cyan-600 rounded-[2.2rem] p-8 text-white flex flex-col justify-between items-center text-center">
                             
                             <!-- Category label & Pronunciation row -->
                             <div class="w-full flex items-center justify-between shrink-0">
                                 <span class="bg-teal-400/40 border border-teal-300 text-teal-100 text-sm font-bold px-4 py-1.5 rounded-full">💡 KEY FACTS / 重點核心</span>
-                                <button type="button" onclick="speakFlashcardBack(event)" class="bg-teal-400 hover:bg-teal-300 text-white p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Content">
+                                <button type="button" id="btn-speak-flashcard-back" onclick="speakFlashcardBack(event)" class="bg-teal-400 hover:bg-teal-300 text-white p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Content">
                                     <i class="fa-solid fa-volume-high text-xl"></i>
                                 </button>
                             </div>
                             
-                            <!-- Center Text Content (Highly responsive, scrolling enabled if overflowing) -->
+                            <!-- Center Text Content -->
                             <div class="my-auto px-1 overflow-y-auto max-h-[300px] w-full text-left sm:text-center">
                                 <p class="text-2xl sm:text-3xl font-black leading-relaxed" id="flash-card-desc-en">This is the English description for the science concept.</p>
                                 <p class="text-lg sm:text-xl font-bold text-teal-100 mt-4 leading-relaxed border-t border-dashed border-teal-400/50 pt-3" id="flash-card-desc-zh">這是繁體中文說明的核心內容，適合小朋友記憶與溫習。</p>
@@ -311,7 +317,7 @@
             <!-- Game Board Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <!-- Dropzone 1: Natural Objects -->
-                <div id="drop-natural" class="bg-emerald-50 border-4 border-dashed border-emerald-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-emerald-100/50">
+                <div id="drop-natural" onclick="dropToZone('natural')" class="bg-emerald-50 border-4 border-dashed border-emerald-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-emerald-100/50">
                     <h3 class="text-2xl font-black text-emerald-800 text-center mb-4">
                         🌿 Natural Objects
                         <span class="block text-lg font-bold text-emerald-600 mt-1">自然物體</span>
@@ -322,7 +328,7 @@
                 </div>
 
                 <!-- Dropzone 2: Man-made Objects -->
-                <div id="drop-manmade" class="bg-orange-50 border-4 border-dashed border-orange-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-orange-100/50">
+                <div id="drop-manmade" onclick="dropToZone('manmade')" class="bg-orange-50 border-4 border-dashed border-orange-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-orange-100/50">
                     <h3 class="text-2xl font-black text-orange-800 text-center mb-4">
                         🤖 Man-made Objects
                         <span class="block text-lg font-bold text-orange-600 mt-1">人造物體</span>
@@ -369,7 +375,6 @@
                     </div>
                 </div>
                 
-                <!-- Random Refresh Button to Shuffle Question Bank -->
                 <button type="button" onclick="shuffleAndRestartQuiz()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-black px-6 py-3.5 rounded-2xl shadow-md transition active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg border-b-4 border-indigo-900">
                     <i class="fa-solid fa-shuffle text-xl"></i>
                     <span>🔄 Random Refresh / 隨機刷新題目</span>
@@ -394,10 +399,10 @@
 
                 <!-- Answer options -->
                 <div class="grid grid-cols-1 gap-4 mb-6" id="quiz-options-container">
-                    <!-- Button options generated dynamically with type="button" and embedded Audio buttons -->
+                    <!-- Button options generated dynamically -->
                 </div>
 
-                <!-- Dr. Owl Tips Board (Bilingual facts stacked) -->
+                <!-- Dr. Owl Tips Board -->
                 <div class="bg-amber-50 border-4 border-amber-200 rounded-3xl p-6 mt-6 flex items-start gap-4">
                     <span class="text-5xl bounce-owl">🦉</span>
                     <div>
@@ -468,1307 +473,678 @@
         <span id="toast-text">Toast Message</span>
     </div>
 
+    <!-- JavaScript Data and Crash-Free Engine -->
     <script>
-        // CRITICAL BUG FIX 1: Rotating permanent cache to prevent Garbage Collection (GC) 
-        // from sweeping speech utterance objects during active playback on Mac Chrome.
-        window.utteranceCache = [];
+        // ==========================================
+        // CRITICAL BUG FIXES: SPEECH SYNTHESIS ENGINE
+        // ==========================================
+        
+        // Anti-Garbage-Collection Buffer to prevent memory sweep causing Mac Chrome crash
+        window.speechGcGuard = [];
+        let speechVoicesReady = false;
 
-        // CRITICAL BUG FIX 2: Bulletproof, crash-resistant Web Speech synthesis.
-        // Bypasses Mac Chrome Helper Renderer process deadlocks & EXC_BAD_ACCESS crash bugs.
-        function speakEnglish(text, btnElement) {
+        // Secure Text-to-Speech Handler with Anti-Crash Protocol
+        function speakText(text, btnElement = null) {
             if (!('speechSynthesis' in window)) {
-                showToast("⚠️ Your browser doesn't support pronunciation.", "⚠️ 您的瀏覽器不支援語音合成功能。");
+                showToast("⚠️ Speech Synthesis is not supported in this browser.", "❌");
                 return;
             }
 
             try {
-                // Decouple audio activation from UI click stack using setTimeout (Prevents sync-stack locking crashes)
-                setTimeout(() => {
-                    try {
-                        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                // 1. Force cancel previous utterances to clear platform buffer queue
+                window.speechSynthesis.cancel();
+                
+                // Clear the GC guard buffer periodically to free memory safely
+                if (window.speechGcGuard.length > 50) {
+                    window.speechGcGuard = [];
+                }
 
-                        // Mac / iOS WebKit audio thread handling:
-                        // Calling .cancel() repeatedly triggers auxiliary process termination (tab crash/app exit).
-                        // Instead of unsafe cancel calls, we safely handle existing speech or protect the call.
-                        if (window.speechSynthesis.speaking) {
-                            try {
-                                window.speechSynthesis.cancel();
-                            } catch (cancelErr) {
-                                console.warn("Safeguarded speech cancel exception: ", cancelErr);
-                            }
-                        }
+                // Remove active classes from other speech buttons
+                document.querySelectorAll('.speak-active').forEach(el => el.classList.remove('speak-active'));
 
-                        // Remove pulse animation from all active speech buttons
-                        document.querySelectorAll('.speak-active').forEach(el => {
-                            el.classList.remove('speak-active');
-                            const icon = el.querySelector('i');
-                            if (icon) {
-                                icon.className = 'fa-solid fa-volume-high text-xl';
-                            }
-                        });
+                // 2. Create the Utterance
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85; // Optimal speed for primary school ESL kids
 
-                        // Standard safe child-friendly Utterance
-                        const utterance = new SpeechSynthesisUtterance(text);
-                        utterance.lang = 'en-US';
-                        
-                        // Mac Chrome Fix: Use native standard speed and pitch ratios to avoid voice engine corruption crashes.
-                        utterance.rate = 0.90; 
-                        utterance.pitch = 1.0; 
+                // Select preferred US/UK English kid-friendly voice if available on system
+                const voices = window.speechSynthesis.getVoices();
+                const englishVoice = voices.find(v => v.lang.startsWith('en-US') && v.name.includes('Google')) || 
+                                     voices.find(v => v.lang.startsWith('en-')) || 
+                                     voices[0];
+                if (englishVoice) {
+                    utterance.voice = englishVoice;
+                }
 
-                        // Keep the reference permanently locked in memory to prevent GC crash on Mac Chrome!
-                        window.utteranceCache.push(utterance);
-                        if (window.utteranceCache.length > 30) {
-                            window.utteranceCache.shift(); // sliding window of 30 items max
-                        }
+                // 3. UI feedback handling
+                if (btnElement) {
+                    btnElement.classList.add('speak-active');
+                    utterance.onend = () => {
+                        btnElement.classList.remove('speak-active');
+                    };
+                    utterance.onerror = () => {
+                        btnElement.classList.remove('speak-active');
+                    };
+                }
 
-                        if (btnElement) {
-                            btnElement.classList.add('speak-active');
-                            const icon = btnElement.querySelector('i');
-                            if (icon) {
-                                icon.className = 'fa-solid fa-waveform text-xl animate-pulse';
-                            }
-                            
-                            const handleCleanUp = () => {
-                                btnElement.classList.remove('speak-active');
-                                if (icon) {
-                                    icon.className = 'fa-solid fa-volume-high text-xl';
-                                }
-                            };
+                // 4. Critical GC Guard Push: Keep active reference of the object alive
+                window.speechGcGuard.push(utterance);
 
-                            utterance.onend = handleCleanUp;
-                            utterance.onerror = handleCleanUp;
-                        }
+                // 5. Fire safely
+                window.speechSynthesis.speak(utterance);
 
-                        window.speechSynthesis.speak(utterance);
-                    } catch (innerErr) {
-                        console.error("Speech Synthesis Inner Thread Fault Shielded: ", innerErr);
-                    }
-                }, 50); // 50ms async dispatch
-            } catch (outerErr) {
-                console.error("Speech Synthesis Outer Thread Fault Shielded: ", outerErr);
+            } catch (error) {
+                console.error("SpeechSynthesis error guarded safely: ", error);
             }
         }
 
-        // Global State counters
-        let totalStars = 0;
-        let visitedFlashcards = new Set();
+        // Initialize voices asynchronously on load without blocking main thread
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                speechVoicesReady = true;
+            };
+            // Warmup speech engine
+            window.speechSynthesis.getVoices();
+        }
 
-        // ---------------- DATA STRUCTURES: FLASHCARDS ----------------
-        const flashcardData = [
-            {
-                cat: 'Water & Air / 水和空氣',
-                icon: '💧',
-                title_en: 'Properties of Water',
-                title_zh: '水的特性 (Water)',
-                desc_en: 'Water has no colour, no smell, and no taste. Water can flow and does not have a fixed shape. We can see water.',
-                desc_zh: '水沒有顏色、沒有氣味、沒有味道。水會流動，而且沒有固定的形狀。我們可以用眼睛看見水。'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                icon: '💨',
-                title_en: 'Properties of Air',
-                title_zh: '空氣的特性 (Air)',
-                desc_en: 'Air has no colour, no smell, and no taste. Air can flow and does not have a fixed shape. We cannot see air.',
-                desc_zh: '空氣沒有顏色、沒有氣味、沒有味道。空氣會流動，而且沒有固定的形狀。但是，我們看不見空氣。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                icon: '🪵',
-                title_en: 'Natural vs Man-made',
-                title_zh: '自然與人造 (Natural vs Man-made)',
-                desc_en: 'Natural objects come from nature (e.g. pigeons, trees). Man-made objects are designed and made by people (e.g. desks, shirts). Some man-made objects come from natural materials.',
-                desc_zh: '自然物體來自大自然（例如鴿子、大樹）。人造物體是由人類設計和製造的（例如桌子、衣服）。人造物體有時來自自然物體（如木製桌椅來自樹木）。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                icon: '🔍',
-                title_en: 'Describing Properties',
-                title_zh: '描述物品屬性 (Object Properties)',
-                desc_en: 'We describe properties using hardness (soft or hard), weight (light or heavy), elasticity, and transparency. A balance scales weight more accurately than hands.',
-                desc_zh: '我們可以用硬度（軟/硬）、重量（輕/重）、彈性（有/無）和透明度（透明/半透明/不透明）來描述物品。使用天平能更精確地測量重量。'
-            },
-            {
-                cat: 'Electronic Products / 電子產品',
-                icon: '📱',
-                title_en: 'Proper Use & Manners',
-                title_zh: '健康與安全使用 (Proper Use)',
-                desc_en: 'Using screens for too long (over 1 hour non-stop, or 2+ hours daily) hurts eyesight, muscles, and bones. Maintain correct posture, never walk while using phones, and ask before taking pictures.',
-                desc_zh: '長時間使用（不間斷超過1小時，或每天超過2小時）會損害視力與骨骼。使用時應保持正確坐姿，走路切勿看手機，拍照前先獲得允許。'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                icon: '🏃',
-                title_en: 'Positions & Speed',
-                title_zh: '描述位置與運動 (Positions & Speed)',
-                desc_en: 'We use directions (front, back, left, right) and distances (near, far) to describe positions. An object is in motion when it changes position. Speed is relative after comparison.',
-                desc_zh: '我們用方向（前後左右）和距離（遠近）來描述位置。當物體改變位置時就是處於運動狀態。速度快慢是透過相互比較而得出的。'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                icon: '🔦',
-                title_en: 'Features of Shadows',
-                title_zh: '影子的特徵 (Shadows)',
-                desc_en: 'A shadow appears when light shines on an opaque object. The shape is similar. The shadow gets larger when the object is moved closer to light. Object and shadow move in same direction.',
-                desc_zh: '當光照在不透明物體上時就會產生影子。影子形狀與物體相似。把物體移近光源，影子會變大。物體與影子移動的方向是相同的。'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                icon: '🌈',
-                title_en: 'Colors of Sunlight',
-                title_zh: '陽光與彩虹 (Sunlight & Prism)',
-                desc_en: 'Sunlight consists of light of different colors. A prism splits sunlight into red, orange, yellow, green, blue, indigo, and purple. This split forms rainbows.',
-                desc_zh: '陽光由多種顏色的光組成，可用三稜鏡折射出紅、橙、黃、綠、藍、靛、紫七色。雨後陽光在空氣中折射，便會形成美麗的彩虹。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                icon: '☀️',
-                title_en: 'Sunrise & Sunset',
-                title_zh: '太陽的東升西落 (Sunrise & Sunset)',
-                desc_en: 'The Sun rises in the east in the morning and sets in the west in the evening everyday. Looking at the positions of the Sun helps us find directions.',
-                desc_zh: '太陽每天早上從東方升起，黃昏從西方落下。觀察太陽的位置能幫助我們分辨方向（面朝太陽升起的東方，背後就是西方）。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                icon: '🦉',
-                title_en: 'Day and Night Activities',
-                title_zh: '晝夜規律 (Diurnal Patterns)',
-                desc_en: 'Daytime has sunlight and is suitable for school, work, and diurnal animals (sparrows, butterflies). Nighttime is dark and suitable for resting, and nocturnal animals (owls, moths). Some people work at night.',
-                desc_zh: '白天有充足陽光，人類上學和工作，蝴蝶和麻雀也很活躍。黑夜適合休息，貓頭鷹和飛蛾等夜行性動物在此時活動。少部分人如警察和便利店職員需要夜間工作。'
-            }
-        ];
+        // ==========================================
+        // DATA DEFINITIONS (Based on booklet syllabus)
+        // ==========================================
+        let starScore = 0;
 
-        let currentFlashcardIndex = 0;
-        let isFlashcardFlipped = false;
-
-        // ---------------- DATA STRUCTURES: MATCHING GAME ----------------
-        const matchingItems = [
-            { id: 1, name_en: 'Pigeon', name_zh: '鴿子', type: 'natural', icon: '🐦' },
-            { id: 2, name_en: 'Tree', name_zh: '大樹', type: 'natural', icon: '🌳' },
-            { id: 3, name_en: 'Bamboo', name_zh: '竹子', type: 'natural', icon: '🎋' },
-            { id: 4, name_en: 'Rock', name_zh: '石頭', type: 'natural', icon: '🪨' },
-            { id: 5, name_en: 'Toy Rabbit', name_zh: '玩具兔', type: 'manmade', icon: '🧸' },
-            { id: 6, name_en: 'Shirt', name_zh: '襯衫', type: 'manmade', icon: '👕' },
-            { id: 7, name_en: 'Water Bottle', name_zh: '水樽', type: 'manmade', icon: '🍼' },
-            { id: 8, name_en: 'Rubbish Bin', name_zh: '垃圾桶', type: 'manmade', icon: '🗑️' }
-        ];
-
-        let selectedMatchingCardId = null;
-        let userAssignments = {};
-
-        // ---------------- DATA STRUCTURES: QUIZ (50 Questions Database) ----------------
-        const quizQuestionsMaster = [
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'What are the moving directions of the object and its shadow?',
-                q_zh: '物體和它的影子的移動方向是怎樣的？',
-                options: [
-                    { key: 'A', en: 'The same', zh: '相同的' },
-                    { key: 'B', en: 'Opposite', zh: '相反的' },
-                    { key: 'C', en: 'Random', zh: '隨機沒有規律' }
-                ],
-                correct: 'A',
-                tip_en: 'Try moving your hand to the left under a lamp. The shadow moves in the same direction!',
-                tip_zh: '試一下在燈光下把你的手向左移，牆上的影子是不是向左移!'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'When an object changes its position, it is in...',
-                q_zh: '當物體改變了它的位置，這代表物體處於什麼狀態？',
-                options: [
-                    { key: 'A', en: 'Rest', zh: '靜止中' },
-                    { key: 'B', en: 'Motion', zh: '運動中' },
-                    { key: 'C', en: 'Disappeared', zh: '消失了' }
-                ],
-                correct: 'B',
-                tip_en: 'Booklet Unit 10 states that changing position means the object is in motion.',
-                tip_zh: '溫習手冊第 10 單元提到，改變位置（Position）就表示物體正在進行「運動（Motion）」。'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'Sunlight is made up of how many colors?',
-                q_zh: '陽光/日光是由多少種顏色的光組成的？',
-                options: [
-                    { key: 'A', en: 'One color only', zh: '只有一種顏色' },
-                    { key: 'B', en: 'Multiple colors (Red, Orange, Yellow, Green, Blue, Indigo, Purple)', zh: '多種顏色（紅、橙、黃、綠、藍、靛、紫）' },
-                    { key: 'C', en: 'No color at all', zh: '完全沒有顏色' }
-                ],
-                correct: 'B',
-                tip_en: 'Sunlight looks white but actually consists of different colors that can be split by a prism.',
-                tip_zh: '這在 Practice Paper 第一大題也有提到。太陽光看似白色，但它其實藏着像彩虹一樣的多種顏色！我們可以用三稜鏡把它們分開。'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'Which of the following is a property of air?',
-                q_zh: '以下哪一項是空氣的特點？',
-                options: [
-                    { key: 'A', en: 'We can easily see air', zh: '我們可以輕易看見它' },
-                    { key: 'B', en: 'Air has a fixed shape', zh: '空氣有固定的形狀' },
-                    { key: 'C', en: 'Air can flow', zh: '空氣可以流動' }
-                ],
-                correct: 'C',
-                tip_en: 'Air has no fixed shape and is invisible, but we can feel it flow when pressing a sealed bag.',
-                tip_zh: '空氣沒有固定形狀，而且看不見、摸不著。但只要我們擠壓吹滿氣的夾鏈袋，就能感覺到空氣正在「流動」！'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Considering the materials for making socks, what properties are best?',
-                q_zh: '在選擇做襪子的材料時，以下哪些屬性最合適？',
-                options: [
-                    { key: 'A', en: 'Hard and transparent', zh: '堅硬又透明' },
-                    { key: 'B', en: 'Soft and elastic', zh: '柔軟又具有彈性' },
-                    { key: 'C', en: 'Heavy and cold', zh: '沉重又冰冷' }
-                ],
-                correct: 'B',
-                tip_en: 'Socks must be soft and stretchable to protect our feet comfortably! This is Q2 in your Practice Paper.',
-                tip_zh: '這是模擬考卷第2題！襪子要穿在腳上保護腳部，一定要選「柔軟（Soft）」和「有彈性（Elastic）」的材料才舒服。'
-            },
-            {
-                cat: 'Electronic Products / 電子產品',
-                q_en: 'Which is a proper way to use electronic products safely?',
-                q_zh: '以下哪一項是正確且安全地使用電子產品的方法？',
-                options: [
-                    { key: 'A', en: 'Look at your phone while walking', zh: '邊走路邊看手機' },
-                    { key: 'B', en: 'Maintain correct sitting posture', zh: '保持正確的坐姿' },
-                    { key: 'C', en: 'Play tablet for over 4 hours non-stop daily', zh: '每天不停玩平板電腦4小時以上' }
-                ],
-                correct: 'B',
-                tip_en: 'Maintain correct sitting posture to protect your spine. Never look at screens while walking!',
-                tip_zh: '這是試卷中很重要的健康安全題。我們用電子產品一定要保持腰背挺直，保護眼睛和脊椎。絕對不能邊走路邊看屏幕！'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'Which of the following is NOT a light source?',
-                q_zh: '以下哪一個「不是」光源？',
-                options: [
-                    { key: 'A', en: 'The Sun', zh: '太陽' },
-                    { key: 'B', en: 'A shining torch', zh: '發光的電筒' },
-                    { key: 'C', en: 'A metal key', zh: '金屬鑰匙' }
-                ],
-                correct: 'C',
-                tip_en: 'Only objects that emit their own light are light sources. A key just reflects light from surroundings.',
-                tip_zh: '傳統必考題。只有自己能發出光芒的物體才叫光源。鑰匙只是反射了室內光，它自己是不會發光喔！'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'A shadow is formed when light is blocked by which kind of object?',
-                q_zh: '在影子實驗中，什麼物體會阻擋光線並產生黑暗的影子？',
-                options: [
-                    { key: 'A', en: 'A transparent object', zh: '透明物體' },
-                    { key: 'B', en: 'An opaque object', zh: '不透明物體' },
-                    { key: 'C', en: 'Transparent air', zh: '透明空氣' }
-                ],
-                correct: 'B',
-                tip_en: 'Opaque objects block the light completely, leaving a dark shadow behind. Transparent objects let light pass through.',
-                tip_zh: 'Practice Paper 填空題有考。光能穿過透明物體（如玻璃盒），但不透明物體（如木盒或我們的手）會把光完全擋住，從而在後面留下黑黑的影子。'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'Which words do we use to describe "distances"?',
-                q_zh: '我們用什麼詞語來描述物體的「距離」？',
-                options: [
-                    { key: 'A', en: 'Front and back', zh: '前和後' },
-                    { key: 'B', en: 'Far and near', zh: '遠 and 近' },
-                    { key: 'C', en: 'Fast and slow', zh: '快和慢' }
-                ],
-                correct: 'B',
-                tip_en: 'Directions use words like front/back/left/right, while distance uses far/near.',
-                tip_zh: '溫習手冊第 10 單元中，方向用「前後左右」，而距離（Distances）則用「遠（Far）」和「近（Near）」來形容。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'The Sun rises and sets in which directions every day?',
-                q_zh: '太陽在早晨和黃昏分別從什麼方向升起和落下？',
-                options: [
-                    { key: 'A', en: 'Rises in east, sets in west', zh: '東方升起，西方落下' },
-                    { key: 'B', en: 'Rises in west, sets in east', zh: '西方升起，東方落下' },
-                    { key: 'C', en: 'Rises in north, sets in south', zh: '北方升起，南方落下' }
-                ],
-                correct: 'A',
-                tip_en: 'The Sun rises in the East in the morning and sets in the West in the evening. This is a highly tested concept.',
-                tip_zh: '太陽伯伯每天都非常守規律，早晨在東邊(East)升起，黃昏在西邊(West)落下。這在 SA2 考試中是非常高頻的基本題！'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'Does water have a fixed shape?',
-                q_zh: '水有固定的形狀嗎？',
-                options: [
-                    { key: 'A', en: 'Yes, it does', zh: '有的' },
-                    { key: 'B', en: 'No, it does not', zh: '沒有' },
-                    { key: 'C', en: 'Only when heated', zh: '只有受熱時才有' }
-                ],
-                correct: 'B',
-                tip_en: 'Water has no fixed shape. It takes the shape of the container it is poured into.',
-                tip_zh: '水是液體，沒有固定的形狀。不論你把水倒進杯子還是盤子裡，它都會變成那個容器的形狀！'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'Can we see air directly with our eyes?',
-                q_zh: '我們能直接用眼睛看見空氣嗎？',
-                options: [
-                    { key: 'A', en: 'Yes, because it is colorful', zh: '可以，因為它五顏六色' },
-                    { key: 'B', en: 'No, because it is invisible', zh: '不可以，因為它是看不見的' },
-                    { key: 'C', en: 'Only at night', zh: '只有在晚上可以' }
-                ],
-                correct: 'B',
-                tip_en: 'Air is colorless and transparent, which means it is invisible and we cannot see it.',
-                tip_zh: '空氣沒有顏色且完全透明，它是「看不見的（invisible）」，但我們能感覺到它的流動。'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'When we blow bubbles in water, what is inside the bubbles?',
-                q_zh: '當我們往水裡吹氣吹出泡泡時，泡泡裡面裝的是什麼？',
-                options: [
-                    { key: 'A', en: 'Water', zh: '水' },
-                    { key: 'B', en: 'Air', zh: '空氣' },
-                    { key: 'C', en: 'Juice', zh: '果汁' }
-                ],
-                correct: 'B',
-                tip_en: 'The bubbles are filled with the air that we blow into the water.',
-                tip_zh: '吹氣時我們把空氣送進水裡，就被水包裹形成一個個充滿「空氣（Air）」的小泡泡！'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which material is best and waterproof for making raincoats?',
-                q_zh: '製作雨衣時，最好選用哪種防水的材料？',
-                options: [
-                    { key: 'A', en: 'Paper', zh: '紙張' },
-                    { key: 'B', en: 'Plastic', zh: '塑料/膠' },
-                    { key: 'C', en: 'Cotton fabric', zh: '棉布' }
-                ],
-                correct: 'B',
-                tip_en: 'Plastic is waterproof and blocks water, keeping us dry in the rain.',
-                tip_zh: '塑料（Plastic）具有不透水、防水的特點，最適合用來做擋雨的雨衣！'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'What tool is used to measure and compare the weight of objects accurately?',
-                q_zh: '我們可以用哪種工具更準確地測量和比較物體的重量？',
-                options: [
-                    { key: 'A', en: 'A ruler', zh: '直尺' },
-                    { key: 'B', en: 'A balance scale', zh: '天平' },
-                    { key: 'C', en: 'A magnifying glass', zh: '放大鏡' }
-                ],
-                correct: 'B',
-                tip_en: 'A balance scale measures weight accurately by comparing objects with standard weights.',
-                tip_zh: '直尺量長度，天平（Balance scale）則可以用來精準地測量和比較物體的「重量」。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which object has elasticity (can stretch and return to its shape)?',
-                q_zh: '以下哪一個物體具有彈性（拉伸後能恢復原狀）？',
-                options: [
-                    { key: 'A', en: 'A rubber band', zh: '橡皮筋' },
-                    { key: 'B', en: 'A metal spoon', zh: '金屬勺子' },
-                    { key: 'C', en: 'A paper box', zh: '紙盒' }
-                ],
-                correct: 'A',
-                tip_en: 'Rubber bands are elastic. They stretch when pulled and return to normal when released.',
-                tip_zh: '橡皮筋具有優良的彈性（Elasticity），用力拉會變長，放手後又會自動彈回原來的長度。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which material is transparent and easy to break?',
-                q_zh: '哪種材料是透明但很容易摔碎的？',
-                options: [
-                    { key: 'A', en: 'Wood', zh: '木頭' },
-                    { key: 'B', en: 'Glass', zh: '玻璃' },
-                    { key: 'C', en: 'Iron', zh: '鐵' }
-                ],
-                correct: 'B',
-                tip_en: 'Glass lets light pass through (transparent) but is fragile and breaks easily.',
-                tip_zh: '玻璃（Glass）能讓光線穿過所以非常透明，但它也是一種容易碎裂、使用時要小心的材料。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Wood comes from which natural source?',
-                q_zh: '木材（Wood）是來自大自然的哪裡？',
-                options: [
-                    { key: 'A', en: 'Trees', zh: '大樹' },
-                    { key: 'B', en: 'Rocks', zh: '岩石' },
-                    { key: 'C', en: 'Rivers', zh: '河流' }
-                ],
-                correct: 'A',
-                tip_en: 'Wood is a natural material obtained directly from tree trunks.',
-                tip_zh: '大樹的樹幹為我們提供了天然的木材（Wood），木材常被用來造桌子和鉛筆。'
-            },
-            {
-                cat: 'Electronic Products / 電子產品',
-                q_en: 'What is the recommended maximum non-stop screen time for kids?',
-                q_zh: '建議小朋友持續看電子螢幕不間斷的最長時間是多少？',
-                options: [
-                    { key: 'A', en: 'Not more than 1 hour', zh: '不超過 1 小時' },
-                    { key: 'B', en: 'Up to 5 hours', zh: '長達 5 小時' },
-                    { key: 'C', en: 'All day long', zh: '一整天' }
-                ],
-                correct: 'A',
-                tip_en: 'Continuous screen use should not exceed 1 hour to protect eyes and prevent muscle fatigue.',
-                tip_zh: '為了保護眼睛不近視，每看螢幕一小時，一定要休息十分鐘，每天累積看螢幕也不應超過兩小時。'
-            },
-            {
-                cat: 'Electronic Products / 電子產品',
-                q_en: 'What should you do before taking a photo of someone with a tablet?',
-                q_zh: '用平板電腦給別人拍照之前，正確的禮貌做法是什麼？',
-                options: [
-                    { key: 'A', en: 'Take it quickly without telling them', zh: '迅速拍下，不告訴對方' },
-                    { key: 'B', en: 'Ask for their permission first', zh: '先徵得對方的同意' },
-                    { key: 'C', en: 'Hide and take it secretly', zh: '躲起來偷偷拍' }
-                ],
-                correct: 'B',
-                tip_en: 'Always respect privacy and ask for permission before taking photographs of other people.',
-                tip_zh: '這是溫習手冊提倡的電子禮儀（Manners）—— 拍照前一定要先有禮貌地「詢問並取得允許」。'
-            },
-            {
-                cat: 'Electronic Products / 電子產品',
-                q_en: 'What can happen to your body if you look down at a screen for too long?',
-                q_zh: '如果長時間低頭看手機或平板電腦，身體可能會發生什麼問題？',
-                options: [
-                    { key: 'A', en: 'Nothing at all', zh: '完全沒有問題' },
-                    { key: 'B', en: 'Neck and shoulder pain', zh: '頸部和肩膀酸痛' },
-                    { key: 'C', en: 'Grow taller instantly', zh: '立刻長高' }
-                ],
-                correct: 'B',
-                tip_en: 'Looking down for long periods strains your neck muscles and spine, leading to muscle pain.',
-                tip_zh: '長時間做低頭族會讓頸椎負重過大，容易引起頸部和肩膀的肌肉肌肉勞損與痛楚！'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'If a car is faster than a bicycle, and a plane is faster than a car, which is the fastest?',
-                q_zh: '如果汽車比單車快，飛機又比汽車快，哪一個的速度是最快的？',
-                options: [
-                    { key: 'A', en: 'The plane', zh: '飛機' },
-                    { key: 'B', en: 'The car', zh: '汽車' },
-                    { key: 'C', en: 'The bicycle', zh: '單車' }
-                ],
-                correct: 'A',
-                tip_en: 'Comparing speed shows that the plane is faster than both the car and bicycle.',
-                tip_zh: '通過比較（Comparison）可以得出，飛機的速度比汽車與單車都快得多，因此是最快的。'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'Which words describe "directions"?',
-                q_zh: '以下哪一組詞語是用來描述物體的「方向」？',
-                options: [
-                    { key: 'A', en: 'Heavy and light', zh: '重和輕' },
-                    { key: 'B', en: 'Front, back, left, and right', zh: '前、後、左、右' },
-                    { key: 'C', en: 'Far and near', zh: '遠和近' },
-                ],
-                correct: 'B',
-                tip_en: 'Front, back, left, and right are terms used to describe directions.',
-                tip_zh: '前後左右、東南西北都是描述「方向（Directions）」的，而遠近是描述距離的。'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'When we say "the dog is near the tree", we are describing its...',
-                q_zh: '當我們說「小狗在樹木的附近」，我們是在描述小狗的什麼？',
-                options: [
-                    { key: 'A', en: 'Weight', zh: '重量' },
-                    { key: 'B', en: 'Position', zh: '位置' },
-                    { key: 'C', en: 'Color', zh: '顏色' }
-                ],
-                correct: 'B',
-                tip_en: 'Saying an object is near or far from a reference point describes its position.',
-                tip_zh: '我們以大樹作為參考物，描述小狗的距離遠近，這就是在說明它的「位置（Position）」。'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'How does a shadow change when an object is moved closer to the light source?',
-                q_zh: '當把一個不透明物體慢慢移近光源時，影子會發生什麼變化？',
-                options: [
-                    { key: 'A', en: 'It becomes smaller', zh: '變小' },
-                    { key: 'B', en: 'It becomes larger', zh: '變大' },
-                    { key: 'C', en: 'It stays the same', zh: '保持不變' }
-                ],
-                correct: 'B',
-                tip_en: 'Moving the object closer to the light source blocks more light, making the shadow larger.',
-                tip_zh: '物體離手電筒等光源越近，阻擋的光線就越多，在後方投影出來的影子就會「變大（Larger）」。'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'What splits sunlight into seven beautiful rainbow colors?',
-                q_zh: '哪種科學儀器可以把太陽光折射並拆分出彩虹的七種顏色？',
-                options: [
-                    { key: 'A', en: 'A prism', zh: '三稜鏡' },
-                    { key: 'B', en: 'A mirror', zh: '鏡子' },
-                    { key: 'C', en: 'A ruler', zh: '直尺' }
-                ],
-                correct: 'A',
-                tip_en: 'A glass prism refracts and splits white sunlight into rainbow colors.',
-                tip_zh: '陽光穿過「三稜鏡（Prism）」時會產生折射，從而分散出紅、橙、黃、綠、藍、靛、紫七色！'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'Which of the following is a nocturnal animal (active at night)?',
-                q_zh: '以下哪一種動物是夜行性動物（在黑夜活動，白天睡覺）？',
-                options: [
-                    { key: 'A', en: 'Sparrow', zh: '麻雀' },
-                    { key: 'B', en: 'Owl', zh: '貓頭鷹' },
-                    { key: 'C', en: 'Butterfly', zh: '蝴蝶' }
-                ],
-                correct: 'B',
-                tip_en: 'Owls are nocturnal. They have great night vision and hunt for food in the dark.',
-                tip_zh: '貓頭鷹博士和飛蛾都在夜間活動，屬於「夜行性動物（Nocturnal animals）」，而蝴蝶和麻雀則是白天活動的。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'Which animal is active during the daytime (diurnal)?',
-                q_zh: '以下哪種動物是晝行性動物（在陽光充足的白天活動）？',
-                options: [
-                    { key: 'A', en: 'Moth', zh: '飛蛾' },
-                    { key: 'B', en: 'Butterfly', zh: '蝴蝶' },
-                    { key: 'C', en: 'Bat', zh: '蝙蝠' }
-                ],
-                correct: 'B',
-                tip_en: 'Butterflies feed on flowers during the sunny day, making them diurnal.',
-                tip_zh: '蝴蝶喜愛溫暖的陽光，白天在花叢間採蜜，是典型的「晝行性動物（Diurnal animals）」。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'What important gifts does the Earth get from the Sun?',
-                q_zh: '地球每天從太陽那裡獲得哪兩種對生命至關重要的禮物？',
-                options: [
-                    { key: 'A', en: 'Water and air', zh: '水分和空氣' },
-                    { key: 'B', en: 'Light and heat', zh: '光線和熱能' },
-                    { key: 'C', en: 'Soil and rocks', zh: '泥土和岩石' }
-                ],
-                correct: 'B',
-                tip_en: 'The Sun gives light to illuminate the day and heat to keep the Earth warm.',
-                tip_zh: '太陽為地球帶來了「光線（Light）」讓我們看清世界，並帶來「熱能（Heat）」提供溫暖。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'Why is it dark at night?',
-                q_zh: '為什麼到了晚上天空就會變黑？',
-                options: [
-                    { key: 'A', en: 'The Sun turns off its light', zh: '太陽把自己的燈關掉了' },
-                    { key: 'B', en: 'The Sun shines on the other side of the Earth', zh: '太陽照到地球的另外一面去了' },
-                    { key: 'C', en: 'Clouds block all the light', zh: '烏雲把所有光線都永遠擋住了' }
-                ],
-                correct: 'B',
-                tip_en: 'The Earth rotates. When our side faces away from the Sun, it is nighttime for us.',
-                tip_zh: '因為地球會自轉。當我們所在的這一面轉到背對太陽的一側時，太陽光照不到這裡，就是我們的夜晚了。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which object is a natural object?',
-                q_zh: '以下哪一個物體是完全來自大自然的「自然物體」？',
-                options: [
-                    { key: 'A', en: 'A book', zh: '一本圖書' },
-                    { key: 'B', en: 'A natural rock', zh: '一塊天然岩石' },
-                    { key: 'C', en: 'A plastic pen', zh: '一支塑膠筆' }
-                ],
-                correct: 'B',
-                tip_en: 'Rocks are natural materials formed by nature without human processing.',
-                tip_zh: '岩石是自然形成的，沒有經過人類重新設計和製作，屬於「自然物體（Natural objects）」。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which object is a man-made object?',
-                q_zh: '以下哪一個物體是由人類設計和製造的「人造物體」？',
-                options: [
-                    { key: 'A', en: 'An iron spoon', zh: '一個鐵茶匙' },
-                    { key: 'B', en: 'A bird feather', zh: '一片小鳥羽毛' },
-                    { key: 'C', en: 'A tree leaf', zh: '一片大樹樹葉' }
-                ],
-                correct: 'A',
-                tip_en: 'An iron spoon is refined and manufactured by people for eating.',
-                tip_zh: '鐵勺是人類開採鐵礦後製造加工出來的，是典型的「人造物體（Man-made objects）」。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which material is strong, heavy, and sinks in water easily?',
-                q_zh: '哪種材料非常堅硬、沉重，而且容易在水中下沉？',
-                options: [
-                    { key: 'A', en: 'Wood', zh: '木頭' },
-                    { key: 'B', en: 'Iron / Metal', zh: '鐵 / 金屬' },
-                    { key: 'C', en: 'Paper', zh: '紙張' }
-                ],
-                correct: 'B',
-                tip_en: 'Metals like iron are dense, very hard, heavy, and easily sink in water.',
-                tip_zh: '像鐵這樣的金屬密度很大，質地堅硬且沉重，放入水中會很快沉下去！'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'If you block the tip of a syringe and compress the air inside, what happens?',
-                q_zh: '如果你封住針筒口並向下擠壓裡面的空氣，會發生什麼事？',
-                options: [
-                    { key: 'A', en: 'The air gets compressed (smaller volume)', zh: '空氣被壓縮了（體積變小）' },
-                    { key: 'B', en: 'The volume stays exactly the same', zh: '體積完全保持不變' },
-                    { key: 'C', en: 'The air instantly turns into water', zh: '空氣立刻變成了水' }
-                ],
-                correct: 'A',
-                tip_en: 'Unlike water, air can be compressed easily because there is a lot of space between air particles.',
-                tip_zh: '跟水不同，空氣的微粒之間有很大空隙，因此可以被輕易地「壓縮」喔！'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'What happens to water if we pour it from a round bowl into a square cup?',
-                q_zh: '如果我們把水從一個圓形碗倒進一個方形杯子裡，水會怎麼樣？',
-                options: [
-                    { key: 'A', en: 'Its shape changes to square', zh: '它的形狀會變成方形' },
-                    { key: 'B', en: 'Its total volume changes', zh: '它的總體積會改變' },
-                    { key: 'C', en: 'Its color changes', zh: '它的顏色會改變' }
-                ],
-                correct: 'A',
-                tip_en: 'Water has no fixed shape, so it changes its shape to fit any container. But its volume remains the same!',
-                tip_zh: '水沒有固定形狀，所以會隨容器改變。但不管怎麼倒，它的總量（體積）都不會變多或變少。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which of these man-made objects is made from wool (natural material from sheep)?',
-                q_zh: '以下哪個人造物品是由大自然中羊身上的羊毛（天然材料）製成的？',
-                options: [
-                    { key: 'A', en: 'A plastic water bottle', zh: '塑膠水樽' },
-                    { key: 'B', en: 'A warm woolen sweater', zh: '溫暖的羊毛衣' },
-                    { key: 'C', en: 'A clear glass window', zh: '透明的玻璃窗' }
-                ],
-                correct: 'B',
-                tip_en: 'Wool is a natural material obtained from sheep. We use it to knit warm sweaters!',
-                tip_zh: '羊毛是來自綿羊的天然纖維材料，我們可以用它來編織出暖和的毛衣。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'When we look at the night sky, why does the Moon seem to shine?',
-                q_zh: '當我們看著夜空時，為什麼月亮看起來會發光？',
-                options: [
-                    { key: 'A', en: 'It produces its own light', zh: '它自己會發出光芒' },
-                    { key: 'B', en: 'It reflects the light from the Sun', zh: '它反射了來自太陽的光' },
-                    { key: 'C', en: 'It has electricity inside', zh: '它裡面裝了電燈泡' }
-                ],
-                correct: 'B',
-                tip_en: 'The Moon is not a light source! It looks bright because it reflects the light of the Sun.',
-                tip_zh: '月亮本身並非光源喔！它能發亮，是因為它像鏡子一樣把太陽的光反射到我們眼睛裡。'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'If we want to make a very clear, dark shadow of a toy, what should we do?',
-                q_zh: '如果我們想為玩具做出一個非常清晰、黑暗的影子，應該怎麼做？',
-                options: [
-                    { key: 'A', en: 'Shine a strong, direct light source on it', zh: '用強烈、直接的光線照射它' },
-                    { key: 'B', en: 'Turn off all the lights in the room', zh: '把房間裡所有的燈都關掉' },
-                    { key: 'C', en: 'Use a colorful, faint ambient light', zh: '使用彩色而微弱的環境光' }
-                ],
-                correct: 'A',
-                tip_en: 'Clear, dark shadows are formed when a strong light source shines directly on an opaque object.',
-                tip_zh: '當強光源直接照射在不透明物體上，光線被徹底阻擋，就會投射出最黑、最明顯的影子。'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'If you walk towards the front, which direction is behind your back?',
-                q_zh: '如果你一直朝著前面走，你的背後是什麼方向？',
-                options: [
-                    { key: 'A', en: 'Left', zh: '左邊' },
-                    { key: 'B', en: 'Right', zh: '右邊' },
-                    { key: 'C', en: 'Back / Rear', zh: '後面' }
-                ],
-                correct: 'C',
-                tip_en: 'The opposite direction of front is always back! This helps us describe our orientation.',
-                tip_zh: '前面（Front）的相反方向就是後面（Back），這能幫助我們建立正確的空間感。'
-            },
-            {
-                cat: 'Electronic Products / 電子產品',
-                q_en: 'Why should we keep a safe distance (about 30-40cm) from our screens?',
-                q_zh: '為什麼我們看螢幕時應該保持安全的距離（大約30到40厘米）？',
-                options: [
-                    { key: 'A', en: 'To protect our eyes from strain and damage', zh: '保護眼睛免於疲勞與損害' },
-                    { key: 'B', en: 'To make the tablet sound louder', zh: '為了讓平板的聲音更大' },
-                    { key: 'C', en: 'To make the screen look bigger', zh: '為了讓螢幕看起來更大' }
-                ],
-                correct: 'A',
-                tip_en: 'Keeping a safe distance helps prevent eye strain, dry eyes, and near-sightedness.',
-                tip_zh: '眼睛離螢幕太近容易造成疲勞和近視，保持距離可以好好保護我們寶貴的靈魂之窗！'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'Which of these activities is best suited for the daytime?',
-                q_zh: '以下哪一項活動最適合在白天進行？',
-                options: [
-                    { key: 'A', en: 'Sleeping for the main night rest', zh: '進行夜間主要的睡眠休息' },
-                    { key: 'B', en: 'Studying and playing at school', zh: '在學校學習和玩耍' },
-                    { key: 'C', en: 'Hunting prey like a wild owl', zh: '像野生貓頭鷹一樣捕食' }
-                ],
-                correct: 'B',
-                tip_en: 'Daytime has plenty of natural light, making it the perfect time for learning, playing, and working!',
-                tip_zh: '白天有明亮的陽光，是人類精力最充沛、最適合上學和運動的黃金時間。'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'Why does a balloon grow bigger when we blow air into it?',
-                q_zh: '當我們朝氣球吹氣時，為什麼氣球會越變越大？',
-                options: [
-                    { key: 'A', en: 'Because air takes up space inside', zh: '因為空氣佔據了裡面的空間' },
-                    { key: 'B', en: 'Because the balloon gets lighter', zh: '因為氣球變得越來越輕' },
-                    { key: 'C', en: 'Because the air turns into solid plastic', zh: '因為空氣在裡面變成了塑料' }
-                ],
-                correct: 'A',
-                tip_en: 'Air is a substance! Even though we cannot see it, it takes up space inside the balloon.',
-                tip_zh: '空氣也是一種物質喔！雖然看不見，但它被吹進去後會「佔據空間」，把氣球撐大！'
-            },
-            {
-                cat: 'Light & Shadow / 光與影子',
-                q_en: 'If you place a transparent plastic wrap in front of a torch, will there be a dark shadow?',
-                q_zh: '如果你把一張全透明的保鮮紙放在手電筒前面，會產生深色的影子嗎？',
-                options: [
-                    { key: 'A', en: 'Yes, a very dark shadow', zh: '會，產生一個很深色的影子' },
-                    { key: 'B', en: 'No, because light passes through transparent materials', zh: '不會，因為光線會穿過透明物體' },
-                    { key: 'C', en: 'Yes, but only a red shadow', zh: '會，但只有紅色的影子' }
-                ],
-                correct: 'B',
-                tip_en: 'Transparent materials let almost all light pass through, so they do not cast a dark shadow.',
-                tip_zh: '透明（Transparent）材料能讓光線完全穿過，光沒有被阻擋，所以是不會形成黑影子的。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Why are window panes usually made of glass instead of wood?',
-                q_zh: '為什麼教室的窗戶通常是用玻璃而不是木頭做的？',
-                options: [
-                    { key: 'A', en: 'Because glass is soft and light', zh: '因為玻璃又軟又輕' },
-                    { key: 'B', en: 'Because glass is transparent and lets light in', zh: '因為玻璃是透明的，可以讓光線進來' },
-                    { key: 'C', en: 'Because wood sinks too easily', zh: '因為木頭太容易下沉了' }
-                ],
-                correct: 'B',
-                tip_en: 'We want sunlight to enter our rooms, so we use transparent glass for windows!',
-                tip_zh: '我們希望陽光照進室內保持明亮，所以窗戶要選用「透明（Transparent）」的玻璃。'
-            },
-            {
-                cat: 'Day & Night / 白天與黑夜',
-                q_en: 'If you face East in the morning to watch sunrise, which direction is on your left-hand side?',
-                q_zh: '如果早上你面向東方看日出，你的左手邊是什麼方向？',
-                options: [
-                    { key: 'A', en: 'West', zh: '西方' },
-                    { key: 'B', en: 'South', zh: '南方' },
-                    { key: 'C', en: 'North', zh: '北方' }
-                ],
-                correct: 'C',
-                tip_en: 'When you face East, West is behind you, North is on your left, and South is on your right!',
-                tip_zh: '面東（East）時，你的後面是西，右手邊是南，左手邊則一定是北（North）方。'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'A snail crawls 1 meter in 1 hour. A rabbit runs 10 kilometers in 1 hour. Who is faster?',
-                q_zh: '蝸牛一小時爬行一米。兔子一小時奔跑十公里。誰的速度比較快？',
-                options: [
-                    { key: 'A', en: 'The snail', zh: '蝸牛' },
-                    { key: 'B', en: 'The rabbit', zh: '兔子' },
-                    { key: 'C', en: 'Their speed is exactly the same', zh: '她們的速度完全一樣' }
-                ],
-                correct: 'B',
-                tip_en: 'The rabbit travels a much longer distance in the same amount of time, so it has a faster speed.',
-                tip_zh: '在相同的時間內，兔子跑過的距離遠遠多於蝸牛，所以兔子的速度快得多！'
-            },
-            {
-                cat: 'Water & Air / 水和空氣',
-                q_en: 'Can we pour water easily from one cup to another? Why?',
-                q_zh: '我們能輕鬆地把水從一個杯子倒到另一個杯子嗎？為什麼？',
-                options: [
-                    { key: 'A', en: 'No, because water is solid', zh: '不能，因為水是固體' },
-                    { key: 'B', en: 'Yes, because water can flow', zh: '能，因為水會流動' },
-                    { key: 'C', en: 'Only when we are in a dark room', zh: '只有在黑暗的房間裡才能' }
-                ],
-                correct: 'B',
-                tip_en: 'Water is a liquid. One of the main properties of liquids is that they can flow easily.',
-                tip_zh: '水是一種液體，而液體最重要的特點之一就是「會流動（Can flow）」。'
-            },
-            {
-                cat: 'Everyday Objects / 日常物品',
-                q_en: 'Which of the following is a natural material obtained directly from the ground?',
-                q_zh: '以下哪一項是直接從土壤或地底下獲得的「天然材料」？',
-                options: [
-                    { key: 'A', en: 'Plastic', zh: '塑膠' },
-                    { key: 'B', en: 'Clay / Soil', zh: '黏土 / 泥土' },
-                    { key: 'C', en: 'Nylon fabric', zh: '尼龍布料' }
-                ],
-                correct: 'B',
-                tip_en: 'Clay is a natural soil found in the ground. We use it to make beautiful pottery and bricks!',
-                tip_zh: '黏土（Clay）是直接來自大地的天然泥土，可以用來燒製精美的瓷器和磚塊。'
-            },
-            {
-                cat: 'Electronic Products / 電子產品',
-                q_en: 'If a stranger online asks for your school name or photo, what should you do?',
-                q_zh: '如果有網上的陌生人問你的學校名字或索取照片，你該怎麼辦？',
-                options: [
-                    { key: 'A', en: 'Send it to them immediately', zh: '立刻傳送給他們' },
-                    { key: 'B', en: 'Ignore them and tell your parents or teachers immediately', zh: '不理會他們，並立刻告訴家長或老師' },
-                    { key: 'C', en: 'Give them a fake friend\'s photo', zh: '傳一張假的朋友照片給他們' }
-                ],
-                correct: 'B',
-                tip_en: 'This is an important digital safety rule! Never share personal info with strangers online.',
-                tip_zh: '這是非常關鍵的網絡安全守則！絕對不能向網絡上的陌生人透露隱私，有任何不妥應立即告訴家長。'
-            },
-            {
-                cat: 'Positions & Motion / 位置與運動',
-                q_en: 'If a book is placed on top of a table, the table is ________ the book.',
-                q_zh: '如果一本書放在桌子的上面，那麼桌子是在書本的________。',
-                options: [
-                    { key: 'A', en: 'Above', zh: '上面' },
-                    { key: 'B', en: 'Below', zh: '下面' },
-                    { key: 'C', en: 'Next to', zh: '旁邊' }
-                ],
-                correct: 'B',
-                tip_en: 'Position words help us describe where things are. The book is above the table, which means the table is below.',
-                tip_zh: '空間關係是相對的。書在桌上，也就是說桌子在書的「下面（Below）」。'
-            }
-        ];
-
-        // Active questions slice (will contain 10 questions randomized from master)
-        let quizQuestions = [];
-        let currentQuizIndex = 0;
-
-        // Greetings database containing bilingual keys
-        const greetingsList = [
-            {
-                en: "Hello! I am Dr. Owl! Let's revise the Science SA2 exam topics together today!",
-                zh: "你好！我是貓頭鷹博士！今天我們一起來温習 Science SA2 考試重點吧！"
-            },
-            {
-                en: "Ready for an adventure in nature and daily life? Let's go!",
-                zh: "準備好去大自然和日常生活中探險了嗎？讓我們出發吧！"
-            },
-            {
-                en: "Review Flashcards, play sorting, or challenge the quiz to win shiny stars!",
-                zh: "你可以看閃卡、玩配對或挑戰問答比賽，為自己贏得許多閃亮的星星！"
-            }
-        ];
-        let randomGreetingObj = greetingsList[0];
-
-        // ---------------- SYSTEM INIT ----------------
-        window.onload = function() {
-            setRandomGreeting();
-            initFlashcards();
-            initMatchingGame();
-            
-            // Randomly select 10 questions from our 50-question bank on launch
-            shuffleAndRestartQuiz();
+        const flashcardData = {
+            waterAir: [
+                { icon: "💧", titleEn: "Three States of Water", titleZh: "水的三態", descEn: "Water exists in 3 states: Solid (ice), Liquid (water), and Gas (water vapour).", descZh: "水有三種形態：固體（冰）、液體（水）和氣體（水蒸氣）。" },
+                { icon: "♨️", titleEn: "Evaporation & Condensation", titleZh: "蒸發與凝聚", descEn: "Evaporation turns liquid water to gas. Condensation turns gas (water vapour) back to liquid water droplets.", descZh: "蒸發將液態水轉化為氣體。凝聚則將水蒸氣變回液態小水滴。" },
+                { icon: "☁️", titleEn: "Water Cycle", titleZh: "水循環", descEn: "The Sun heats the sea to cause evaporation. Rising vapour cools to form clouds, then falls as rain.", descZh: "太陽加熱海水引起蒸發。上升的水蒸氣冷卻形成雲，然後降下雨水。" },
+                { icon: "💨", titleEn: "Properties of Air", titleZh: "空氣的特性", descEn: "Air has no fixed shape, no fixed volume, can be compressed, and has mass/weight.", descZh: "空氣沒有固定形狀、沒有固定體積、可以被壓縮，而且是有重量的。" },
+                { icon: "🧪", titleEn: "Oxygen & Nitrogen", titleZh: "氧氣與氮氣", descEn: "Air is a mixture of gases. It contains about 78% Nitrogen, 21% Oxygen, and small amounts of Carbon Dioxide.", descZh: "空氣是多種氣體的混合物。其中約有 78% 氮氣、21% 氧氣和極少量的二氧化碳。" }
+            ],
+            materials: [
+                { icon: "🧸", titleEn: "Flexibility", titleZh: "柔韌性", descEn: "Flexible materials like rubber or fabric can bend easily without breaking.", descZh: "像橡膠或布料這類柔韌的物料，容易彎曲而不會折斷。" },
+                { icon: "🛡️", titleEn: "Strength", titleZh: "強度/硬度", descEn: "Strong materials like metals and rocks can support heavy loads without breaking or denting.", descZh: "堅硬強壯的材料（如金屬和石頭）能夠承載重物，不易破損或變形。" },
+                { icon: "☔", titleEn: "Waterproof Materials", titleZh: "防水物料", descEn: "Plastic and metal do not absorb water. They are waterproof and keep things dry.", descZh: "塑膠和金屬不會吸水，它們具備防水特性，可保持事物乾爽。" },
+                { icon: "🧽", titleEn: "Absorbency", titleZh: "吸水性", descEn: "Paper, wood, and cotton are absorbent. They have tiny pores that soak up water.", descZh: "紙張、木頭和棉花具備吸水力。它們有微小的孔隙能吸走水分。" }
+            ],
+            livingThings: [
+                { icon: "🦋", titleEn: "Life Cycle", titleZh: "生命週期", descEn: "Living things grow, reproduce, and pass through stages from birth to death.", descZh: "生物會生長、繁殖，並經歷從出生到死亡的各個生命階段。" },
+                { icon: "🌿", titleEn: "Photosynthesis", titleZh: "光合作用", descEn: "Green leaves use sunlight, carbon dioxide, and water to make food for the plant.", descZh: "綠色葉子利用陽光、二氧化碳和水，為植物製造食物。" },
+                { icon: "🐶", titleEn: "Animal Groups", titleZh: "動物分類", descEn: "Animals are divided into mammals, birds, fish, insects, reptiles, and amphibians.", descZh: "動物主要分為哺乳類、鳥類、魚類、昆蟲、爬行類和兩棲類。" }
+            ]
         };
 
-        function setRandomGreeting() {
-            randomGreetingObj = greetingsList[Math.floor(Math.random() * greetingsList.length)];
-            document.getElementById('owl-greeting-en').innerText = randomGreetingObj.en;
-            document.getElementById('owl-greeting-zh').innerText = randomGreetingObj.zh;
+        const matchingItemsPool = [
+            { id: 1, nameEn: "Tree Branch", nameZh: "樹枝", cat: "natural", icon: "🪵" },
+            { id: 2, nameEn: "Plastic Spoon", nameZh: "塑膠匙羹", cat: "manmade", icon: "🥄" },
+            { id: 3, nameEn: "Pebble Rock", nameZh: "小鵝卵石", cat: "natural", icon: "🪨" },
+            { id: 4, nameEn: "Glass Bottle", nameZh: "玻璃樽", cat: "manmade", icon: "🍼" },
+            { id: 5, nameEn: "Green Leaf", nameZh: "綠葉", cat: "natural", icon: "🍃" },
+            { id: 6, nameEn: "Paper Envelope", nameZh: "紙信封", cat: "manmade", icon: "✉️" },
+            { id: 7, nameEn: "Pure Water Drop", nameZh: "天然水滴", cat: "natural", icon: "💧" },
+            { id: 8, nameEn: "Metal Key", nameZh: "金屬鑰匙", cat: "manmade", icon: "🔑" }
+        ];
+
+        const quizQuestions = [
+            {
+                category: "Water and Air",
+                qEn: "Which of the following describes the properties of water vapour?",
+                qZh: "以下哪項描述了水蒸氣的特性？",
+                options: [
+                    { textEn: "It has a fixed shape and fixed volume.", textZh: "它有固定的形狀和固定的體積。", correct: false },
+                    { textEn: "It has no fixed shape and no fixed volume.", textZh: "它沒有固定的形狀，也沒有固定的體積。", correct: true },
+                    { textEn: "It has a fixed volume but no fixed shape.", textZh: "它有固定的體積，但沒有固定的形狀。", correct: false }
+                ],
+                tipEn: "Water vapour is a gas. Gases spread out to fill any space, so they have no fixed shape or volume.",
+                tipZh: "水蒸氣是氣體。氣體會擴散並填滿任何空間，因此它沒有固定的形狀或體積。"
+            },
+            {
+                category: "Materials",
+                qEn: "Why is rubber used to make rainboots instead of cotton fabric?",
+                qZh: "為什麼雨靴是用橡膠製成，而不是用棉質布料？",
+                options: [
+                    { textEn: "Rubber is waterproof; cotton absorbs water.", textZh: "橡膠是防水的；而棉花則會吸水。", correct: true },
+                    { textEn: "Cotton is stronger than rubber.", textZh: "棉花比橡膠更堅固強壯。", correct: false },
+                    { textEn: "Rubber is lighter and softer than cotton.", textZh: "橡膠比棉花更輕柔更軟滑。", correct: false }
+                ],
+                tipEn: "Rainboots must be waterproof to keep our feet dry. Rubber blocks water, while cotton fabric absorbs it instantly.",
+                tipZh: "雨靴必須防水才能保護雙腳乾爽。橡膠能阻擋水分，而棉布則會立刻吸水。"
+            },
+            {
+                category: "Water and Air",
+                qEn: "What process causes wet clothes hanging outdoors to dry up?",
+                qZh: "晾在戶外的濕衣服變乾，是由於哪種過程引起的？",
+                options: [
+                    { textEn: "Condensation", textZh: "凝聚作用", correct: false },
+                    { textEn: "Freezing", textZh: "凝固作用", correct: false },
+                    { textEn: "Evaporation", textZh: "蒸發作用", correct: true }
+                ],
+                tipEn: "Evaporation occurs when liquid water absorbs heat from the Sun and changes into water vapour (gas).",
+                tipZh: "當液態水吸收太陽的熱量，並轉化為水蒸氣（氣體）時，就會發生蒸發作用。"
+            },
+            {
+                category: "Living Things",
+                qEn: "Which body part does a fish use to breathe dissolved oxygen in water?",
+                qZh: "魚類使用哪一個身體構造來呼吸水中溶解的氧氣？",
+                options: [
+                    { textEn: "Fins", textZh: "魚鰭", correct: false },
+                    { textEn: "Gills", textZh: "魚鰓", correct: true },
+                    { textEn: "Scales", textZh: "魚鱗", correct: false }
+                ],
+                tipEn: "Fish have gills that filter and absorb oxygen directly from the water flowing through them.",
+                tipZh: "魚類擁有鰓，能夠直接過濾並吸收流經魚鰓的水中氧氣。"
+            },
+            {
+                category: "Water and Air",
+                qEn: "Which of the following gases makes up the largest part of air?",
+                qZh: "以下哪種氣體佔空氣中的比例最大？",
+                options: [
+                    { textEn: "Oxygen", textZh: "氧氣", correct: false },
+                    { textEn: "Nitrogen", textZh: "氮氣", correct: true },
+                    { textEn: "Carbon Dioxide", textZh: "二氧化碳", correct: false }
+                ],
+                tipEn: "Air is composed of about 78% Nitrogen, making it the most abundant gas in the atmosphere.",
+                tipZh: "空氣中約有 78% 的氮氣，這使其成為大氣中含量最豐富的氣體。"
+            }
+        ];
+
+        // ==========================================
+        // HOME LOGIC
+        // ==========================================
+        const greetings = [
+            { en: "Welcome to Dr. Owl's Academy! Let us learn science together!", zh: "歡迎來到貓頭鷹博士學堂！讓我們一起快樂學習科學吧！" },
+            { en: "Hello explorers! Let's score maximum stars today!", zh: "哈囉探險家們！今天讓我們一起贏取最多的小星星吧！" },
+            { en: "Ready to test your brain power? Pick an adventure below!", zh: "準備好考考你的腦筋了嗎？請在下方挑選關卡吧！" }
+        ];
+        let currentGreetingIdx = 0;
+
+        function speakHomeGreeting(btn = null) {
+            const current = greetings[currentGreetingIdx];
+            speakText(current.en, btn || document.getElementById('btn-speak-greeting'));
         }
 
-        function speakGreeting(btn) {
-            speakEnglish(randomGreetingObj.en, btn);
+        function speakGreeting() {
+            currentGreetingIdx = (currentGreetingIdx + 1) % greetings.length;
+            const current = greetings[currentGreetingIdx];
+            document.getElementById('owl-greeting-en').innerText = current.en;
+            document.getElementById('owl-greeting-zh').innerText = current.zh;
+            speakHomeGreeting();
         }
 
+        // Initialize Home Greeting
+        document.getElementById('owl-greeting-en').innerText = greetings[0].en;
+        document.getElementById('owl-greeting-zh').innerText = greetings[0].zh;
+
+
+        // ==========================================
+        // UTILITIES
+        // ==========================================
         function switchScreen(screenId) {
+            // Stop any ongoing audio immediately to prevent platform-level thread block
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+
+            // Hide all
             document.getElementById('screen-home').classList.add('hidden');
             document.getElementById('screen-flashcards').classList.add('hidden');
             document.getElementById('screen-matching').classList.add('hidden');
             document.getElementById('screen-quiz').classList.add('hidden');
             document.getElementById('screen-congrats').classList.add('hidden');
 
-            const activeScreen = document.getElementById(`screen-${screenId}`);
-            if (activeScreen) {
-                activeScreen.classList.remove('hidden');
+            // Show active
+            const targetScreen = document.getElementById(`screen-${screenId}`);
+            if (targetScreen) {
+                targetScreen.classList.remove('hidden');
             }
 
-            if (screenId === 'home') {
-                setRandomGreeting();
+            // Setup hooks
+            if (screenId === 'flashcards') {
+                initFlashcards();
+            } else if (screenId === 'matching') {
+                initMatchingGame();
+            } else if (screenId === 'quiz') {
+                initQuiz();
+            } else if (screenId === 'home') {
+                document.getElementById('star-count').innerText = starScore;
             }
         }
 
-        // ---------------- FLASHCARDS SECTION ----------------
-        function initFlashcards() {
-            const cats = ['ALL', 'Water & Air', 'Everyday Objects', 'Electronic Products', 'Positions & Motion', 'Light & Shadow', 'Day & Night'];
-            const container = document.getElementById('flashcard-categories');
-            container.innerHTML = '';
+        function showToast(text, icon = "⭐") {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-icon').innerText = icon;
+            document.getElementById('toast-text').innerText = text;
             
-            cats.forEach((cat, index) => {
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }, 3000);
+        }
+
+        function rewardStars(num) {
+            starScore += num;
+            document.getElementById('star-count').innerText = starScore;
+            showToast(`Earned +${num} Stars! (獲得 ${num} 顆星星！)`, "🎉");
+        }
+
+
+        // ==========================================
+        // MODULE: FLASHCARDS
+        // ==========================================
+        let currentFlashcardDeck = [];
+        let currentCardIdx = 0;
+        let activeCategory = 'waterAir';
+
+        function initFlashcards() {
+            // Create Tabs dynamically
+            const categories = [
+                { id: 'waterAir', labelEn: 'Water & Air', labelZh: '水與空氣', icon: "💧" },
+                { id: 'materials', labelEn: 'Materials', labelZh: '物料特性', icon: "🧸" },
+                { id: 'livingThings', labelEn: 'Living Things', labelZh: '生物特徵', icon: "🦋" }
+            ];
+
+            const tabsContainer = document.getElementById('flashcard-categories');
+            tabsContainer.innerHTML = '';
+            
+            categories.forEach(cat => {
                 const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = `px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 ${index === 0 ? 'bg-amber-400 text-white border-amber-300' : 'bg-white text-amber-800 border-amber-200 hover:bg-amber-50'}`;
-                btn.innerText = cat;
-                btn.onclick = () => filterFlashcards(cat, btn);
-                container.appendChild(btn);
+                btn.type = "button";
+                btn.className = `flex-none px-6 py-3 rounded-full font-black text-base whitespace-nowrap transition border-2 flex items-center gap-2 ${
+                    activeCategory === cat.id 
+                    ? 'bg-amber-400 border-amber-500 text-amber-950 shadow-md' 
+                    : 'bg-white border-teal-200 text-teal-700 hover:bg-yellow-50'
+                }`;
+                btn.innerHTML = `<span>${cat.icon}</span> <span>${cat.labelEn} / ${cat.labelZh}</span>`;
+                btn.onclick = () => {
+                    activeCategory = cat.id;
+                    currentCardIdx = 0;
+                    initFlashcards();
+                };
+                tabsContainer.appendChild(btn);
             });
 
-            currentFlashcardIndex = 0;
-            renderFlashcard();
-        }
-
-        let filteredFlashcards = [...flashcardData];
-
-        function filterFlashcards(category, btnElement) {
-            const buttons = document.getElementById('flashcard-categories').getElementsByTagName('button');
-            for(let btn of buttons) {
-                btn.className = "px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-white text-amber-800 border-amber-200 hover:bg-amber-50";
-            }
-            btnElement.className = "px-5 py-3 rounded-full font-black text-base border-2 whitespace-nowrap shadow-sm transition active:scale-95 bg-amber-400 text-white border-amber-300";
-
-            if (category === 'ALL') {
-                filteredFlashcards = [...flashcardData];
-            } else {
-                filteredFlashcards = flashcardData.filter(card => card.cat.includes(category));
-            }
-            currentFlashcardIndex = 0;
-            isFlashcardFlipped = false;
-            document.getElementById('flashcard-inner').classList.remove('card-flipped');
+            currentFlashcardDeck = flashcardData[activeCategory];
             renderFlashcard();
         }
 
         function renderFlashcard() {
-            if (filteredFlashcards.length === 0) return;
-            const card = filteredFlashcards[currentFlashcardIndex];
+            const card = currentFlashcardDeck[currentCardIdx];
+            if (!card) return;
 
-            document.getElementById('flash-card-cat-label').innerText = card.cat;
+            // Reset Flipping state to Front safely
+            const inner = document.getElementById('flashcard-inner');
+            inner.classList.remove('card-flipped');
+
+            // Render text
+            document.getElementById('flash-card-cat-label').innerText = activeCategory.toUpperCase();
             document.getElementById('flash-card-icon').innerText = card.icon;
-            
-            // Large English on top, auxiliary Chinese on bottom
-            document.getElementById('flash-card-title-en').innerText = card.title_en;
-            document.getElementById('flash-card-title-zh').innerText = card.title_zh;
+            document.getElementById('flash-card-title-en').innerText = card.titleEn;
+            document.getElementById('flash-card-title-zh').innerText = card.titleZh;
 
-            document.getElementById('flash-card-desc-en').innerText = card.desc_en;
-            document.getElementById('flash-card-desc-zh').innerText = card.desc_zh;
+            document.getElementById('flash-card-desc-en').innerText = card.descEn;
+            document.getElementById('flash-card-desc-zh').innerText = card.descZh;
 
-            document.getElementById('flashcard-index').innerText = `${currentFlashcardIndex + 1} / ${filteredFlashcards.length}`;
-        }
-
-        function speakFlashcardFront(event) {
-            event.stopPropagation(); // Avoid flipping the card
-            const card = filteredFlashcards[currentFlashcardIndex];
-            const activeBtn = event.currentTarget;
-            speakEnglish(card.title_en, activeBtn);
-        }
-
-        function speakFlashcardBack(event) {
-            event.stopPropagation(); // Avoid flipping the card
-            const card = filteredFlashcards[currentFlashcardIndex];
-            const activeBtn = event.currentTarget;
-            speakEnglish(card.desc_en, activeBtn);
+            document.getElementById('flashcard-index').innerText = `${currentCardIdx + 1} / ${currentFlashcardDeck.length}`;
         }
 
         function flipFlashcard() {
-            isFlashcardFlipped = !isFlashcardFlipped;
             const inner = document.getElementById('flashcard-inner');
-            if (isFlashcardFlipped) {
-                inner.classList.add('card-flipped');
-                
-                const cardKey = filteredFlashcards[currentFlashcardIndex].title_en;
-                if (!visitedFlashcards.has(cardKey)) {
-                    visitedFlashcards.add(cardKey);
-                    addStars(5, 'Discovered new card / 翻開新閃卡，學到新知識！');
-                }
+            inner.classList.toggle('card-flipped');
+            
+            // Collect interactive stars if first time flip
+            if (!inner.dataset.viewedIndices) {
+                inner.dataset.viewedIndices = JSON.stringify([]);
+            }
+            const viewed = JSON.parse(inner.dataset.viewedIndices);
+            const viewKey = `${activeCategory}-${currentCardIdx}`;
+            if (!viewed.includes(viewKey)) {
+                viewed.push(viewKey);
+                inner.dataset.viewedIndices = JSON.stringify(viewed);
+                rewardStars(5);
+            }
+        }
+
+        function prevFlashcard() {
+            if (currentCardIdx > 0) {
+                currentCardIdx--;
+                renderFlashcard();
             } else {
-                inner.classList.remove('card-flipped');
+                currentCardIdx = currentFlashcardDeck.length - 1;
+                renderFlashcard();
             }
         }
 
         function nextFlashcard() {
-            isFlashcardFlipped = false;
-            document.getElementById('flashcard-inner').classList.remove('card-flipped');
-            setTimeout(() => {
-                currentFlashcardIndex = (currentFlashcardIndex + 1) % filteredFlashcards.length;
+            if (currentCardIdx < currentFlashcardDeck.length - 1) {
+                currentCardIdx++;
                 renderFlashcard();
-            }, 200);
+            } else {
+                currentCardIdx = 0;
+                renderFlashcard();
+            }
         }
 
-        function prevFlashcard() {
-            isFlashcardFlipped = false;
-            document.getElementById('flashcard-inner').classList.remove('card-flipped');
-            setTimeout(() => {
-                currentFlashcardIndex = (currentFlashcardIndex - 1 + filteredFlashcards.length) % filteredFlashcards.length;
-                renderFlashcard();
-            }, 200);
+        function speakFlashcardFront(event) {
+            event.stopPropagation(); // Stop flipping trigger
+            const card = currentFlashcardDeck[currentCardIdx];
+            if (card) {
+                speakText(card.titleEn, document.getElementById('btn-speak-flashcard-front'));
+            }
         }
 
-        // ---------------- MATCHING GAME SECTION ----------------
+        function speakFlashcardBack(event) {
+            event.stopPropagation(); // Stop flipping trigger
+            const card = currentFlashcardDeck[currentCardIdx];
+            if (card) {
+                speakText(card.descEn, document.getElementById('btn-speak-flashcard-back'));
+            }
+        }
+
+
+        // ==========================================
+        // MODULE: MATCHING GAME
+        // ==========================================
+        let selectedItem = null;
+        let matchingItemsState = [];
+
         function initMatchingGame() {
-            selectedMatchingCardId = null;
-            userAssignments = {};
-            
+            selectedItem = null;
             document.getElementById('zone-natural').innerHTML = '';
             document.getElementById('zone-manmade').innerHTML = '';
+            
+            // Deep copy and Shuffle items pool
+            matchingItemsState = JSON.parse(JSON.stringify(matchingItemsPool))
+                .sort(() => Math.random() - 0.5);
 
-            const pool = document.getElementById('match-cards-pool');
-            pool.innerHTML = '';
+            renderMatchingPool();
+        }
 
-            const shuffled = [...matchingItems].sort(() => Math.random() - 0.5);
-            shuffled.forEach(item => {
-                const card = document.createElement('div');
-                card.id = `match-card-${item.id}`;
-                card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[200px]";
-                
-                // Allow card click to select & speak
-                card.onclick = () => selectMatchingCard(item.id, item.name_en);
-                
-                card.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <span class="text-4xl">${item.icon}</span>
-                        <div class="text-left leading-snug">
-                            <span class="block text-xl font-black">${item.name_en}</span>
-                            <span class="block text-base font-bold text-purple-700/80 mt-0.5">${item.name_zh}</span>
-                        </div>
+        function renderMatchingPool() {
+            const poolEl = document.getElementById('match-cards-pool');
+            poolEl.innerHTML = '';
+
+            const unplaced = matchingItemsState.filter(item => !item.placed);
+
+            if (unplaced.length === 0) {
+                poolEl.innerHTML = `
+                    <div class="text-center py-4 w-full">
+                        <p class="text-emerald-600 font-extrabold text-xl">🎉 All cards placed! Submit your answers! / 所有卡片已放置，請提交解答！</p>
                     </div>
-                    <button type="button" class="bg-purple-300/50 hover:bg-purple-300 p-2.5 rounded-full flex items-center justify-center w-10 h-10 select-none pointer-events-none">
-                        <i class="fa-solid fa-volume-high text-base text-purple-900"></i>
-                    </button>
                 `;
-                pool.appendChild(card);
-            });
-
-            document.getElementById('drop-natural').onclick = () => assignCardToZone('natural');
-            document.getElementById('drop-manmade').onclick = () => assignCardToZone('manmade');
-        }
-
-        function selectMatchingCard(cardId, speakText) {
-            if (selectedMatchingCardId) {
-                const prev = document.getElementById(`match-card-${selectedMatchingCardId}`);
-                if (prev) {
-                    prev.classList.remove('ring-4', 'ring-purple-500', 'bg-purple-300');
-                    prev.classList.add('bg-purple-100');
-                }
-            }
-
-            selectedMatchingCardId = cardId;
-            const current = document.getElementById(`match-card-${cardId}`);
-            if (current) {
-                current.classList.remove('bg-purple-100');
-                current.classList.add('ring-4', 'ring-purple-500', 'bg-purple-300');
-            }
-
-            // Speak word on click safely to reinforce pronunciation
-            speakEnglish(speakText);
-        }
-
-        function assignCardToZone(targetType) {
-            if (!selectedMatchingCardId) {
-                showToast("👉 Please select an item card first!", "👉 請先在下方點選一張物體卡片！");
                 return;
             }
 
-            const cardId = selectedMatchingCardId;
-            const item = matchingItems.find(i => i.id === cardId);
-            
-            const cardEl = document.getElementById(`match-card-${cardId}`);
-            if (cardEl) {
-                cardEl.remove();
-            }
+            unplaced.forEach(item => {
+                const card = document.createElement('button');
+                card.type = "button";
+                
+                // Highlight item if selected
+                const isSelected = selectedItem && selectedItem.id === item.id;
+                
+                card.className = `p-4 rounded-2xl border-4 transition-all duration-200 shadow-md flex flex-col items-center justify-center gap-1 w-28 sm:w-32 ${
+                    isSelected 
+                    ? 'bg-purple-200 border-purple-500 scale-105 ring-4 ring-purple-300' 
+                    : 'bg-white hover:bg-purple-50 border-purple-100 hover:border-purple-300'
+                }`;
+                
+                card.innerHTML = `
+                    <span class="text-4xl">${item.icon}</span>
+                    <span class="font-extrabold text-teal-950 text-sm sm:text-base leading-snug">${item.nameEn}</span>
+                    <span class="text-xs font-bold text-teal-700">${item.nameZh}</span>
+                `;
 
-            const placedCard = document.createElement('div');
-            placedCard.className = "bg-white border-2 border-gray-300 rounded-full px-5 py-2.5 flex items-center justify-between gap-3 text-base font-black shadow-sm cursor-pointer hover:bg-red-50 hover:border-red-300 transition duration-150";
-            placedCard.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">${item.icon}</span> 
-                    <span class="text-teal-950 font-black">${item.name_en}</span> 
-                    <span class="text-teal-600/80 font-bold">(${item.name_zh})</span>
-                </div>
-                <i class="fa-solid fa-circle-xmark text-red-400 text-xl hover:text-red-500"></i>
-            `;
-            
-            placedCard.onclick = (e) => {
-                e.stopPropagation(); 
-                placedCard.remove();
-                delete userAssignments[cardId];
-                returnCardToPool(item);
-            };
+                card.onclick = (e) => {
+                    e.stopPropagation();
+                    selectMatchingCard(item);
+                };
 
-            const targetContainer = document.getElementById(`zone-${targetType}`);
-            targetContainer.appendChild(placedCard);
-
-            userAssignments[cardId] = targetType;
-            selectedMatchingCardId = null; 
+                poolEl.appendChild(card);
+            });
         }
 
-        function returnCardToPool(item) {
-            const pool = document.getElementById('match-cards-pool');
-            const card = document.createElement('div');
-            card.id = `match-card-${item.id}`;
-            card.className = "bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-950 font-black px-5 py-4 rounded-[1.5rem] cursor-pointer shadow-md hover:scale-105 active:scale-95 transition flex items-center justify-between gap-4 text-base md:text-lg w-full sm:w-auto min-w-[200px]";
-            
-            card.onclick = () => selectMatchingCard(item.id, item.name_en);
-            
-            card.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <span class="text-4xl">${item.icon}</span>
-                    <div class="text-left leading-snug">
-                        <span class="block text-xl font-black">${item.name_en}</span>
-                        <span class="block text-base font-bold text-purple-700/80 mt-0.5">${item.name_zh}</span>
-                    </div>
-                </div>
-                <button type="button" class="bg-purple-300/50 hover:bg-purple-300 p-2.5 rounded-full flex items-center justify-center w-10 h-10 select-none pointer-events-none">
-                    <i class="fa-solid fa-volume-high text-base text-purple-900"></i>
-                </button>
+        function selectMatchingCard(item) {
+            selectedItem = item;
+            renderMatchingPool();
+            // Automatically read item aloud
+            speakText(item.nameEn);
+        }
+
+        function dropToZone(zoneType) {
+            if (!selectedItem) {
+                showToast("👉 Please select a card below first! / 請先點選底部的卡片！", "🦉");
+                return;
+            }
+
+            // Move card from pool to zone
+            const matchIndex = matchingItemsState.findIndex(i => i.id === selectedItem.id);
+            if (matchIndex !== -1) {
+                matchingItemsState[matchIndex].placed = zoneType;
+            }
+
+            // Append visually
+            const targetZone = document.getElementById(`zone-${zoneType}`);
+            const chip = document.createElement('div');
+            chip.className = "bg-white border-2 border-teal-100 rounded-xl px-3 py-1.5 flex items-center gap-2 shadow-sm animate-pulse";
+            chip.innerHTML = `
+                <span class="text-xl">${selectedItem.icon}</span>
+                <span class="font-black text-sm text-teal-900">${selectedItem.nameEn}</span>
+                <button type="button" class="text-red-500 hover:text-red-700 ml-1 font-bold" onclick="removeMatchingChip(event, ${selectedItem.id})">×</button>
             `;
-            pool.appendChild(card);
+            targetZone.appendChild(chip);
+
+            // Reset selected
+            selectedItem = null;
+            renderMatchingPool();
+        }
+
+        function removeMatchingChip(event, itemId) {
+            event.stopPropagation();
+            const matchIndex = matchingItemsState.findIndex(i => i.id === itemId);
+            if (matchIndex !== -1) {
+                matchingItemsState[matchIndex].placed = null;
+            }
+            
+            // Re-render
+            const item = matchingItemsPool.find(i => i.id === itemId);
+            initMatchingGameAndRestorePositions();
+        }
+
+        function initMatchingGameAndRestorePositions() {
+            // Restore visual layout from State object
+            const naturalZone = document.getElementById('zone-natural');
+            const manmadeZone = document.getElementById('zone-manmade');
+            naturalZone.innerHTML = '';
+            manmadeZone.innerHTML = '';
+
+            matchingItemsState.forEach(item => {
+                if (item.placed) {
+                    const targetZone = document.getElementById(`zone-${item.placed}`);
+                    const chip = document.createElement('div');
+                    chip.className = "bg-white border-2 border-teal-100 rounded-xl px-3 py-1.5 flex items-center gap-2 shadow-sm";
+                    chip.innerHTML = `
+                        <span class="text-xl">${item.icon}</span>
+                        <span class="font-black text-sm text-teal-900">${item.nameEn}</span>
+                        <button type="button" class="text-red-500 hover:text-red-700 ml-1 font-bold" onclick="removeMatchingChip(event, ${item.id})">×</button>
+                    `;
+                    targetZone.appendChild(chip);
+                }
+            });
+
+            selectedItem = null;
+            renderMatchingPool();
         }
 
         function checkMatchingResult() {
-            const assignedCount = Object.keys(userAssignments).length;
-            if (assignedCount < matchingItems.length) {
-                showToast("⚠️ Please sort all cards first!", "⚠️ 請將所有卡片都放進分類盒中再檢查！");
+            const totalToPlace = matchingItemsPool.length;
+            const placedList = matchingItemsState.filter(item => item.placed);
+
+            if (placedList.length < totalToPlace) {
+                showToast("⚠️ Place all cards in zones before submitting! / 請將所有卡片都分類後再送出！", "🦉");
                 return;
             }
 
             let correctCount = 0;
-            matchingItems.forEach(item => {
-                if (userAssignments[item.id] === item.type) {
+            placedList.forEach(item => {
+                if (item.placed === item.cat) {
                     correctCount++;
                 }
             });
 
-            if (correctCount === matchingItems.length) {
-                addStars(30, '🎉 Outstanding! Classified all objects correctly! / 太完美了！你成功分類了所有自然和人造物體！');
-                initMatchingGame(); 
+            if (correctCount === totalToPlace) {
+                rewardStars(30);
+                showToast("🎉 Excellent! All matches are correct! (+30 Stars)", "🏆");
+                speakText("Brilliant job! You are a nature expert!");
             } else {
-                showToast(`❌ Some items are incorrectly placed (${correctCount}/${matchingItems.length} correct)`, `❌ 有些卡片放錯地方了喔！再想一想（答對 ${correctCount}/${matchingItems.length} 題）`);
+                showToast(`❌ Correct: ${correctCount}/${totalToPlace}. Try reshuffling or resetting!`, "🦉");
+                speakText("Keep trying! Let's check which ones belong to nature.");
             }
         }
 
-        // ---------------- QUIZ SECTION (RANDOM SHUFFLE SYSTEM) ----------------
-        
-        // Shuffles the 50 questions master array, selects 10, and resets quiz
-        function shuffleAndRestartQuiz() {
-            // Shuffle copy of master array
-            const shuffledMaster = [...quizQuestionsMaster].sort(() => Math.random() - 0.5);
-            
-            // Draw first 10 questions
-            quizQuestions = shuffledMaster.slice(0, 10);
-            
-            currentQuizIndex = 0;
-            selectedQuizOption = null;
-            document.getElementById('btn-next-question').classList.add('hidden');
-            
-            // Load current UI
-            renderQuizQuestion();
-            showToast("🔄 Quiz Reset! 10 new random questions loaded!", "🔄 題庫已重整！50題庫中已隨機抽出10題新題目！");
+
+        // ==========================================
+        // MODULE: QUIZ
+        // ==========================================
+        let currentQuizDeck = [];
+        let currentQuestionIdx = 0;
+        let isQuestionAnswered = false;
+
+        function initQuiz() {
+            // Copy and shuffle questions to keep learning fresh
+            currentQuizDeck = JSON.parse(JSON.stringify(quizQuestions))
+                .sort(() => Math.random() - 0.5);
+            currentQuestionIdx = 0;
+            renderQuestion();
         }
 
-        function renderQuizQuestion() {
-            if (quizQuestions.length === 0) return;
-            const q = quizQuestions[currentQuizIndex];
+        function shuffleAndRestartQuiz() {
+            initQuiz();
+            showToast("🔄 Shuffled & Restarted! / 題目庫已隨機重新刷新！", "⚡");
+        }
+
+        function renderQuestion() {
+            isQuestionAnswered = false;
+            document.getElementById('btn-next-question').classList.add('hidden');
+            document.getElementById('quiz-score-indicator').innerText = "⭐ Earn +10 stars for correct answer";
+            document.getElementById('quiz-score-indicator').className = "font-extrabold text-xl text-yellow-600";
+
+            const question = currentQuizDeck[currentQuestionIdx];
+            if (!question) return;
+
+            // Render headers
+            document.getElementById('quiz-progress-badge').innerText = `Question ${currentQuestionIdx + 1} / ${currentQuizDeck.length}`;
+            document.getElementById('quiz-cat-label').innerText = question.category;
             
-            document.getElementById('quiz-progress-badge').innerText = `Question ${currentQuizIndex + 1} / ${quizQuestions.length} | 問題 ${currentQuizIndex + 1} / ${quizQuestions.length}`;
-            document.getElementById('quiz-score-indicator').innerText = `⭐ Earn +10 stars for correct answer / 答對獲得 +10 顆星星`;
+            // Render text
+            document.getElementById('quiz-question-en').innerText = question.qEn;
+            document.getElementById('quiz-question-zh').innerText = question.qZh;
 
-            document.getElementById('quiz-cat-label').innerText = q.cat;
-            document.getElementById('quiz-question-en').innerText = q.q_en;
-            document.getElementById('quiz-question-zh').innerText = q.q_zh;
+            document.getElementById('quiz-tip-en').innerText = "Select an option first to unlock Dr. Owl's explanation!";
+            document.getElementById('quiz-tip-zh').innerText = "請先點選答案，即可解鎖貓頭鷹博士的精美詳解！";
 
-            document.getElementById('quiz-tip-en').innerText = q.tip_en;
-            document.getElementById('quiz-tip-zh').innerText = q.tip_zh;
-
+            // Render option buttons
             const container = document.getElementById('quiz-options-container');
             container.innerHTML = '';
 
-            q.options.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.id = `quiz-opt-${opt.key}`;
-                btn.className = "bg-orange-50 hover:bg-orange-100 border-2 border-orange-200 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow transition duration-200 active:scale-98 flex items-center justify-between gap-4 w-full";
-                btn.onclick = () => selectQuizOption(opt.key);
+            question.options.forEach((opt, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = "flex gap-3 items-stretch w-full";
 
-                // FIXED AUDIO ACTION: Rather than interpolating opt.en string with quotes (dangerous on Chrome),
-                // we lookup by option key to keep HTML syntax bulletproof.
+                // Standard option selection button
+                const btn = document.createElement('button');
+                btn.type = "button";
+                btn.className = "flex-1 text-left bg-orange-50 hover:bg-orange-100 border-4 border-orange-200/60 p-5 rounded-2xl transition duration-200 flex flex-col justify-center gap-1 shadow-sm";
+                
                 btn.innerHTML = `
-                    <div class="flex items-center gap-4 text-left">
-                        <span class="w-12 h-12 rounded-full bg-orange-400 text-white font-black flex items-center justify-center text-xl shrink-0">${opt.key}</span>
-                        <div class="leading-relaxed">
-                            <p class="text-2xl font-black text-teal-950">${opt.en}</p>
-                            <p class="text-base font-bold text-teal-700/90 mt-1 border-t border-dashed border-teal-200/50 pt-1">${opt.zh}</p>
-                        </div>
-                    </div>
-                    <button type="button" onclick="speakOption(event, '${opt.key}', this)" class="bg-orange-200/60 hover:bg-orange-300 text-orange-950 w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm" title="Pronounce Option">
-                        <i class="fa-solid fa-volume-high text-lg"></i>
-                    </button>
+                    <span class="text-xl sm:text-2xl font-black text-teal-950">${opt.textEn}</span>
+                    <span class="text-base sm:text-lg font-bold text-teal-700/80 border-t border-dashed border-teal-200/50 pt-1 mt-1">${opt.textZh}</span>
                 `;
-                container.appendChild(btn);
+
+                btn.onclick = () => selectOption(btn, opt);
+
+                // Option voice read-aloud helper button
+                const speakBtn = document.createElement('button');
+                speakBtn.type = "button";
+                speakBtn.className = "bg-orange-400 hover:bg-orange-500 text-white px-4 rounded-2xl flex items-center justify-center transition active:scale-95 shadow-md w-14 shrink-0";
+                speakBtn.innerHTML = '<i class="fa-solid fa-volume-high text-xl"></i>';
+                speakBtn.onclick = () => speakText(opt.textEn, speakBtn);
+
+                wrapper.appendChild(btn);
+                wrapper.appendChild(speakBtn);
+                container.appendChild(wrapper);
             });
 
-            document.getElementById('btn-next-question').classList.add('hidden');
+            // Automatically read question aloud
+            speakText(question.qEn);
         }
 
         function speakCurrentQuestion(btn) {
-            const q = quizQuestions[currentQuizIndex];
-            speakEnglish(q.q_en, btn);
-        }
-
-        // FIXED AUDIO LOOKUP: Eliminates quotes crashing helper threads completely.
-        function speakOption(event, optionKey, btn) {
-            event.stopPropagation(); // Avoid selecting answer
-            const q = quizQuestions[currentQuizIndex];
-            const opt = q.options.find(o => o.key === optionKey);
-            if (opt) {
-                speakEnglish(opt.en, btn);
+            const question = currentQuizDeck[currentQuestionIdx];
+            if (question) {
+                speakText(question.qEn, btn);
             }
         }
 
-        function selectQuizOption(key) {
-            if (document.getElementById('btn-next-question').classList.contains('hidden') === false) {
-                return;
-            }
+        function selectOption(buttonElement, option) {
+            if (isQuestionAnswered) return;
+            isQuestionAnswered = true;
 
-            const q = quizQuestions[currentQuizIndex];
-            const isCorrect = (key === q.correct);
-            
-            const buttons = document.getElementById('quiz-options-container').getElementsByTagName('button');
-            for(let btn of buttons) {
-                btn.disabled = true; 
-            }
+            const question = currentQuizDeck[currentQuestionIdx];
 
-            const targetBtn = document.getElementById(`quiz-opt-${key}`);
-            if (isCorrect) {
-                targetBtn.className = "bg-emerald-100 border-4 border-emerald-400 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow flex items-center justify-between gap-4 w-full";
-                addStars(10, '🎯 Bingo! Answer is Correct! / 太聰明了！回答正確！');
+            // Show explanation tips immediately
+            document.getElementById('quiz-tip-en').innerText = question.tipEn;
+            document.getElementById('quiz-tip-zh').innerText = question.tipZh;
+
+            // Highlight Correct/Incorrect answers
+            if (option.correct) {
+                buttonElement.classList.remove('bg-orange-50', 'border-orange-200/60');
+                buttonElement.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-950');
+                
+                document.getElementById('quiz-score-indicator').innerText = "🎉 CORRECT! / 答對了！(+10 Stars)";
+                document.getElementById('quiz-score-indicator').className = "font-extrabold text-xl text-emerald-600";
+                
+                rewardStars(10);
+                speakText("Excellent! Correct answer!");
             } else {
-                targetBtn.className = "bg-red-100 border-4 border-red-400 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow flex items-center justify-between gap-4 w-full";
-                showToast("❌ Not correct! Let's read Dr. Owl's tip!", "❌ 答錯了，不要氣餒！再看看博士的提示！");
-
-                const correctBtn = document.getElementById(`quiz-opt-${q.correct}`);
-                if (correctBtn) {
-                    correctBtn.className = "bg-emerald-100 border-4 border-emerald-400 text-teal-950 font-extrabold p-5 rounded-3xl text-left shadow flex items-center justify-between gap-4 w-full";
-                }
+                buttonElement.classList.remove('bg-orange-50', 'border-orange-200/60');
+                buttonElement.classList.add('bg-red-100', 'border-red-400', 'text-red-950');
+                
+                document.getElementById('quiz-score-indicator').innerText = "❌ Keep Learning! Let's read the tip below.";
+                document.getElementById('quiz-score-indicator').className = "font-extrabold text-xl text-red-600";
+                
+                speakText("Nice try! Listen to Dr. Owls explanation.");
             }
 
+            // Show next button
             document.getElementById('btn-next-question').classList.remove('hidden');
         }
 
         function nextQuestion() {
-            if (currentQuizIndex + 1 < quizQuestions.length) {
-                currentQuizIndex++;
-                renderQuizQuestion();
+            if (currentQuestionIdx < currentQuizDeck.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
             } else {
+                // Game Over - Switch to congratulations screen
+                document.getElementById('congrats-stars').innerText = starScore;
                 switchScreen('congrats');
-                document.getElementById('congrats-stars').innerText = totalStars;
             }
         }
 
-        // ---------------- UTILS: STARS & TOAST ----------------
-        function addStars(num, messageText) {
-            totalStars += num;
-            document.getElementById('star-count').innerText = totalStars;
-            
-            const starCountEl = document.getElementById('star-count');
-            starCountEl.classList.add('text-yellow-300', 'scale-125');
-            setTimeout(() => {
-                starCountEl.classList.remove('text-yellow-300', 'scale-125');
-            }, 500);
 
-            showToast(`⭐ +${num} Stars! ${messageText}`, `⭐ +${num} Stars! ${messageText}`);
-        }
-
-        function showToast(enMsg, zhMsg) {
-            const toast = document.getElementById('toast');
-            const txt = document.getElementById('toast-text');
-            
-            txt.innerHTML = `<span class="block text-lg font-black">${enMsg}</span> <span class="block text-sm font-semibold text-teal-200 mt-1">${zhMsg}</span>`;
-            toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex flex-col items-center gap-1 text-center transition-all duration-300 opacity-100 translate-y-0 max-w-[90%]";
-
-            setTimeout(() => {
-                toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-teal-900/95 text-white px-6 py-4 rounded-full font-bold shadow-xl flex flex-col items-center gap-1 text-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none max-w-[90%]";
-            }, 3500);
-        }
-
-        // ---------------- PARENTS SHARE SYSTEM ----------------
+        // ==========================================
+        // MODULE: WHATSAPP SHARING
+        // ==========================================
         function shareProgressWhatsApp() {
-            const currentStars = totalStars;
+            const rawMessage = `🌟 *Science Explorer: Dr. Owl's Academy* 🌟\n` + 
+                               `My child completed learning adventures and collected *${starScore} Stars*! ⭐\n` +
+                               `Join us here: https://logosparents.github.io/scifs1/`;
             
-            let message = `Hi Mom and Dad! I completed my Primary Science SA2 revision at "Dr. Owl's Academy" today!\n\nI reviewed:\n💧 Water & Air Properties\n🧸 Everyday Objects sorting\n📱 Screens Safety Use rules\n🏃 Object Motion and Speeds\n🔦 Light and Shadows features\n\n⭐ I earned ${currentStars} Stars! Dr. Owl says I am a brilliant Science Explorer!\n\n----------------\n\n爸媽好！我今天在「科學探險家：貓頭鷹博士的學堂」完成了小學科學 SA2 的大溫習！\n\n我今天學到了：\n💧 水和空氣的屬性\n🧸 日常物品（自然與人造）分類\n📱 電子產品安全守則\n🏃 物體的位置與運動速度\n🔦 光與影子的折射奧秘\n\n⭐ 我一共獲得了 ${currentStars} 顆星星！貓頭鷹博士誇我是聰明的科學探險家！`;
-
-            const encoded = encodeURIComponent(message);
-            window.open(`https://wa.me/?text=${encoded}`, '_blank');
+            const encoded = encodeURIComponent(rawMessage);
+            const waUrl = `https://api.whatsapp.com/send?text=${encoded}`;
+            window.open(waUrl, '_blank');
         }
+
     </script>
 </body>
 </html>
