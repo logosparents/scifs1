@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Explorer: Dr. Owl's Academy (Crash-Free Edition)</title>
+    <title>Science Explorer: Dr. Owl's Academy (Official SA2 Edition)</title>
     <!-- Tailwind CSS for vibrant, child-friendly UI -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for interactive cute icons -->
@@ -93,7 +93,7 @@
                         科學探險家：貓頭鷹博士的學堂
                     </p>
                     <p class="text-xs sm:text-sm font-semibold text-white/80 mt-1">
-                        Designed based on SA2 Booklet & Practice Paper / 依據最新 SA2 溫習手冊與模擬試卷設計
+                        Official SA2 EPH Syllabus Alignment / 依據最新 25/26 年度 SA2 溫習手冊設計
                     </p>
                 </div>
             </div>
@@ -215,8 +215,8 @@
 
             <!-- Single Card Box with English Primary layout -->
             <div class="flex flex-col items-center">
-                <div class="card-perspective w-full max-w-xl min-h-[460px] md:min-h-[500px] cursor-pointer" onclick="flipFlashcard()">
-                    <div id="flashcard-inner" class="card-inner w-full h-full min-h-[460px] md:min-h-[500px] relative duration-500 shadow-2xl rounded-[2.5rem] border-4 border-yellow-400">
+                <div class="card-perspective w-full max-w-xl min-h-[460px] md:min-h-[500px]" onclick="flipFlashcard()">
+                    <div id="flashcard-inner" class="card-inner w-full h-full min-h-[460px] md:min-h-[500px] relative duration-500 shadow-2xl rounded-[2.5rem] border-4 border-yellow-400 cursor-pointer">
                         
                         <!-- FRONT FACE: English Dominant, Chinese Auxiliary -->
                         <div id="flashcard-front" class="card-front absolute inset-0 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-[2.2rem] p-8 flex flex-col justify-between items-center text-center">
@@ -232,7 +232,7 @@
                             <!-- Center Title Content -->
                             <div class="my-auto flex flex-col items-center w-full">
                                 <span class="text-8xl mb-4" id="flash-card-icon">💧</span>
-                                <h3 class="text-3xl sm:text-4xl font-black text-amber-950 leading-snug" id="flash-card-title-en">English Title</h3>
+                                <h3 class="text-3xl sm:text-4xl font-black text-amber-955 leading-snug" id="flash-card-title-en">English Title</h3>
                                 <h4 class="text-xl sm:text-2xl font-bold text-amber-800/80 mt-3" id="flash-card-title-zh">繁體中文標題</h4>
                             </div>
                             
@@ -244,7 +244,7 @@
                             
                             <!-- Category label & Pronunciation row -->
                             <div class="w-full flex items-center justify-between shrink-0">
-                                <span class="bg-teal-400/40 border border-teal-300 text-teal-100 text-sm font-bold px-4 py-1.5 rounded-full">💡 KEY FACTS / 重點核心</span>
+                                <span class="bg-teal-400/40 border border-teal-300 text-teal-100 text-sm font-bold px-4 py-1.5 rounded-full uppercase" id="flash-card-cat-label-back">💡 KEY FACTS</span>
                                 <button type="button" id="btn-speak-flashcard-back" onclick="speakFlashcardBack(event)" class="bg-teal-400 hover:bg-teal-300 text-white p-3 rounded-full shadow-md transition active:scale-90 flex items-center justify-center w-12 h-12" title="Pronounce Content">
                                     <i class="fa-solid fa-volume-high text-xl"></i>
                                 </button>
@@ -281,7 +281,7 @@
                         </h4>
                         <p class="text-base text-teal-700 mt-1 leading-relaxed">
                             Tap any card to flip it! The back contains critical Booklet takeaways! Click the speaker 🔊 button to hear pronunciation.<br>
-                            <span class="text-sm font-semibold text-teal-600 block mt-1.5">點擊卡片就可以將它翻過來！背面有手冊精華內容喔！點擊喇叭 🔊 可聽取英語讀音。</span>
+                            <span class="text-sm font-semibold text-teal-600 block mt-1.5">點擊卡片就可以將它翻過來！背面有溫習手冊精華內容！點擊喇叭 🔊 可聽取英語讀音。</span>
                         </p>
                     </div>
                 </div>
@@ -320,7 +320,7 @@
                 <div id="drop-natural" onclick="dropToZone('natural')" class="bg-emerald-50 border-4 border-dashed border-emerald-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-emerald-100/50">
                     <h3 class="text-2xl font-black text-emerald-800 text-center mb-4">
                         🌿 Natural Objects
-                        <span class="block text-lg font-bold text-emerald-600 mt-1">自然物體</span>
+                        <span class="block text-lg font-bold text-emerald-600 mt-1">自然物體 (源於大自然)</span>
                     </h3>
                     <div id="zone-natural" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[120px]">
                         <!-- Cards dropped here -->
@@ -331,7 +331,7 @@
                 <div id="drop-manmade" onclick="dropToZone('manmade')" class="bg-orange-50 border-4 border-dashed border-orange-300 rounded-[2rem] p-6 min-h-[220px] shadow-inner flex flex-col transition-all cursor-pointer hover:bg-orange-100/50">
                     <h3 class="text-2xl font-black text-orange-800 text-center mb-4">
                         🤖 Man-made Objects
-                        <span class="block text-lg font-bold text-orange-600 mt-1">人造物體</span>
+                        <span class="block text-lg font-bold text-orange-600 mt-1">人造物體 (人類設計製造)</span>
                     </h3>
                     <div id="zone-manmade" class="flex flex-wrap gap-3 justify-center items-center my-auto min-h-[120px]">
                         <!-- Cards dropped here -->
@@ -408,11 +408,11 @@
                     <div>
                         <h4 class="font-extrabold text-amber-900 text-xl flex items-center gap-2">
                             <span>💡</span>
-                            <span>Dr. Owl's Tip / 貓頭鷹博士的提示：</span>
+                            <span>Dr. Owl's Explanation / 貓頭鷹博士的詳解：</span>
                         </h4>
                         <!-- Stacked Tips -->
-                        <p class="text-lg sm:text-xl font-bold text-amber-950 mt-2 leading-relaxed" id="quiz-tip-en">English tips</p>
-                        <p class="text-base sm:text-lg font-semibold text-amber-700 mt-1 leading-relaxed border-t border-dashed border-amber-300/50 pt-2" id="quiz-tip-zh">中文提示</p>
+                        <p class="text-lg sm:text-xl font-bold text-amber-955 mt-2 leading-relaxed" id="quiz-tip-en">English explanation</p>
+                        <p class="text-base sm:text-lg font-semibold text-amber-700 mt-1 leading-relaxed border-t border-dashed border-amber-300/50 pt-2" id="quiz-tip-zh">中文詳解</p>
                     </div>
                 </div>
 
@@ -437,7 +437,7 @@
                 </h2>
                 <p class="text-xl font-semibold text-teal-700 mb-8">
                     You completed all learning modules and exam simulators! Fantastic job!<br>
-                    <span class="text-base font-medium text-teal-600 block mt-1">你成功完成了所有溫習和問答測試！太厲害了！</span>
+                    <span class="text-base font-medium text-teal-600 block mt-1">你成功完成了所有溫習和手冊模擬問答測試！太厲害了！</span>
                 </p>
 
                 <!-- Stars summary card -->
@@ -475,15 +475,14 @@
 
     <!-- JavaScript Data and Crash-Free Engine -->
     <script>
-        // ==========================================
-        // CRITICAL BUG FIXES: SPEECH SYNTHESIS ENGINE
-        // ==========================================
-        
-        // Anti-Garbage-Collection Buffer to prevent memory sweep causing Mac Chrome crash
+        // =======================================================
+        // CRITICAL SECURE SPEECH SYNTHESIS ENGINE (CRASH-PROOF)
+        // =======================================================
         window.speechGcGuard = [];
         let speechVoicesReady = false;
+        let speechTimeoutId = null;
 
-        // Secure Text-to-Speech Handler with Anti-Crash Protocol
+        // Async Non-Blocking Debounced Text-to-Speech Handler
         function speakText(text, btnElement = null) {
             if (!('speechSynthesis' in window)) {
                 showToast("⚠️ Speech Synthesis is not supported in this browser.", "❌");
@@ -491,213 +490,306 @@
             }
 
             try {
-                // 1. Force cancel previous utterances to clear platform buffer queue
+                // Clear any pending queued speech actions
+                if (speechTimeoutId) {
+                    clearTimeout(speechTimeoutId);
+                }
+
+                // 1. Force immediately cancel the ongoing hardware synthesis stream
                 window.speechSynthesis.cancel();
                 
-                // Clear the GC guard buffer periodically to free memory safely
-                if (window.speechGcGuard.length > 50) {
+                // Clear GC Guard Buffer if it gets too large
+                if (window.speechGcGuard.length > 40) {
                     window.speechGcGuard = [];
                 }
 
-                // Remove active classes from other speech buttons
+                // Reset active speak button indicators in DOM
                 document.querySelectorAll('.speak-active').forEach(el => el.classList.remove('speak-active'));
 
-                // 2. Create the Utterance
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.85; // Optimal speed for primary school ESL kids
+                // 2. Wrap speech invocation inside a 120ms setTimeout.
+                // This yields control to Chrome's main threat & macOS Core Speech Daemon (speechsynthesisd)
+                // so the cancellation process cleanly registers, eliminating lock-ups and Aw Snap! page crashes.
+                speechTimeoutId = setTimeout(() => {
+                    try {
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        utterance.lang = 'en-US';
+                        utterance.rate = 0.82; // Child-friendly slow pace
 
-                // Select preferred US/UK English kid-friendly voice if available on system
-                const voices = window.speechSynthesis.getVoices();
-                const englishVoice = voices.find(v => v.lang.startsWith('en-US') && v.name.includes('Google')) || 
-                                     voices.find(v => v.lang.startsWith('en-')) || 
-                                     voices[0];
-                if (englishVoice) {
-                    utterance.voice = englishVoice;
-                }
+                        const voices = window.speechSynthesis.getVoices();
+                        const englishVoice = voices.find(v => v.lang.startsWith('en-US') && v.name.includes('Google')) || 
+                                             voices.find(v => v.lang.startsWith('en-')) || 
+                                             voices[0];
+                        if (englishVoice) {
+                            utterance.voice = englishVoice;
+                        }
 
-                // 3. UI feedback handling
-                if (btnElement) {
-                    btnElement.classList.add('speak-active');
-                    utterance.onend = () => {
-                        btnElement.classList.remove('speak-active');
-                    };
-                    utterance.onerror = () => {
-                        btnElement.classList.remove('speak-active');
-                    };
-                }
+                        if (btnElement) {
+                            btnElement.classList.add('speak-active');
+                            utterance.onend = () => btnElement.classList.remove('speak-active');
+                            utterance.onerror = () => btnElement.classList.remove('speak-active');
+                        }
 
-                // 4. Critical GC Guard Push: Keep active reference of the object alive
-                window.speechGcGuard.push(utterance);
-
-                // 5. Fire safely
-                window.speechSynthesis.speak(utterance);
+                        // Protect Utterance from Garbage Collector (Anti-GC)
+                        window.speechGcGuard.push(utterance);
+                        window.speechSynthesis.speak(utterance);
+                    } catch (innerErr) {
+                        console.warn("Utterance launch skipped safely: ", innerErr);
+                    }
+                }, 120);
 
             } catch (error) {
-                console.error("SpeechSynthesis error guarded safely: ", error);
+                console.warn("Speech Synthesis thread error bypassed: ", error);
             }
         }
 
-        // Initialize voices asynchronously on load without blocking main thread
         if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = () => {
-                speechVoicesReady = true;
-            };
-            // Warmup speech engine
+            window.speechSynthesis.onvoiceschanged = () => { speechVoicesReady = true; };
             window.speechSynthesis.getVoices();
         }
 
-        // ==========================================
-        // DATA DEFINITIONS (Based on booklet syllabus)
-        // ==========================================
+        // =======================================================
+        // SYLLABUS DATA (Direct EPH Booklet Alignment)
+        // =======================================================
         let starScore = 0;
 
         const flashcardData = {
             waterAir: [
-                { icon: "💧", titleEn: "Three States of Water", titleZh: "水的三態", descEn: "Water exists in 3 states: Solid (ice), Liquid (water), and Gas (water vapour).", descZh: "水有三種形態：固體（冰）、液體（水）和氣體（水蒸氣）。" },
-                { icon: "♨️", titleEn: "Evaporation & Condensation", titleZh: "蒸發與凝聚", descEn: "Evaporation turns liquid water to gas. Condensation turns gas (water vapour) back to liquid water droplets.", descZh: "蒸發將液態水轉化為氣體。凝聚則將水蒸氣變回液態小水滴。" },
-                { icon: "☁️", titleEn: "Water Cycle", titleZh: "水循環", descEn: "The Sun heats the sea to cause evaporation. Rising vapour cools to form clouds, then falls as rain.", descZh: "太陽加熱海水引起蒸發。上升的水蒸氣冷卻形成雲，然後降下雨水。" },
-                { icon: "💨", titleEn: "Properties of Air", titleZh: "空氣的特性", descEn: "Air has no fixed shape, no fixed volume, can be compressed, and has mass/weight.", descZh: "空氣沒有固定形狀、沒有固定體積、可以被壓縮，而且是有重量的。" },
-                { icon: "🧪", titleEn: "Oxygen & Nitrogen", titleZh: "氧氣與氮氣", descEn: "Air is a mixture of gases. It contains about 78% Nitrogen, 21% Oxygen, and small amounts of Carbon Dioxide.", descZh: "空氣是多種氣體的混合物。其中約有 78% 氮氣、21% 氧氣和極少量的二氧化碳。" }
+                { icon: "💧", titleEn: "Water & Air Properties", titleZh: "水與空氣的性質", descEn: "Both have no colour, smell, or taste. Both can flow and have no fixed shape.", descZh: "兩者皆無顏色、無氣味、無味道。兩者皆能流動，且沒有固定的形狀。" },
+                { icon: "👀", titleEn: "Distinguishing Water & Air", titleZh: "分辨水與空氣", descEn: "We can see water with our eyes, but we cannot see air.", descZh: "我們用眼睛可以看見水，但我們無法看見空氣。" },
+                { icon: "🖐️", titleEn: "Sensory Observation", titleZh: "感官與觀察", descEn: "We use sense organs to observe. Water feels cool or warm when touched.", descZh: "我們用感官來觀察。觸摸水時，水會給我們涼快或溫暖的感覺。" }
             ],
             materials: [
-                { icon: "🧸", titleEn: "Flexibility", titleZh: "柔韌性", descEn: "Flexible materials like rubber or fabric can bend easily without breaking.", descZh: "像橡膠或布料這類柔韌的物料，容易彎曲而不會折斷。" },
-                { icon: "🛡️", titleEn: "Strength", titleZh: "強度/硬度", descEn: "Strong materials like metals and rocks can support heavy loads without breaking or denting.", descZh: "堅硬強壯的材料（如金屬和石頭）能夠承載重物，不易破損或變形。" },
-                { icon: "☔", titleEn: "Waterproof Materials", titleZh: "防水物料", descEn: "Plastic and metal do not absorb water. They are waterproof and keep things dry.", descZh: "塑膠和金屬不會吸水，它們具備防水特性，可保持事物乾爽。" },
-                { icon: "🧽", titleEn: "Absorbency", titleZh: "吸水性", descEn: "Paper, wood, and cotton are absorbent. They have tiny pores that soak up water.", descZh: "紙張、木頭和棉花具備吸水力。它們有微小的孔隙能吸走水分。" }
+                { icon: "🪵", titleEn: "Natural vs Man-made", titleZh: "自然與人造物體", descEn: "Natural objects come from nature (plants, rocks). Man-made objects are designed by people.", descZh: "自然物體源於大自然（如植物、岩石）。人造物體則由人類設計和製造。" },
+                { icon: "⚖️", titleEn: "Measuring Weight", titleZh: "測量重量的方法", descEn: "Using a balance is more accurate than hands. Hands can be inaccurate when weights are similar.", descZh: "使用天平測量比用手感應更精確。當物體重量接近時，用手感覺容易不準確。" },
+                { icon: "🛡️", titleEn: "Hardness & Elasticity", titleZh: "硬度、彈性與透光", descEn: "Pencils are hard. Handkerchiefs are soft. Elastic items return to their original shape.", descZh: "鉛筆是硬的，手帕是軟的。具備彈性的物體在鬆手後會變回原狀。" }
             ],
-            livingThings: [
-                { icon: "🦋", titleEn: "Life Cycle", titleZh: "生命週期", descEn: "Living things grow, reproduce, and pass through stages from birth to death.", descZh: "生物會生長、繁殖，並經歷從出生到死亡的各個生命階段。" },
-                { icon: "🌿", titleEn: "Photosynthesis", titleZh: "光合作用", descEn: "Green leaves use sunlight, carbon dioxide, and water to make food for the plant.", descZh: "綠色葉子利用陽光、二氧化碳和水，為植物製造食物。" },
-                { icon: "🐶", titleEn: "Animal Groups", titleZh: "動物分類", descEn: "Animals are divided into mammals, birds, fish, insects, reptiles, and amphibians.", descZh: "動物主要分為哺乳類、鳥類、魚類、昆蟲、爬行類和兩棲類。" }
+            electronics: [
+                { icon: "⏰", titleEn: "Long Periods Definition", titleZh: "「長時間使用」定義", descEn: "Using electronic products for over 1 hour non-stop, or over 2 hours every day.", descZh: "指連續使用電子產品超過 1 小時，或每天累計使用超過 2 小時。" },
+                { icon: "🏥", titleEn: "Health Risks", titleZh: "健康損害風險", descEn: "Excessive screen time damages eyesight, causes muscle pain, and disrupts sleep.", descZh: "過度觀看螢幕會損害視力、導致肌肉疼痛，並會減少充足的睡眠時間。" },
+                { icon: "🚸", titleEn: "Safety & Manners", titleZh: "使用安全與禮儀", descEn: "Never use phones while walking (causes car accidents). Set time limits with parents.", descZh: "走路時切勿使用手機（會導致車禍）。應與家長一起制定使用守則。" }
+            ],
+            motionLight: [
+                { icon: "🚌", titleEn: "Relative Speeds", titleZh: "運動與相對速度", descEn: "When position changes, an object is in motion. Walking is slowest. Bus is fastest.", descZh: "當位置改變時，物體就在運動。步行是最慢的，搭巴士是最快的。" },
+                { icon: "👤", titleEn: "Shadow Properties", titleZh: "影子的特徵與變化", descEn: "Moving an object closer to light makes shadow larger. Moving direction of shadow is same.", descZh: "將物體移近光源時影子會變大。物體與其影子的移動方向是相同的。" },
+                { icon: "🌈", titleEn: "Sunlight & Rainbows", titleZh: "太陽光與彩虹", descEn: "Sunlight has different colours. A prism splits sunlight into red, orange, yellow, green, blue, indigo, purple.", descZh: "太陽光由不同顏色組成。三稜鏡可將光分成紅、橙、黃、綠、藍、靛、紫七色。" }
             ]
         };
 
-        const matchingItemsPool = [
-            { id: 1, nameEn: "Tree Branch", nameZh: "樹枝", cat: "natural", icon: "🪵" },
-            { id: 2, nameEn: "Plastic Spoon", nameZh: "塑膠匙羹", cat: "manmade", icon: "🥄" },
-            { id: 3, nameEn: "Pebble Rock", nameZh: "小鵝卵石", cat: "natural", icon: "🪨" },
-            { id: 4, nameEn: "Glass Bottle", nameZh: "玻璃樽", cat: "manmade", icon: "🍼" },
-            { id: 5, nameEn: "Green Leaf", nameZh: "綠葉", cat: "natural", icon: "🍃" },
-            { id: 6, nameEn: "Paper Envelope", nameZh: "紙信封", cat: "manmade", icon: "✉️" },
-            { id: 7, nameEn: "Pure Water Drop", nameZh: "天然水滴", cat: "natural", icon: "💧" },
-            { id: 8, nameEn: "Metal Key", nameZh: "金屬鑰匙", cat: "manmade", icon: "🔑" }
-        ];
-
+        // Complete 16-Question EPH Booklet Simulator (Perfect Alignment)
         const quizQuestions = [
             {
-                category: "Water and Air",
-                qEn: "Which of the following describes the properties of water vapour?",
-                qZh: "以下哪項描述了水蒸氣的特性？",
+                category: "Water & Air (單元 7)",
+                qEn: "What is a similar property of both water and air?",
+                qZh: "水和空氣有甚麼共同的性質？",
                 options: [
-                    { textEn: "It has a fixed shape and fixed volume.", textZh: "它有固定的形狀和固定的體積。", correct: false },
-                    { textEn: "It has no fixed shape and no fixed volume.", textZh: "它沒有固定的形狀，也沒有固定的體積。", correct: true },
-                    { textEn: "It has a fixed volume but no fixed shape.", textZh: "它有固定的體積，但沒有固定的形狀。", correct: false }
+                    { textEn: "Both can be seen easily.", textZh: "兩者都可以輕易被看見。", correct: false },
+                    { textEn: "Both have no fixed shape and can flow.", textZh: "兩者都沒有固定形狀且能流動。", correct: true },
+                    { textEn: "Both have a sweet taste.", textZh: "兩者都帶有甜甜的味道。", correct: false }
                 ],
-                tipEn: "Water vapour is a gas. Gases spread out to fill any space, so they have no fixed shape or volume.",
-                tipZh: "水蒸氣是氣體。氣體會擴散並填滿任何空間，因此它沒有固定的形狀或體積。"
+                tipEn: "According to Booklet Page 7, both water and air have no colour, no smell, no taste, no fixed shape, and both can flow.",
+                tipZh: "根據手冊第 7 頁，水和空氣都同樣沒有顏色、氣味和味道，沒有固定形狀，且兩者都能流動。"
             },
             {
-                category: "Materials",
-                qEn: "Why is rubber used to make rainboots instead of cotton fabric?",
-                qZh: "為什麼雨靴是用橡膠製成，而不是用棉質布料？",
+                category: "Water & Air (單元 7)",
+                qEn: "How do we distinguish water from air?",
+                qZh: "我們該如何區分水和空氣？",
                 options: [
-                    { textEn: "Rubber is waterproof; cotton absorbs water.", textZh: "橡膠是防水的；而棉花則會吸水。", correct: true },
-                    { textEn: "Cotton is stronger than rubber.", textZh: "棉花比橡膠更堅固強壯。", correct: false },
-                    { textEn: "Rubber is lighter and softer than cotton.", textZh: "橡膠比棉花更輕柔更軟滑。", correct: false }
+                    { textEn: "We can see water, but we cannot see air.", textZh: "我們能看見水，但看不見空氣。", correct: true },
+                    { textEn: "Air can flow, but water cannot flow.", textZh: "空氣能流動，但水不能流動。", correct: false },
+                    { textEn: "Water has no colour, but air has blue colour.", textZh: "水沒有顏色，但空氣是藍色的。", correct: false }
                 ],
-                tipEn: "Rainboots must be waterproof to keep our feet dry. Rubber blocks water, while cotton fabric absorbs it instantly.",
-                tipZh: "雨靴必須防水才能保護雙腳乾爽。橡膠能阻擋水分，而棉布則會立刻吸水。"
+                tipEn: "Booklet Page 7 states: 'We can see water, but we cannot see air.' This is their main difference.",
+                tipZh: "手冊第 7 頁指出：「我們能看見水，但我們不能看見空氣。」這是它們之間最主要的區別。"
             },
             {
-                category: "Water and Air",
-                qEn: "What process causes wet clothes hanging outdoors to dry up?",
-                qZh: "晾在戶外的濕衣服變乾，是由於哪種過程引起的？",
+                category: "Everyday Objects (單元 8)",
+                qEn: "Which of the following is classified as a natural object?",
+                qZh: "以下哪項屬於「自然物體」？",
                 options: [
-                    { textEn: "Condensation", textZh: "凝聚作用", correct: false },
-                    { textEn: "Freezing", textZh: "凝固作用", correct: false },
-                    { textEn: "Evaporation", textZh: "蒸發作用", correct: true }
+                    { textEn: "Tree branch and pebble rock.", textZh: "樹枝和小鵝卵石。", correct: true },
+                    { textEn: "Plastic spoon and glass bottle.", textZh: "塑膠匙羹和玻璃樽。", correct: false },
+                    { textEn: "Paper envelope and table.", textZh: "紙信封和桌子。", correct: false }
                 ],
-                tipEn: "Evaporation occurs when liquid water absorbs heat from the Sun and changes into water vapour (gas).",
-                tipZh: "當液態水吸收太陽的熱量，並轉化為水蒸氣（氣體）時，就會發生蒸發作用。"
+                tipEn: "Natural objects come from nature (Page 11). Tree branches, pebbles, leaves, and water are natural objects.",
+                tipZh: "自然物體源於大自然（第 11 頁）。樹枝、鵝卵石、綠葉和水滴均屬於自然物體。"
             },
             {
-                category: "Living Things",
-                qEn: "Which body part does a fish use to breathe dissolved oxygen in water?",
-                qZh: "魚類使用哪一個身體構造來呼吸水中溶解的氧氣？",
+                category: "Everyday Objects (單元 8)",
+                qEn: "According to the booklet, which object is soft (not hard)?",
+                qZh: "根據手冊內容，以下哪種物體是柔軟的（不堅硬）？",
                 options: [
-                    { textEn: "Fins", textZh: "魚鰭", correct: false },
-                    { textEn: "Gills", textZh: "魚鰓", correct: true },
-                    { textEn: "Scales", textZh: "魚鱗", correct: false }
+                    { textEn: "Pencil", textZh: "鉛筆", correct: false },
+                    { textEn: "Handkerchief", textZh: "手帕", correct: true },
+                    { textEn: "Ruler", textZh: "尺子", correct: false }
                 ],
-                tipEn: "Fish have gills that filter and absorb oxygen directly from the water flowing through them.",
-                tipZh: "魚類擁有鰓，能夠直接過濾並吸收流經魚鰓的水中氧氣。"
+                tipEn: "Booklet Page 16 shows that pencils and rulers are hard objects, while a handkerchief is soft.",
+                tipZh: "手冊第 16 頁展示出：鉛筆和尺子屬於堅硬的物體（Hard），而手帕則是柔軟的（Soft）。"
             },
             {
-                category: "Water and Air",
-                qEn: "Which of the following gases makes up the largest part of air?",
-                qZh: "以下哪種氣體佔空氣中的比例最大？",
+                category: "Everyday Objects (單元 8)",
+                qEn: "Why is using a balance to measure weight more accurate than using our hands?",
+                qZh: "為什麼用天平測量重量比用手感應更精確？",
                 options: [
-                    { textEn: "Oxygen", textZh: "氧氣", correct: false },
-                    { textEn: "Nitrogen", textZh: "氮氣", correct: true },
-                    { textEn: "Carbon Dioxide", textZh: "二氧化碳", correct: false }
+                    { textEn: "Hands cannot touch heavy objects.", textZh: "因為雙手無法觸摸重物。", correct: false },
+                    { textEn: "A balance can show the weights clearly, while hands are inaccurate for similar weights.", textZh: "天平能清晰顯示重量，而當物體重量接近時用手感覺是不準確的。", correct: true },
+                    { textEn: "Hands always feel that all objects have the same weight.", textZh: "因為雙手總是覺得所有物體都一樣重。", correct: false }
                 ],
-                tipEn: "Air is composed of about 78% Nitrogen, making it the most abundant gas in the atmosphere.",
-                tipZh: "空氣中約有 78% 的氮氣，這使其成為大氣中含量最豐富的氣體。"
+                tipEn: "Booklet Page 19 states that if we use hands, results may be inaccurate when objects have similar weights. A balance shows weight clearly.",
+                tipZh: "手冊第 19 頁指出：若用手感應，在物體重量接近時結果會不準確。天平則能清晰顯示重量。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "If an object returns to its original shape after we let go, it is...",
+                qZh: "如果一個物體在被拉扯彎曲並鬆手後，能變回原來的形狀，代表它具有...",
+                options: [
+                    { textEn: "Transparency", textZh: "透明性", correct: false },
+                    { textEn: "Elasticity", textZh: "彈性", correct: true },
+                    { textEn: "Absorbency", textZh: "吸水性", correct: false }
+                ],
+                tipEn: "Booklet Page 20: 'If an object returns to its original shape when we let go of it, this means the object is elastic.'",
+                tipZh: "手冊第 20 頁：當我們放手後，物體能回復到原本的形狀，這代表該物體具有「彈性」（Elastic）。"
+            },
+            {
+                category: "Electronic Products (單元 9)",
+                qEn: "What is the definition of using electronic products for 'long periods of time'?",
+                qZh: "手冊中對於「長時間使用電子產品」的定義是什麼？",
+                options: [
+                    { textEn: "Over 1 hour non-stop, or over 2 hours every day.", textZh: "連續使用超過 1 小時，或每天累計超過 2 小時。", correct: true },
+                    { textEn: "Over 10 hours non-stop every single day.", textZh: "每天連續不間斷使用超過 10 小時。", correct: false },
+                    { textEn: "Using them only on weekends.", textZh: "只有在週末的時候才去使用它們。", correct: false }
+                ],
+                tipEn: "Booklet Page 39 defines long periods as: 'Using them for over 1 hour non-stop, or over 2 hours every day.'",
+                tipZh: "手冊第 39 頁明確定義：長時間使用是指「連續使用超過 1 小時，或每天累計超過 2 小時」。"
+            },
+            {
+                category: "Electronic Products (單元 9)",
+                qEn: "What is a main danger of using a mobile phone while walking?",
+                qZh: "邊走路邊使用手機會帶來什麼主要危險？",
+                options: [
+                    { textEn: "The phone battery will run out faster.", textZh: "手機的電量會消耗得更快。", correct: false },
+                    { textEn: "It may cause a car accident.", textZh: "可能會導致交通意外（車禍）。", correct: true },
+                    { textEn: "It makes you walk much faster.", textZh: "這會使你走路的速度變得更快。", correct: false }
+                ],
+                tipEn: "According to Booklet Page 43, looking at your phone while walking is highly dangerous and may cause a car accident.",
+                tipZh: "手冊第 43 頁指出：走路時看手機是極其危險的，這可能會導致交通車禍。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "Kevin sits in front of Kasey, and Macy sits behind Kasey. Who sits behind Kasey?",
+                qZh: "家豪（Kevin）坐在美儀（Kasey）前面，美詩（Macy）坐在美儀後面。誰坐在美儀後面？",
+                options: [
+                    { textEn: "Kevin", textZh: "家豪 (Kevin)", correct: false },
+                    { textEn: "Macy", textZh: "美詩 (Macy)", correct: true },
+                    { textEn: "Kasey", textZh: "美儀 (Kasey)", correct: false }
+                ],
+                tipEn: "Booklet Page 50 tests position words. Macy sits behind Kasey.",
+                tipZh: "手冊第 50 頁測試前後位置關係。美詩（Macy）坐在美儀（Kasey）的後面（Behind）。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "Which of the following modes of movement is the fastest?",
+                qZh: "以下哪種運動/出行方式的速度是最快的？",
+                options: [
+                    { textEn: "Walking on foot.", textZh: "雙腳步行。", correct: false },
+                    { textEn: "Riding a bus.", textZh: "乘坐巴士。", correct: true },
+                    { textEn: "Riding a bicycle.", textZh: "騎單車。", correct: false }
+                ],
+                tipEn: "Booklet Page 60 states: 'Walking is the slowest. Riding a bus is the fastest.'",
+                tipZh: "手冊第 60 頁指出：步行（Walking）是最慢的，而乘坐巴士（Riding a bus）是最快的。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "Which of the following is a natural source of light?",
+                qZh: "以下哪一項屬於「自然光源」？",
+                options: [
+                    { textEn: "Light bulb", textZh: "電燈泡", correct: false },
+                    { textEn: "Firefly", textZh: "螢火蟲", correct: true },
+                    { textEn: "Torch", textZh: "手電筒", correct: false }
+                ],
+                tipEn: "Booklet Page 66 categorizes Fireflies, Lightning, and Sun as natural sources. Torch and light bulb are man-made.",
+                tipZh: "手冊第 66 頁將螢火蟲、閃電、太陽列為自然光源。手電筒及燈泡屬於人造光源。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "When a puppet is moved towards a torch (light source), what happens to its shadow?",
+                qZh: "當我們把木偶移近手電筒（光源）時，它的影子會發生什麼變化？",
+                options: [
+                    { textEn: "The shadow becomes smaller.", textZh: "影子會變小。", correct: false },
+                    { textEn: "The shadow becomes larger.", textZh: "影子會變大。", correct: true },
+                    { textEn: "The shadow completely disappears.", textZh: "影子會完全消失。", correct: false }
+                ],
+                tipEn: "Booklet Page 71 shows that shadow size changes when moved. Moving closer to light makes the shadow larger.",
+                tipZh: "手冊第 71 頁顯示：當木偶移近光源時，它阻擋的光線範圍變廣，影子會隨之「變大」。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "If you move an object to the left in front of a torch, its shadow moves to the...",
+                qZh: "如果你在電筒前將物體向左移動，物體投射在牆上的影子會往哪裡移動？",
+                options: [
+                    { textEn: "Right side.", textZh: "右邊。", correct: false },
+                    { textEn: "Left side.", textZh: "左邊。", correct: true },
+                    { textEn: "Shadow stays in the middle.", textZh: "影子會停留在中間不動。", correct: false }
+                ],
+                tipEn: "Booklet Page 72 states: 'The moving directions of the object and its shadow are the same.'",
+                tipZh: "手冊第 72 頁指出：物體和它影子的移動方向是「相同」的（Same）。因此向左移時影子也向左移。"
+            },
+            {
+                category: "Day & Night (單元 12)",
+                qEn: "Why is Tsing Ma Bridge a popular place to watch the sunset?",
+                qZh: "為什麼青馬大橋是香港觀賞落日（Sunset）的著名景點？",
+                options: [
+                    { textEn: "Because it is located in the western side of Hong Kong.", textZh: "因為它位於香港的西面（太陽落下的方向）。", correct: true },
+                    { textEn: "Because the Sun rises from Tsing Ma Bridge.", textZh: "因為太陽是從青馬大橋那裡升起的。", correct: false },
+                    { textEn: "Because it has artificial sunlights.", textZh: "因為那裡有人造太陽光。", correct: false }
+                ],
+                tipEn: "Booklet Page 78 states: 'Tsing Ma Bridge is located in the western side of Hong Kong, and is a popular place to watch sunset.'",
+                tipZh: "手冊第 78 頁指出：青馬大橋位於香港的西面，因此是觀賞西方落日（Sunset）的熱門景點。"
+            },
+            {
+                category: "Day & Night (單元 12)",
+                qEn: "Why is it suitable to air-dry clothes during the day?",
+                qZh: "為什麼在白天晾乾衣服是比較合適的？",
+                options: [
+                    { textEn: "Because the Sun gives off light and heat to dry them quickly.", textZh: "因為太陽散發光和熱量，能讓衣服乾得更快。", correct: true },
+                    { textEn: "Because the wind only blows during the day.", textZh: "因為風只在白天的時候吹拂。", correct: false },
+                    { textEn: "Because day time has no gravity.", textZh: "因為白天沒有地心引力。", correct: false }
+                ],
+                tipEn: "Booklet Page 88 explains that the Sun gives off light and heat, making clothes dry more quickly during the day.",
+                tipZh: "手冊第 88 頁解釋：太陽散發光線和熱量（Heat），能讓水分快速蒸發，使衣服在白天曬得更快乾。"
+            },
+            {
+                category: "Day & Night (單元 12)",
+                qEn: "Which of the following animals is active at night?",
+                qZh: "以下哪種動物在黑夜中較為活躍？",
+                options: [
+                    { textEn: "Sparrows", textZh: "麻雀", correct: false },
+                    { textEn: "Butterflies", textZh: "蝴蝶", correct: false },
+                    { textEn: "Moths", textZh: "飛蛾", correct: true }
+                ],
+                tipEn: "Booklet Page 92 shows moths are active near streetlights and sitting-out areas at night.",
+                tipZh: "手冊第 92 頁指出：黑夜中飛蛾（Moths）和老鼠（Mice）會出沒在街燈或公園附近活躍。"
             }
         ];
 
         // ==========================================
-        // HOME LOGIC
-        // ==========================================
-        const greetings = [
-            { en: "Welcome to Dr. Owl's Academy! Let us learn science together!", zh: "歡迎來到貓頭鷹博士學堂！讓我們一起快樂學習科學吧！" },
-            { en: "Hello explorers! Let's score maximum stars today!", zh: "哈囉探險家們！今天讓我們一起贏取最多的小星星吧！" },
-            { en: "Ready to test your brain power? Pick an adventure below!", zh: "準備好考考你的腦筋了嗎？請在下方挑選關卡吧！" }
-        ];
-        let currentGreetingIdx = 0;
-
-        function speakHomeGreeting(btn = null) {
-            const current = greetings[currentGreetingIdx];
-            speakText(current.en, btn || document.getElementById('btn-speak-greeting'));
-        }
-
-        function speakGreeting() {
-            currentGreetingIdx = (currentGreetingIdx + 1) % greetings.length;
-            const current = greetings[currentGreetingIdx];
-            document.getElementById('owl-greeting-en').innerText = current.en;
-            document.getElementById('owl-greeting-zh').innerText = current.zh;
-            speakHomeGreeting();
-        }
-
-        // Initialize Home Greeting
-        document.getElementById('owl-greeting-en').innerText = greetings[0].en;
-        document.getElementById('owl-greeting-zh').innerText = greetings[0].zh;
-
-
-        // ==========================================
-        // UTILITIES
+        // SWITCH SCREENS & STATE MANAGEMENT
         // ==========================================
         function switchScreen(screenId) {
-            // Stop any ongoing audio immediately to prevent platform-level thread block
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
             }
 
-            // Hide all
             document.getElementById('screen-home').classList.add('hidden');
             document.getElementById('screen-flashcards').classList.add('hidden');
             document.getElementById('screen-matching').classList.add('hidden');
             document.getElementById('screen-quiz').classList.add('hidden');
             document.getElementById('screen-congrats').classList.add('hidden');
 
-            // Show active
             const targetScreen = document.getElementById(`screen-${screenId}`);
             if (targetScreen) {
                 targetScreen.classList.remove('hidden');
             }
 
-            // Setup hooks
             if (screenId === 'flashcards') {
                 initFlashcards();
             } else if (screenId === 'matching') {
@@ -726,8 +818,38 @@
         function rewardStars(num) {
             starScore += num;
             document.getElementById('star-count').innerText = starScore;
-            showToast(`Earned +${num} Stars! (獲得 ${num} 顆星星！)`, "🎉");
+            showToast(`Earned +${num} Stars! (獲得 ${num} 顆星！)`, "🎉");
         }
+
+
+        // ==========================================
+        // HOME LOGIC
+        // ==========================================
+        const greetings = [
+            { en: "Welcome to Dr. Owl's Academy! Let us learn science together!", zh: "歡迎來到貓頭鷹博士學堂！讓我們一起快樂學習科學吧！" },
+            { en: "Hello explorers! Let's score maximum stars today!", zh: "哈囉探險家們！今天讓我們一起贏取最多的小星星吧！" },
+            { en: "Ready to test your brain power? Pick an adventure below!", zh: "準備好考考你的腦筋了嗎？請在下方挑選關卡吧！" }
+        ];
+        let currentGreetingIdx = 0;
+
+        function speakHomeGreeting(btn = null) {
+            const current = greetings[currentGreetingIdx];
+            speakText(current.en, btn || document.getElementById('btn-speak-greeting'));
+        }
+
+        function speakGreeting() {
+            currentGreetingIdx = (currentGreetingIdx + 1) % greetings.length;
+            const current = greetings[currentGreetingIdx];
+            document.getElementById('owl-greeting-en').innerText = current.en;
+            document.getElementById('owl-greeting-zh').innerText = current.zh;
+            speakHomeGreeting();
+        }
+
+        // Initialize Home Greeting on load safely
+        window.addEventListener('load', () => {
+            document.getElementById('owl-greeting-en').innerText = greetings[0].en;
+            document.getElementById('owl-greeting-zh').innerText = greetings[0].zh;
+        });
 
 
         // ==========================================
@@ -738,11 +860,11 @@
         let activeCategory = 'waterAir';
 
         function initFlashcards() {
-            // Create Tabs dynamically
             const categories = [
-                { id: 'waterAir', labelEn: 'Water & Air', labelZh: '水與空氣', icon: "💧" },
-                { id: 'materials', labelEn: 'Materials', labelZh: '物料特性', icon: "🧸" },
-                { id: 'livingThings', labelEn: 'Living Things', labelZh: '生物特徵', icon: "🦋" }
+                { id: 'waterAir', labelEn: 'Water & Air', labelZh: '水與空氣 (U4)', icon: "💧" },
+                { id: 'materials', labelEn: 'Materials & Objects', labelZh: '日常生活物體 (U5)', icon: "🧸" },
+                { id: 'electronics', labelEn: 'Electronics Rules', labelZh: '電子產品守則 (U5)', icon: "📱" },
+                { id: 'motionLight', labelEn: 'Motion & Light', labelZh: '運動與光影 (U5/U6)', icon: "🌈" }
             ];
 
             const tabsContainer = document.getElementById('flashcard-categories');
@@ -773,12 +895,12 @@
             const card = currentFlashcardDeck[currentCardIdx];
             if (!card) return;
 
-            // Reset Flipping state to Front safely
             const inner = document.getElementById('flashcard-inner');
             inner.classList.remove('card-flipped');
 
             // Render text
             document.getElementById('flash-card-cat-label').innerText = activeCategory.toUpperCase();
+            document.getElementById('flash-card-cat-label-back').innerText = `💡 KEY FACTS / ${activeCategory.toUpperCase()}`;
             document.getElementById('flash-card-icon').innerText = card.icon;
             document.getElementById('flash-card-title-en').innerText = card.titleEn;
             document.getElementById('flash-card-title-zh').innerText = card.titleZh;
@@ -793,7 +915,6 @@
             const inner = document.getElementById('flashcard-inner');
             inner.classList.toggle('card-flipped');
             
-            // Collect interactive stars if first time flip
             if (!inner.dataset.viewedIndices) {
                 inner.dataset.viewedIndices = JSON.stringify([]);
             }
@@ -827,7 +948,7 @@
         }
 
         function speakFlashcardFront(event) {
-            event.stopPropagation(); // Stop flipping trigger
+            event.stopPropagation();
             const card = currentFlashcardDeck[currentCardIdx];
             if (card) {
                 speakText(card.titleEn, document.getElementById('btn-speak-flashcard-front'));
@@ -835,7 +956,7 @@
         }
 
         function speakFlashcardBack(event) {
-            event.stopPropagation(); // Stop flipping trigger
+            event.stopPropagation();
             const card = currentFlashcardDeck[currentCardIdx];
             if (card) {
                 speakText(card.descEn, document.getElementById('btn-speak-flashcard-back'));
@@ -854,7 +975,6 @@
             document.getElementById('zone-natural').innerHTML = '';
             document.getElementById('zone-manmade').innerHTML = '';
             
-            // Deep copy and Shuffle items pool
             matchingItemsState = JSON.parse(JSON.stringify(matchingItemsPool))
                 .sort(() => Math.random() - 0.5);
 
@@ -870,7 +990,7 @@
             if (unplaced.length === 0) {
                 poolEl.innerHTML = `
                     <div class="text-center py-4 w-full">
-                        <p class="text-emerald-600 font-extrabold text-xl">🎉 All cards placed! Submit your answers! / 所有卡片已放置，請提交解答！</p>
+                        <p class="text-emerald-600 font-extrabold text-xl">🎉 All cards placed! Submit your answers! / 所有卡片已分類，請提交解答！</p>
                     </div>
                 `;
                 return;
@@ -880,7 +1000,6 @@
                 const card = document.createElement('button');
                 card.type = "button";
                 
-                // Highlight item if selected
                 const isSelected = selectedItem && selectedItem.id === item.id;
                 
                 card.className = `p-4 rounded-2xl border-4 transition-all duration-200 shadow-md flex flex-col items-center justify-center gap-1 w-28 sm:w-32 ${
@@ -907,7 +1026,6 @@
         function selectMatchingCard(item) {
             selectedItem = item;
             renderMatchingPool();
-            // Automatically read item aloud
             speakText(item.nameEn);
         }
 
@@ -917,13 +1035,11 @@
                 return;
             }
 
-            // Move card from pool to zone
             const matchIndex = matchingItemsState.findIndex(i => i.id === selectedItem.id);
             if (matchIndex !== -1) {
                 matchingItemsState[matchIndex].placed = zoneType;
             }
 
-            // Append visually
             const targetZone = document.getElementById(`zone-${zoneType}`);
             const chip = document.createElement('div');
             chip.className = "bg-white border-2 border-teal-100 rounded-xl px-3 py-1.5 flex items-center gap-2 shadow-sm animate-pulse";
@@ -934,7 +1050,6 @@
             `;
             targetZone.appendChild(chip);
 
-            // Reset selected
             selectedItem = null;
             renderMatchingPool();
         }
@@ -945,14 +1060,10 @@
             if (matchIndex !== -1) {
                 matchingItemsState[matchIndex].placed = null;
             }
-            
-            // Re-render
-            const item = matchingItemsPool.find(i => i.id === itemId);
             initMatchingGameAndRestorePositions();
         }
 
         function initMatchingGameAndRestorePositions() {
-            // Restore visual layout from State object
             const naturalZone = document.getElementById('zone-natural');
             const manmadeZone = document.getElementById('zone-manmade');
             naturalZone.innerHTML = '';
@@ -995,7 +1106,7 @@
             if (correctCount === totalToPlace) {
                 rewardStars(30);
                 showToast("🎉 Excellent! All matches are correct! (+30 Stars)", "🏆");
-                speakText("Brilliant job! You are a nature expert!");
+                speakText("Brilliant job! You are an amazing science expert!");
             } else {
                 showToast(`❌ Correct: ${correctCount}/${totalToPlace}. Try reshuffling or resetting!`, "🦉");
                 speakText("Keep trying! Let's check which ones belong to nature.");
@@ -1011,9 +1122,9 @@
         let isQuestionAnswered = false;
 
         function initQuiz() {
-            // Copy and shuffle questions to keep learning fresh
             currentQuizDeck = JSON.parse(JSON.stringify(quizQuestions))
-                .sort(() => Math.random() - 0.5);
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 10); // Select exactly 10 questions for a solid gameplay loop
             currentQuestionIdx = 0;
             renderQuestion();
         }
@@ -1032,18 +1143,18 @@
             const question = currentQuizDeck[currentQuestionIdx];
             if (!question) return;
 
-            // Render headers
+            // Render progress tracker
             document.getElementById('quiz-progress-badge').innerText = `Question ${currentQuestionIdx + 1} / ${currentQuizDeck.length}`;
             document.getElementById('quiz-cat-label').innerText = question.category;
             
-            // Render text
+            // Render Bilingual Text
             document.getElementById('quiz-question-en').innerText = question.qEn;
             document.getElementById('quiz-question-zh').innerText = question.qZh;
 
-            document.getElementById('quiz-tip-en').innerText = "Select an option first to unlock Dr. Owl's explanation!";
-            document.getElementById('quiz-tip-zh').innerText = "請先點選答案，即可解鎖貓頭鷹博士的精美詳解！";
+            document.getElementById('quiz-tip-en').innerText = "Select an option first to unlock Dr. Owl's booklet takeaway!";
+            document.getElementById('quiz-tip-zh').innerText = "請先點選答案，即可解鎖貓頭鷹博士的手冊核心重點詳解！";
 
-            // Render option buttons
+            // Render options
             const container = document.getElementById('quiz-options-container');
             container.innerHTML = '';
 
@@ -1051,7 +1162,6 @@
                 const wrapper = document.createElement('div');
                 wrapper.className = "flex gap-3 items-stretch w-full";
 
-                // Standard option selection button
                 const btn = document.createElement('button');
                 btn.type = "button";
                 btn.className = "flex-1 text-left bg-orange-50 hover:bg-orange-100 border-4 border-orange-200/60 p-5 rounded-2xl transition duration-200 flex flex-col justify-center gap-1 shadow-sm";
@@ -1063,7 +1173,6 @@
 
                 btn.onclick = () => selectOption(btn, opt);
 
-                // Option voice read-aloud helper button
                 const speakBtn = document.createElement('button');
                 speakBtn.type = "button";
                 speakBtn.className = "bg-orange-400 hover:bg-orange-500 text-white px-4 rounded-2xl flex items-center justify-center transition active:scale-95 shadow-md w-14 shrink-0";
@@ -1075,8 +1184,12 @@
                 container.appendChild(wrapper);
             });
 
-            // Automatically read question aloud
-            speakText(question.qEn);
+            // Delayed Auto-play of the question to prevent any re-entrancy race conditions
+            setTimeout(() => {
+                if (currentQuizDeck[currentQuestionIdx] === question && !isQuestionAnswered) {
+                    speakText(question.qEn, document.getElementById('btn-speak-question'));
+                }
+            }, 400);
         }
 
         function speakCurrentQuestion(btn) {
@@ -1092,11 +1205,10 @@
 
             const question = currentQuizDeck[currentQuestionIdx];
 
-            // Show explanation tips immediately
+            // Render detailed booklet tips immediately
             document.getElementById('quiz-tip-en').innerText = question.tipEn;
             document.getElementById('quiz-tip-zh').innerText = question.tipZh;
 
-            // Highlight Correct/Incorrect answers
             if (option.correct) {
                 buttonElement.classList.remove('bg-orange-50', 'border-orange-200/60');
                 buttonElement.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-950');
@@ -1105,18 +1217,17 @@
                 document.getElementById('quiz-score-indicator').className = "font-extrabold text-xl text-emerald-600";
                 
                 rewardStars(10);
-                speakText("Excellent! Correct answer!");
+                speakText("Brilliant! That is correct!");
             } else {
                 buttonElement.classList.remove('bg-orange-50', 'border-orange-200/60');
                 buttonElement.classList.add('bg-red-100', 'border-red-400', 'text-red-950');
                 
-                document.getElementById('quiz-score-indicator').innerText = "❌ Keep Learning! Let's read the tip below.";
+                document.getElementById('quiz-score-indicator').innerText = "❌ Keep Learning! Let's read the booklet takeaway below.";
                 document.getElementById('quiz-score-indicator').className = "font-extrabold text-xl text-red-600";
                 
-                speakText("Nice try! Listen to Dr. Owls explanation.");
+                speakText("Let's look at the correct explanation from the booklet.");
             }
 
-            // Show next button
             document.getElementById('btn-next-question').classList.remove('hidden');
         }
 
@@ -1125,7 +1236,6 @@
                 currentQuestionIdx++;
                 renderQuestion();
             } else {
-                // Game Over - Switch to congratulations screen
                 document.getElementById('congrats-stars').innerText = starScore;
                 switchScreen('congrats');
             }
@@ -1136,9 +1246,9 @@
         // MODULE: WHATSAPP SHARING
         // ==========================================
         function shareProgressWhatsApp() {
-            const rawMessage = `🌟 *Science Explorer: Dr. Owl's Academy* 🌟\n` + 
-                               `My child completed learning adventures and collected *${starScore} Stars*! ⭐\n` +
-                               `Join us here: https://logosparents.github.io/scifs1/`;
+            const rawMessage = `🌟 *Science Explorer: Dr. Owl's Academy (SA2 Booklet Simulator)* 🌟\n` + 
+                               `My child conquered the official science test simulator with *${starScore} Stars*! ⭐\n` +
+                               `Join us for exam practice: https://logosparents.github.io/scifs1/`;
             
             const encoded = encodeURIComponent(rawMessage);
             const waUrl = `https://api.whatsapp.com/send?text=${encoded}`;
