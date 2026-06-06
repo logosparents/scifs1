@@ -6,7 +6,7 @@
     <title>Science Explorer: Dr. Owl's Academy (Official SA2 Edition)</title>
     <!-- Tailwind CSS for vibrant, child-friendly UI -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for interactive cute icons --> 
+    <!-- FontAwesome for interactive cute icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts for friendly, readable fonts suitable for kids -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
@@ -305,7 +305,7 @@
                 <span class="text-5xl bounce-owl">🦉</span>
                 <div>
                     <h4 class="font-extrabold text-purple-800 text-xl">
-                        Dr. Owl's Sorting Mission / 貓頭鷹博士的配對任務：
+                        Dr. Owl's Sorting Challenge / 貓頭鷹博士的分類挑戰：
                     </h4>
                     <p class="text-base text-purple-700">
                         Select an object card below, hear its English pronunciation, then click the correct box to categorize it!<br>
@@ -377,7 +377,7 @@
                 
                 <button type="button" onclick="shuffleAndRestartQuiz()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-black px-6 py-3.5 rounded-2xl shadow-md transition active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg border-b-4 border-indigo-900">
                     <i class="fa-solid fa-shuffle text-xl"></i>
-                    <span>🔄 Random Refresh / 隨機刷新題目</span>
+                    <span>🔄 Random Refresh (40 Questions Pool) / 隨機刷新題目 (從 40 題庫隨機抽取)</span>
                 </button>
             </div>
 
@@ -591,8 +591,11 @@
             { id: 10, nameEn: "School Desk", nameZh: "課桌", cat: "manmade", icon: "🪑" }
         ];
 
-        // Complete EPH Booklet Simulator Questions
+        // ==========================================
+        // COMPLETE 40-QUESTION EXPANDED SIMULATOR
+        // ==========================================
         const quizQuestions = [
+            // --- Unit 7: Water and Air (1-6) ---
             {
                 category: "Water & Air (單元 7)",
                 qEn: "What is a similar property of both water and air?",
@@ -617,6 +620,56 @@
                 tipEn: "Booklet Page 7 states: 'We can see water, but we cannot see air.' This is their main difference.",
                 tipZh: "手冊第 7 頁指出：「我們能看見水，但我們不能看見空氣。」這是它們之間最主要的區別。"
             },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "Do water and air have a smell or taste?",
+                qZh: "水和空氣有氣味或味道嗎？",
+                options: [
+                    { textEn: "Yes, water tastes sweet and air smells fresh.", textZh: "有，水味道甜，空氣聞起來清新。", correct: false },
+                    { textEn: "No, both water and air have no smell and no taste.", textZh: "沒有，水和空氣同樣沒有氣味和味道。", correct: true },
+                    { textEn: "Only air has no smell and no taste.", textZh: "只有空氣是沒有氣味和味道的。", correct: false }
+                ],
+                tipEn: "Booklet Page 7 shows that pure water and air are completely tasteless and odourless.",
+                tipZh: "手冊第 7 頁顯示：純淨的水和空氣在正常狀態下，都是完全沒有味道與氣味的。"
+            },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "When you touch water, what can your hands feel?",
+                qZh: "當你觸摸水時，你的雙手可以感覺到什麼？",
+                options: [
+                    { textEn: "Only dry air.", textZh: "只能感覺到乾燥的空氣。", correct: false },
+                    { textEn: "Whether the water is cool or warm.", textZh: "感覺到水是涼快還是溫暖的。", correct: true },
+                    { textEn: "That water has a hard shape.", textZh: "感覺到水有堅硬的形狀。", correct: false }
+                ],
+                tipEn: "Booklet Page 8 explains we can observe water temperatures using our sense of touch.",
+                tipZh: "手冊第 8 頁解釋，我們可以使用觸覺（感官之一）來感知水的冷熱涼暖。"
+            },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "If we blow air into a balloon, why does it grow bigger?",
+                qZh: "如果我們把空氣吹進氣球裡，為什麼氣球會變大？",
+                options: [
+                    { textEn: "Because air takes up space inside the balloon.", textZh: "因為空氣佔據了氣球內部的空間。", correct: true },
+                    { textEn: "Because the balloon becomes heavier than air.", textZh: "因為氣球變得比空氣還要重。", correct: false },
+                    { textEn: "Because air has a fixed square shape.", textZh: "因為空氣擁有固定的正方形形狀。", correct: false }
+                ],
+                tipEn: "Air has no fixed shape but it still takes up space when filled inside a container.",
+                tipZh: "空氣雖然沒有固定形狀，但它被充入容器（如氣球）時依然會佔據空間，使氣球膨脹。"
+            },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "Is there air inside an empty glass cup?",
+                qZh: "一個空玻璃杯的內部，真的空無一物，還是有空氣存在？",
+                options: [
+                    { textEn: "It is completely empty with nothing inside.", textZh: "它是完全空的，裡面什麼都沒有。", correct: false },
+                    { textEn: "It is actually filled with invisible air.", textZh: "它其實充滿了看不見的空氣。", correct: true },
+                    { textEn: "It is filled with water.", textZh: "它充滿了水。", correct: false }
+                ],
+                tipEn: "Even if a cup seems empty, invisible air is present and occupies the space inside.",
+                tipZh: "即使杯子看起來是空的，看不見的空氣依然存在並佔據著內部的所有空間。"
+            },
+
+            // --- Unit 8: Everyday Objects & Materials (7-15) ---
             {
                 category: "Everyday Objects (單元 8)",
                 qEn: "Which of the following is classified as a natural object?",
@@ -666,6 +719,68 @@
                 tipZh: "手冊第 20 頁：當我們放手後，物體能回復到原本的形狀，這代表該物體具有「彈性」（Elastic）。"
             },
             {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Where do natural objects directly come from?",
+                qZh: "自然物體（Natural objects）最直接來源於哪裡？",
+                options: [
+                    { textEn: "Factories and machines.", textZh: "工廠和機器。", correct: false },
+                    { textEn: "Nature (plants, animals, rocks).", textZh: "大自然 (植物、動物、岩石)。", correct: true },
+                    { textEn: "Toy stores.", textZh: "玩具商店。", correct: false }
+                ],
+                tipEn: "Booklet Page 11 defines natural objects as things that come directly from the natural environment.",
+                tipZh: "手冊第 11 頁定義：自然物體是指直接來自自然環境中的物體，未經化學改造。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Who designs and makes man-made objects?",
+                qZh: "是誰設計和製造了「人造物體」？",
+                options: [
+                    { textEn: "They grow naturally on trees.", textZh: "它們自然生長在樹上。", correct: false },
+                    { textEn: "They are designed and made by people.", textZh: "它們是由人類設計和製造的。", correct: true },
+                    { textEn: "Wild animals make them in forests.", textZh: "野生動物在森林裡製造它們。", correct: false }
+                ],
+                tipEn: "Man-made objects are fabricated by humans from different materials to meet daily needs.",
+                tipZh: "人造物體是由人類使用各種材料加工製造，用來滿足日常生活和便利需求的。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Can the same type of object be designed in different ways?",
+                qZh: "同種類的物體（例如：尺子）可以有不同的設計嗎？",
+                options: [
+                    { textEn: "Yes, to meet different practical needs.", textZh: "可以，為了滿足不同的實用需求。", correct: true },
+                    { textEn: "No, all rulers must be identical.", textZh: "不可以，所有的尺子都必須一模一樣。", correct: false },
+                    { textEn: "No, different designs are prohibited in science.", textZh: "不可以，科學界禁止不同的設計。", correct: false }
+                ],
+                tipEn: "Booklet Page 30 shows plastic and wooden rulers have different transparency and elasticity for different tasks.",
+                tipZh: "手冊第 30 頁顯示，同為尺子，塑膠或木頭尺有著不同的透明度與彈性設計，以適應不同需要。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "If we use a coin to scratch a pencil, we are testing its...",
+                qZh: "如果我們用硬幣去刮鉛筆，我們是在測試它的...",
+                options: [
+                    { textEn: "Transparency (light transmission)", textZh: "透光性 (Transparency)", correct: false },
+                    { textEn: "Hardness (resistance to scratching)", textZh: "硬度 (Hardness)", correct: true },
+                    { textEn: "Absorbency (water soaking)", textZh: "吸水性 (Absorbency)", correct: false }
+                ],
+                tipEn: "Scratching tests which material is harder. Harder materials scratch softer ones.",
+                tipZh: "刮擦實驗是為了測試材料的「硬度」。較硬的物體會在較軟的物體表面留下刮痕。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Why is a plastic rain jacket suitable for wet weather?",
+                qZh: "為什麼塑膠雨衣適合在下雨天使用？",
+                options: [
+                    { textEn: "Because plastic is waterproof and does not absorb water.", textZh: "因為塑膠是防水的，而且不吸水。", correct: true },
+                    { textEn: "Because plastic is extremely soft like a tissue.", textZh: "因為塑膠像紙巾一樣非常柔軟。", correct: false },
+                    { textEn: "Because plastic is naturally magnetic.", textZh: "因為塑膠天然具有磁性。", correct: false }
+                ],
+                tipEn: "Plastic doesn't let water pass through, making it waterproof.",
+                tipZh: "塑膠具有不透水、不吸水的物理特性，因此常被設計用來製作防水用品。"
+            },
+
+            // --- Unit 9: Electronic Products (16-21) ---
+            {
                 category: "Electronic Products (單元 9)",
                 qEn: "What is the definition of using electronic products for 'long periods of time'?",
                 qZh: "手冊中對於「長時間使用電子產品」的定義是什麼？",
@@ -690,6 +805,56 @@
                 tipZh: "手冊第 43 頁指出：走路時看手機是極其危險的，這可能會導致交通車禍。"
             },
             {
+                category: "Electronic Products (單元 9)",
+                qEn: "Staring at a bright screen in a completely dark room can damage our...",
+                qZh: "在完全黑暗的房間裡盯著明亮的螢幕，會損害我們的...",
+                options: [
+                    { textEn: "Sense of hearing.", textZh: "聽覺系統。", correct: false },
+                    { textEn: "Eyesight (vision).", textZh: "視力 (眼睛)。", correct: true },
+                    { textEn: "Teeth.", textZh: "牙齒健康。", correct: false }
+                ],
+                tipEn: "Syllabus Page 41 warns that looking at screens without ambient light causes extreme eye strain and vision decline.",
+                tipZh: "溫習手冊第 41 頁警告：在無光源環境下直視高亮螢幕會造成極度疲勞，損害視力健康。"
+            },
+            {
+                category: "Electronic Products (單元 9)",
+                qEn: "Which of the following is considered an electronic product?",
+                qZh: "以下哪一項屬於「電子產品」？",
+                options: [
+                    { textEn: "A wooden pencil case.", textZh: "木製筆袋。", correct: false },
+                    { textEn: "A tablet computer (iPad) and smart television.", textZh: "平板電腦 (iPad) 和智能電視。", correct: true },
+                    { textEn: "A paper storybook.", textZh: "紙質故事書。", correct: false }
+                ],
+                tipEn: "Electronic products require electricity/battery power and processing chips to run.",
+                tipZh: "電子產品需要電源/電池以及晶片驅動。平板與智能電視均屬於典型電子產品。"
+            },
+            {
+                category: "Electronic Products (單元 9)",
+                qEn: "If we play tablet games late into the night, what will happen?",
+                qZh: "如果我們在深夜依然玩平板電腦遊戲，會發生什麼壞處？",
+                options: [
+                    { textEn: "We will sleep better and deeper.", textZh: "我們會睡得更好、更沉。", correct: false },
+                    { textEn: "We will not get enough sleep and feel tired tomorrow.", textZh: "我們會睡眠不足，明天感到非常疲倦。", correct: true },
+                    { textEn: "Our height will double overnight.", textZh: "我們的高度會在深夜翻倍。", correct: false }
+                ],
+                tipEn: "Late-night screen time disrupts melatonin release and results in insufficient sleep.",
+                tipZh: "深夜使用電子產品會干擾睡眠荷爾蒙釋放，導致隔日上學時睡眠不足與精神不濟。"
+            },
+            {
+                category: "Electronic Products (單元 9)",
+                qEn: "Why is it polite to put away phones during family dinner?",
+                qZh: "為什麼在家庭晚餐期間收起手機是一種有禮貌的行為？",
+                options: [
+                    { textEn: "To focus on communicating and talking with family members.", textZh: "為了專注與家人溝通與聊天。", correct: true },
+                    { textEn: "Because phones are prohibited near food.", textZh: "因為食物旁邊嚴禁擺放手機。", correct: false },
+                    { textEn: "Because family members want to steal your phone.", textZh: "因為家人想要偷走你的手機。", correct: false }
+                ],
+                tipEn: "Overusing phones during social meals affects interpersonal relationships and showing good manners.",
+                tipZh: "在用餐時過度看手機會疏忽與家人的互動，收起手機是良好家庭社交禮儀的展現。"
+            },
+
+            // --- Unit 10: Positions & Motion (22-27) ---
+            {
                 category: "Positions & Motion (單元 10)",
                 qEn: "Kevin sits in front of Kasey, and Macy sits behind Kasey. Who sits behind Kasey?",
                 qZh: "家豪（Kevin）坐在美儀（Kasey）前面，美詩（Macy）坐在美儀後面。誰坐在美儀後面？",
@@ -713,6 +878,56 @@
                 tipEn: "Booklet Page 60 states: 'Walking is the slowest. Riding a bus is the fastest.'",
                 tipZh: "手冊第 60 頁指出：步行（Walking）是最慢的，而乘坐巴士（Riding a bus）是最快的。"
             },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "When an object changes its position over time, we say the object is...",
+                qZh: "當一個物體隨著時間改變其所在位置時，我們說該物體正處於...",
+                options: [
+                    { textEn: "In motion (moving).", textZh: "運動狀態 (正在移動)。", correct: true },
+                    { textEn: "In complete silence.", textZh: "完全寂靜狀態。", correct: false },
+                    { textEn: "In a freezing state.", textZh: "冰凍狀態。", correct: false }
+                ],
+                tipEn: "Motion is defined as the change in position of an object relative to other points.",
+                tipZh: "運動的基礎定義是：相對於參考點，物體的位置發生了改變（第 54 頁）。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "If car A and car B travel at the exact same speed, their relative distance will...",
+                qZh: "如果 A 車和 B 車以完全相同的速度並排行駛，它們之間的相對距離會...",
+                options: [
+                    { textEn: "Stay the same.", textZh: "保持不變。", correct: true },
+                    { textEn: "Become larger and larger.", textZh: "變得越來越遠。", correct: false },
+                    { textEn: "Become smaller and smaller.", textZh: "變得越來越近。", correct: false }
+                ],
+                tipEn: "When speeds are identical and direction is same, relative positions do not change.",
+                tipZh: "當兩者行駛速度和方向完全一致時，它們之間的相對位置與距離不會發生改變。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "Why can two people have different position descriptions for the same cat?",
+                qZh: "為什麼兩個人對同一隻貓的位置，會有不同的描述（如左邊與右邊）？",
+                options: [
+                    { textEn: "Because they are standing in different positions and directions.", textZh: "因為他們站立在不同的位置，面朝不同的方向。", correct: true },
+                    { textEn: "Because the cat can clone itself.", textZh: "因為貓咪會自己分身。", correct: false },
+                    { textEn: "Because one person is wrong.", textZh: "因為其中一個人一定說錯了。", correct: false }
+                ],
+                tipEn: "Position descriptions are relative to the observer's own perspective and standing point.",
+                tipZh: "位置的描述是相對的。觀察者站立的位置、面向的方向不同，其左右前後也會不同。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "Why is it dangerous to run inside a moving school bus?",
+                qZh: "為什麼在行駛中的校巴內奔跑是危險的？",
+                options: [
+                    { textEn: "You might lose balance and get hurt if the bus brakes suddenly.", textZh: "如果校巴突然剎車，你可能會失去平衡而摔倒受傷。", correct: true },
+                    { textEn: "The bus engine will break down.", textZh: "校巴的引擎會因此壞掉。", correct: false },
+                    { textEn: "The bus will fly into the sky.", textZh: "校巴會因此飛上天空。", correct: false }
+                ],
+                tipEn: "Sudden acceleration or braking of moving vehicles transfers force and causes high fall risks.",
+                tipZh: "行駛中的校車隨時可能因為路況緊急剎車，這時站立奔跑極易因慣性衝撞受傷。"
+            },
+
+            // --- Unit 11: Light & Shadow (28-34) ---
             {
                 category: "Light & Shadow (單元 11)",
                 qEn: "Which of the following is a natural source of light?",
@@ -750,6 +965,56 @@
                 tipZh: "手冊第 72 頁指出：物體和它影子的移動方向是「相同」的（Same）。因此向左移時影子也向左移。"
             },
             {
+                category: "Light & Shadow (單元 11)",
+                qEn: "What did we prove using the 'sealed cardboard tube' experiment?",
+                qZh: "我們用「密封紙筒實驗」證明了什麼科學常識？",
+                options: [
+                    { textEn: "We cannot see anything inside if there is no light.", textZh: "如果沒有光線進入，我們無法看見裡面的任何事物。", correct: true },
+                    { textEn: "Cardboard is always soft.", textZh: "紙筒永遠是柔軟的。", correct: false },
+                    { textEn: "A tube is useful for holding water.", textZh: "紙筒很適合用來裝水。", correct: false }
+                ],
+                tipEn: "Without light entering a space, objects inside cannot reflect light to our eyes, so we see complete darkness.",
+                tipZh: "如果完全沒有光線（第 64 頁），物體無法反射光線到我們眼睛，所以我們什麼也看不見。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "Which of the following is considered a man-made source of light?",
+                qZh: "以下哪一項屬於「人造光源」？",
+                options: [
+                    { textEn: "The Sun", textZh: "太陽", correct: false },
+                    { textEn: "A burning candle", textZh: "燃燒中的蠟燭", correct: true },
+                    { textEn: "Lightning", textZh: "閃電", correct: false }
+                ],
+                tipEn: "Man-made light sources are artificial objects created by humans to produce illumination when activated.",
+                tipZh: "人造光源是指由人類製造，並在需要時提供照明的工具（如蠟燭、電筒）。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "What type of objects can cast a clear shadow on the wall?",
+                qZh: "哪種物體才能在牆壁上投射出清晰的影子？",
+                options: [
+                    { textEn: "An opaque (non-transparent) object like a plastic toy.", textZh: "不透光（非透明）的物體，例如塑膠玩具。", correct: true },
+                    { textEn: "A completely transparent clear glass plate.", textZh: "完全透明的乾淨玻璃片。", correct: false },
+                    { textEn: "No objects can cast a shadow.", textZh: "沒有任何物體能夠投射出影子。", correct: false }
+                ],
+                tipEn: "Shadows form because opaque objects block light paths. Transparent objects let light pass through.",
+                tipZh: "影子的形成是因為光被「不透明物體」擋住。透明玻璃會讓光直接穿過，所以幾乎無影。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "A glass prism can split white sunlight into how many colors?",
+                qZh: "玻璃三稜鏡可以把白色的太陽光分解成多少種顏色？",
+                options: [
+                    { textEn: "Two colors (black and white).", textZh: "兩種顏色 (黑色和白色)。", correct: false },
+                    { textEn: "Seven colors (red, orange, yellow, green, blue, indigo, purple).", textZh: "七種顏色 (紅、橙、黃、綠、藍、靛、紫)。", correct: true },
+                    { textEn: "Ten thousand colors.", textZh: "一萬種顏色。", correct: false }
+                ],
+                tipEn: "Prisms refract and split composite white light into its constituent rainbow colors.",
+                tipZh: "太陽光由七色光譜組成（第 74 頁）。三稜鏡可折射並分解出彩虹的七彩顏色。"
+            },
+
+            // --- Unit 12: Day and Night (35-40) ---
+            {
                 category: "Day & Night (單元 12)",
                 qEn: "Why is Tsing Ma Bridge a popular place to watch the sunset?",
                 qZh: "為什麼青馬大橋是香港觀賞落日（Sunset）的著名景點？",
@@ -784,6 +1049,42 @@
                 ],
                 tipEn: "Booklet Page 92 shows moths are active near streetlights and sitting-out areas at night.",
                 tipZh: "手冊第 92 頁指出：黑夜中飛蛾（Moths）和老鼠（Mice）會出沒在街燈或公園附近活躍。"
+            },
+            {
+                category: "Day & Night (單元 12)",
+                qEn: "Who is considered a night-time worker that helps protect our community?",
+                qZh: "以下哪一位是「夜間工作者」，在深夜默默保護或便利我們的生活？",
+                options: [
+                    { textEn: "A night-shift security guard or overnight police officer.", textZh: "夜班保安員或通宵值勤的警察。", correct: true },
+                    { textEn: "A primary school teacher.", textZh: "小學老師。", correct: false },
+                    { textEn: "A construction worker who only works at noon.", textZh: "只在中午工作的建築工人。", correct: false }
+                ],
+                tipEn: "Night workers operate during dark hours to keep our city safe, clean, and functional.",
+                tipZh: "手冊第 96 頁列舉了夜間工作者（如警察、保安、深夜司機），他們維持了黑夜的安全便利。"
+            },
+            {
+                category: "Day & Night (單元 12)",
+                qEn: "In which direction does the Sun always rise every morning?",
+                qZh: "每天清晨，太陽必定會從哪一個方向升起？",
+                options: [
+                    { textEn: "The West (西面)", textZh: "西面", correct: false },
+                    { textEn: "The East (東面)", textZh: "東面", correct: true },
+                    { textEn: "The South (南面)", textZh: "南面", correct: false }
+                ],
+                tipEn: "Due to Earth's rotation, the Sun rises in the East and sets in the West in a fixed pattern.",
+                tipZh: "太陽在固定的方向東升（East）西落。清晨辨識東方可以看日出的位置。"
+            },
+            {
+                category: "Day & Night (單元 12)",
+                qEn: "Which animal is active during the day and rests at night?",
+                qZh: "以下哪種動物屬於「日間活躍」，並在夜間休息？",
+                options: [
+                    { textEn: "An owl", textZh: "貓頭鷹", correct: false },
+                    { textEn: "A butterfly", textZh: "蝴蝶", correct: true },
+                    { textEn: "A bat", textZh: "蝙蝠", correct: false }
+                ],
+                tipEn: "Butterflies feed on flowers under warm sunlight. Owls and bats are nocturnal (night-active).",
+                tipZh: "蝴蝶在白天陽光充足時出沒採蜜。而貓頭鷹、蝙蝠在夜間捕食，屬於夜行性動物。"
             }
         ];
 
@@ -1131,23 +1432,24 @@
 
 
         // ==========================================
-        // MODULE: QUIZ
+        // MODULE: QUIZ (RANDOM SHUFFLE 10 FROM 40 POOL)
         // ==========================================
         let currentQuizDeck = [];
         let currentQuestionIdx = 0;
         let isQuestionAnswered = false;
 
         function initQuiz() {
+            // Shuffle the 40-question pool and select exactly 10 questions for a solid gameplay loop
             currentQuizDeck = JSON.parse(JSON.stringify(quizQuestions))
                 .sort(() => Math.random() - 0.5)
-                .slice(0, 10); // Select exactly 10 questions for a solid gameplay loop
+                .slice(0, 10); 
             currentQuestionIdx = 0;
             renderQuestion();
         }
 
         function shuffleAndRestartQuiz() {
             initQuiz();
-            showToast("🔄 Shuffled & Restarted! / 題目庫已隨機重新刷新！", "⚡");
+            showToast("🔄 Shuffled 10 questions from 40 pool! / 已從 40 題庫中重新隨機抽出 10 題！", "⚡");
         }
 
         function renderQuestion() {
