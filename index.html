@@ -6,7 +6,7 @@
     <title>Science Explorer: Dr. Owl's Academy (Official SA2 Edition)</title>
     <!-- Tailwind CSS for vibrant, child-friendly UI -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for interactive cute icons -->
+    <!-- FontAwesome for interactive cute icons --> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts for friendly, readable fonts suitable for kids -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
@@ -575,7 +575,23 @@
             ]
         };
 
-        // Complete 16-Question EPH Booklet Simulator (Perfect Alignment)
+        // ==========================================
+        // MATCHING GAME CARDS (EPH Booklet Aligned)
+        // ==========================================
+        const matchingItemsPool = [
+            { id: 1, nameEn: "Pebble Rock", nameZh: "小鵝卵石", cat: "natural", icon: "🪨" },
+            { id: 2, nameEn: "Wooden Pencil", nameZh: "木鉛筆", cat: "manmade", icon: "✏️" },
+            { id: 3, nameEn: "Green Leaf", nameZh: "綠葉", cat: "natural", icon: "🍃" },
+            { id: 4, nameEn: "Toy Car", nameZh: "玩具車", cat: "manmade", icon: "🚗" },
+            { id: 5, nameEn: "Bamboo Stem", nameZh: "竹子", cat: "natural", icon: "🎋" },
+            { id: 6, nameEn: "Science Book", nameZh: "科學書", cat: "manmade", icon: "📚" },
+            { id: 7, nameEn: "Water Drop", nameZh: "天然水滴", cat: "natural", icon: "💧" },
+            { id: 8, nameEn: "Plastic Bottle", nameZh: "塑膠樽", cat: "manmade", icon: "🍼" },
+            { id: 9, nameEn: "Wild Flower", nameZh: "野花", cat: "natural", icon: "🌸" },
+            { id: 10, nameEn: "School Desk", nameZh: "課桌", cat: "manmade", icon: "🪑" }
+        ];
+
+        // Complete EPH Booklet Simulator Questions
         const quizQuestions = [
             {
                 category: "Water & Air (單元 7)",
@@ -990,7 +1006,7 @@
             if (unplaced.length === 0) {
                 poolEl.innerHTML = `
                     <div class="text-center py-4 w-full">
-                        <p class="text-emerald-600 font-extrabold text-xl">🎉 All cards placed! Submit your answers! / 所有卡片已分類，請提交解答！</p>
+                        <p class="text-emerald-600 font-extrabold text-xl">🎉 All cards placed! Submit your answers! / 所有卡片已放置，請提交解答！</p>
                     </div>
                 `;
                 return;
