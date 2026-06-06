@@ -305,7 +305,7 @@
                 <span class="text-5xl bounce-owl">🦉</span>
                 <div>
                     <h4 class="font-extrabold text-purple-800 text-xl">
-                        Dr. Owl's Sorting Challenge / 貓頭鷹博士的分類挑戰：
+                        Dr. Owl's Sorting Mission / 貓頭鷹博士的配對任務：
                     </h4>
                     <p class="text-base text-purple-700">
                         Select an object card below, hear its English pronunciation, then click the correct box to categorize it!<br>
@@ -377,7 +377,7 @@
                 
                 <button type="button" onclick="shuffleAndRestartQuiz()" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-black px-6 py-3.5 rounded-2xl shadow-md transition active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg border-b-4 border-indigo-900">
                     <i class="fa-solid fa-shuffle text-xl"></i>
-                    <span>🔄 Random Refresh (40 Questions Pool) / 隨機刷新題目 (從 40 題庫隨機抽取)</span>
+                    <span>🔄 Random Refresh (60 Questions Pool) / 隨機刷新題目 (從 60 題庫隨機抽取)</span>
                 </button>
             </div>
 
@@ -591,11 +591,11 @@
             { id: 10, nameEn: "School Desk", nameZh: "課桌", cat: "manmade", icon: "🪑" }
         ];
 
-        // ==========================================
-        // COMPLETE 40-QUESTION EXPANDED SIMULATOR
-        // ==========================================
+        // ===============================================================
+        // COMPLETE 60-QUESTION EXPANDED SIMULATOR DATABASE
+        // ===============================================================
         const quizQuestions = [
-            // --- Unit 7: Water and Air (1-6) ---
+            // --- Unit 7: Water and Air (1-10) ---
             {
                 category: "Water & Air (單元 7)",
                 qEn: "What is a similar property of both water and air?",
@@ -668,8 +668,56 @@
                 tipEn: "Even if a cup seems empty, invisible air is present and occupies the space inside.",
                 tipZh: "即使杯子看起來是空的，看不見的空氣依然存在並佔據著內部的所有空間。"
             },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "When poured on a slope, which way does water flow?",
+                qZh: "當水被倒在斜坡上時，水會往哪個方向流動？",
+                options: [
+                    { textEn: "Water always flows from high places to low places.", textZh: "水總是從高處往低處流動。", correct: true },
+                    { textEn: "Water flows upwards against gravity.", textZh: "水會向上逆流。", correct: false },
+                    { textEn: "Water stays completely static on any slope.", textZh: "水在斜坡上會保持完全靜止。", correct: false }
+                ],
+                tipEn: "Water can flow because it is a liquid, and it naturally flows downwards from high to low.",
+                tipZh: "水是液體，具有流動性（第 8 頁）。它在重力作用下自然會由高處往低處流。"
+            },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "What is wind?",
+                qZh: "風（Wind）是什麼？",
+                options: [
+                    { textEn: "Wind is moving air that we can feel.", textZh: "風是我們能感覺到的「移動中的空氣」。", correct: true },
+                    { textEn: "Wind is invisible water falling from the sky.", textZh: "風是從天而降的看不見的水。", correct: false },
+                    { textEn: "Wind is a type of natural hard object.", textZh: "風是一種自然界中的堅硬物體。", correct: false }
+                ],
+                tipEn: "We cannot see air, but when air is in motion, we can feel it as wind.",
+                tipZh: "我們雖然看不見空氣，但當空氣流動時，我們的皮膚就能感覺到「風」的存在。"
+            },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "Why do plants need water?",
+                qZh: "為什麼植物需要水分？",
+                options: [
+                    { textEn: "To stay dry and light.", textZh: "為了保持乾燥與輕盈。", correct: false },
+                    { textEn: "Plants need water to live and grow.", textZh: "植物需要水分才能生存和健康生長。", correct: true },
+                    { textEn: "To make themselves transparent.", textZh: "為了讓自己變得完全透明。", correct: false }
+                ],
+                tipEn: "All living things, including plants and animals, need water to maintain life functions.",
+                tipZh: "水分是生命之源。大自然中所有的生物（包括植物）都必須有水才能維持生命與生長。"
+            },
+            {
+                category: "Water & Air (單元 7)",
+                qEn: "Which sense organ is best used to observe if water is hot or cold?",
+                qZh: "我們最適合用哪種感官器官來觀察水是冷還是熱？",
+                options: [
+                    { textEn: "Our eyes (sight).", textZh: "我們的眼睛 (視覺)。", correct: false },
+                    { textEn: "Our skin / hands (touch).", textZh: "我們的皮膚 / 雙手 (觸覺)。", correct: true },
+                    { textEn: "Our ears (hearing).", textZh: "我們的耳朵 (聽覺)。", correct: false }
+                ],
+                tipEn: "Touch is used to feel temperatures, as cool or warm temperatures cannot be seen directly.",
+                tipZh: "冷和熱是無法用眼睛直接看出來的，我們需要用皮膚的觸覺感官來感應（第 8 頁）。"
+            },
 
-            // --- Unit 8: Everyday Objects & Materials (7-15) ---
+            // --- Unit 8: Everyday Objects & Materials (11-25) ---
             {
                 category: "Everyday Objects (單元 8)",
                 qEn: "Which of the following is classified as a natural object?",
@@ -778,8 +826,80 @@
                 tipEn: "Plastic doesn't let water pass through, making it waterproof.",
                 tipZh: "塑膠具有不透水、不吸水的物理特性，因此常被設計用來製作防水用品。"
             },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Which material is highly absorbent and can easily soak up water spills?",
+                qZh: "以下哪種材料具有很強的吸水性，容易吸乾潑灑出來的水？",
+                options: [
+                    { textEn: "Plastic sheet", textZh: "塑膠片", correct: false },
+                    { textEn: "Cotton cloth / towel", textZh: "棉布 / 毛巾", correct: true },
+                    { textEn: "Iron metal plate", textZh: "鐵金屬板", correct: false }
+                ],
+                tipEn: "Cotton fibers have natural spaces that easily trap and absorb liquid water.",
+                tipZh: "棉質布料（如毛巾、手帕）具有吸水性（Absorbency），能輕易吸乾物體表面的水。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Why are window panes usually made of clear glass?",
+                qZh: "為什麼窗戶的玻璃通常要用「透明玻璃」製作？",
+                options: [
+                    { textEn: "To let sunlight pass through so we can see outside.", textZh: "為了讓太陽光穿過，並讓我們看清外面。", correct: true },
+                    { textEn: "To block all light and make the room completely dark.", textZh: "為了遮擋所有光線，讓房間完全變黑。", correct: false },
+                    { textEn: "Because glass is highly elastic and bendable.", textZh: "因為玻璃極具彈性且容易彎曲。", correct: false }
+                ],
+                tipEn: "Glass has transparency, which allows visible light to transmit through it.",
+                tipZh: "透明玻璃具備「透光性 / 透明性」，能讓室外光線照進屋內，也方便我們觀察外面（第 16 頁）。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "If you stretch a rubber band and let it go, what happens?",
+                qZh: "如果你拉長一根橡皮筋然後鬆手，會發生什麼事？",
+                options: [
+                    { textEn: "It turns into liquid water.", textZh: "它會融化成液體水。", correct: false },
+                    { textEn: "It quickly snaps back to its original shape.", textZh: "它會迅速縮回到原本的形狀。", correct: true },
+                    { textEn: "It remains stretched out forever.", textZh: "它會永遠保持被拉長的形狀。", correct: false }
+                ],
+                tipEn: "Rubber is an elastic material, allowing it to deform and recover.",
+                tipZh: "橡膠是具備「彈性」的材料，在鬆手後會變回原本的形狀（第 20 頁）。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Which of the following objects is completely man-made?",
+                qZh: "以下哪一個物體是完全屬於人造的？",
+                options: [
+                    { textEn: "A plastic ruler.", textZh: "一把塑膠尺子。", correct: true },
+                    { textEn: "A wild flower blooming on a hill.", textZh: "山坡上綻放的野花。", correct: false },
+                    { textEn: "A green leaf from a tree.", textZh: "樹上的一片綠葉。", correct: false }
+                ],
+                tipEn: "Plastic does not exist in nature; humans chemically create and shape it.",
+                tipZh: "野花和綠葉是自然生長的，而塑膠尺是人類利用人工材料工廠加工製造出來的人造物體。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "What property of metals makes them suitable for making keys?",
+                qZh: "金屬具有什麼特性，使其非常適合用來製作鑰匙？",
+                options: [
+                    { textEn: "Metals are soft and transparent.", textZh: "金屬是柔軟且透明的。", correct: false },
+                    { textEn: "Metals are hard and very strong.", textZh: "金屬非常堅硬且強度高。", correct: true },
+                    { textEn: "Metals melt instantly when touched.", textZh: "金屬一碰就會立刻融化。", correct: false }
+                ],
+                tipEn: "Keys must be hard and rigid so they do not break when turning inside a lock.",
+                tipZh: "金屬具有很高的硬度（Hardness），不易損壞，這能保證鑰匙扭動鎖頭時不會輕易折斷。"
+            },
+            {
+                category: "Everyday Objects (單元 8)",
+                qEn: "Can we use a handkerchief as a ruler to draw straight lines?",
+                qZh: "我們可以用手帕代替尺子來畫一條筆直的線嗎？",
+                options: [
+                    { textEn: "No, because a handkerchief is soft and floppy, not rigid.", textZh: "不可以，因為手帕是柔軟的，無法固定形狀。", correct: true },
+                    { textEn: "Yes, because all soft objects are perfectly rigid.", textZh: "可以，因為所有柔軟的物體都非常堅硬。", correct: false },
+                    { textEn: "Yes, but only under water.", textZh: "可以，但只能在水底下畫。", correct: false }
+                ],
+                tipEn: "A ruler must be rigid and hard to guide a pencil straight. Handkerchiefs are soft.",
+                tipZh: "手帕是由柔軟的布料製成，無法固定成堅硬筆直的形態，因此無法代替尺子畫直線（第 16 頁）。"
+            },
 
-            // --- Unit 9: Electronic Products (16-21) ---
+            // --- Unit 9: Electronic Products (26-33) ---
             {
                 category: "Electronic Products (單元 9)",
                 qEn: "What is the definition of using electronic products for 'long periods of time'?",
@@ -852,8 +972,32 @@
                 tipEn: "Overusing phones during social meals affects interpersonal relationships and showing good manners.",
                 tipZh: "在用餐時過度看手機會疏忽與家人的互動，收起手機是良好家庭社交禮儀的展現。"
             },
+            {
+                category: "Electronic Products (單元 9)",
+                qEn: "What bad physical effect can happen if we hunch over our screens for too long?",
+                qZh: "如果我們長時間駝背低頭玩手機，會對身體造成什麼不良影響？",
+                options: [
+                    { textEn: "We will grow taller quickly.", textZh: "我們會迅速長得更高。", correct: false },
+                    { textEn: "It can cause neck and back muscle pain.", textZh: "會導致脖子和背部肌肉疼痛。", correct: true },
+                    { textEn: "It makes our bones extra soft.", textZh: "它會讓我們的骨骼變得異常柔軟。", correct: false }
+                ],
+                tipEn: "Poor posture during screen use strains cervical spine muscles and causes soreness.",
+                tipZh: "長時間低頭看螢幕會使頸椎肌肉承受過重負擔，從而引起肌肉酸痛或骨骼變形（第 41 頁）。"
+            },
+            {
+                category: "Electronic Products (單元 9)",
+                qEn: "Who should you set electronic usage rules and time limits with?",
+                qZh: "我們應該和誰一起制定電子產品的使用規則與時間限制？",
+                options: [
+                    { textEn: "Our parents.", textZh: "我們的家長。", correct: true },
+                    { textEn: "Strangers on the street.", textZh: "街上的陌生人。", correct: false },
+                    { textEn: "Nobody, we can use it as much as we want.", textZh: "不需要和任何人，我們想玩多久就玩多久。", correct: false }
+                ],
+                tipEn: "Setting clear time agreements with parents helps establish healthy habits.",
+                tipZh: "為了自律與眼睛健康，我們應與家長（父母）共同制定每天的使用守則（第 44 頁）。"
+            },
 
-            // --- Unit 10: Positions & Motion (22-27) ---
+            // --- Unit 10: Positions & Motion (34-43) ---
             {
                 category: "Positions & Motion (單元 10)",
                 qEn: "Kevin sits in front of Kasey, and Macy sits behind Kasey. Who sits behind Kasey?",
@@ -893,7 +1037,7 @@
             {
                 category: "Positions & Motion (單元 10)",
                 qEn: "If car A and car B travel at the exact same speed, their relative distance will...",
-                qZh: "如果 A 車和 B 車以完全相同的速度並排行駛，它們之間的相對距離會...",
+                qZh: "如果 A 車 and B 車以完全相同的速度並排行駛，它們之間的相對距離會...",
                 options: [
                     { textEn: "Stay the same.", textZh: "保持不變。", correct: true },
                     { textEn: "Become larger and larger.", textZh: "變得越來越遠。", correct: false },
@@ -926,8 +1070,56 @@
                 tipEn: "Sudden acceleration or braking of moving vehicles transfers force and causes high fall risks.",
                 tipZh: "行駛中的校車隨時可能因為路況緊急剎車，這時站立奔跑極易因慣性衝撞受傷。"
             },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "Which speed ranking is correct from slowest to fastest?",
+                qZh: "以下哪一項速度排序（由最慢到最快）是正確的？",
+                options: [
+                    { textEn: "Walking -> Riding a bicycle -> Riding a bus.", textZh: "步行 -> 騎單車 -> 乘坐巴士。", correct: true },
+                    { textEn: "Riding a bus -> Walking -> Riding a bicycle.", textZh: "乘坐巴士 -> 步行 -> 騎單車。", correct: false },
+                    { textEn: "Riding a bicycle -> Riding a bus -> Walking.", textZh: "騎單車 -> 乘坐巴士 -> 步行。", correct: false }
+                ],
+                tipEn: "Walking is slowest, bicycles are mid-speed, and motorized buses are fastest.",
+                tipZh: "手冊第 60 頁指出：最慢的是步行，單車比步行快，而最快的是坐巴士。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "What safe behaviour should you follow when riding an escalator?",
+                qZh: "搭乘扶手電梯時，我們應該遵守什麼安全行為？",
+                options: [
+                    { textEn: "Run quickly upwards to reach the top faster.", textZh: "快速向上奔跑以盡快到達頂端。", correct: false },
+                    { textEn: "Stand still and hold onto the handrail firmly.", textZh: "緊握扶手，靜立在電梯上。", correct: true },
+                    { textEn: "Sit on the steps and play with friends.", textZh: "坐在電梯階級上並與朋友嬉戲。", correct: false }
+                ],
+                tipEn: "Standing still on escalators prevents falls and mechanical trapping accidents.",
+                tipZh: "為了防止摔倒或被夾傷，搭乘扶手電梯時必須緊握扶手，站立不動，切勿奔跑。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "If a cat is sleeping on the floor under a chair, what is its position relative to the chair?",
+                qZh: "如果一隻貓躺在椅子底下的地板上睡覺，它相對於椅子的位置是？",
+                options: [
+                    { textEn: "Above the chair.", textZh: "在椅子的上方。", correct: false },
+                    { textEn: "Under / below the chair.", textZh: "在椅子的下方 / 底下。", correct: true },
+                    { textEn: "On top of the chair.", textZh: "在椅子的最頂端。", correct: false }
+                ],
+                tipEn: "Under or below describes an object being at a lower level directly underneath another object.",
+                tipZh: "貓咪躺在椅腳包圍的地板上，因此其空間相對位置是在椅子的「下方 / 底下」（第 50 頁）。"
+            },
+            {
+                category: "Positions & Motion (單元 10)",
+                qEn: "If Car X travels 100 meters in 5 seconds and Car Y travels 50 meters in 5 seconds, which car is faster?",
+                qZh: "如果甲車 5 秒跑了 100 米，乙車 5 秒跑了 50 米，哪輛車的速度比較快？",
+                options: [
+                    { textEn: "Car X is faster because it covers more distance in the same time.", textZh: "甲車比較快，因為在相同時間內它移動得更遠。", correct: true },
+                    { textEn: "Car Y is faster.", textZh: "乙車比較快。", correct: false },
+                    { textEn: "They have the exact same speed.", textZh: "它們的速度完全一樣。", correct: false }
+                ],
+                tipEn: "Speed is defined as distance traveled per unit of time; more distance in equal time means higher speed.",
+                tipZh: "在相同的時間內，移動距離越長的物體，其運動速度就越快。"
+            },
 
-            // --- Unit 11: Light & Shadow (28-34) ---
+            // --- Unit 11: Light & Shadow (44-54) ---
             {
                 category: "Light & Shadow (單元 11)",
                 qEn: "Which of the following is a natural source of light?",
@@ -1012,8 +1204,56 @@
                 tipEn: "Prisms refract and split composite white light into its constituent rainbow colors.",
                 tipZh: "太陽光由七色光譜組成（第 74 頁）。三稜鏡可折射並分解出彩虹的七彩顏色。"
             },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "Is the Moon a natural source of light?",
+                qZh: "月亮（Moon）本身是自然光源嗎？",
+                options: [
+                    { textEn: "No, the Moon does not emit its own light; it only reflects sunlight.", textZh: "不是，月亮自己不會發光，它只是反射太陽光。", correct: true },
+                    { textEn: "Yes, it produces white light inside its rocks.", textZh: "是的，它自身的岩石內部會產生白光。", correct: false },
+                    { textEn: "Yes, the Moon is a giant burning star.", textZh: "是的，月亮是一顆燃燒著的巨大恆星。", correct: false }
+                ],
+                tipEn: "A true light source must produce and emit its own light. Reflectors like mirrors and moons are not light sources.",
+                tipZh: "光源的定義是「自己會發光的物體」（第 66 頁）。月亮只是反射太陽的光，所以它不是光源。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "Can a mirror be classified as a light source?",
+                qZh: "鏡子（Mirror）可以被歸類為「光源」嗎？",
+                options: [
+                    { textEn: "No, a mirror only reflects light from other sources.", textZh: "不能，鏡子僅僅是反射其他光源照過來的光。", correct: true },
+                    { textEn: "Yes, because it looks very bright under sunlight.", textZh: "可以，因為它在太陽底下看起來非常明亮。", correct: false },
+                    { textEn: "Yes, mirrors contain battery-powered lights inside.", textZh: "可以，鏡子內部裝有電池驅動的微型燈泡。", correct: false }
+                ],
+                tipEn: "Mirrors reflect light waves but do not generate light energy internally.",
+                tipZh: "鏡子自己不能產生光線，它只是改變了別處射來的光線方向，所以它不是光源（第 66 頁）。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "If you move a toy puppet further away from a torch, what happens to its shadow?",
+                qZh: "如果你將玩具木偶移到離手電筒「更遠」的地方，它的影子會發生什麼變化？",
+                options: [
+                    { textEn: "The shadow becomes smaller.", textZh: "影子會變小。", correct: true },
+                    { textEn: "The shadow becomes much larger.", textZh: "影子會變大許多。", correct: false },
+                    { textEn: "The shadow stays exactly the same.", textZh: "影子的大小會保持不變。", correct: false }
+                ],
+                tipEn: "Moving away from the light source lets more light pass around the object, reducing shadow size.",
+                tipZh: "手冊第 71 頁指出：當物體遠離（Further away）光源時，被它阻擋的光線減少，它的影子會「變小」。"
+            },
+            {
+                category: "Light & Shadow (單元 11)",
+                qEn: "What is the correct shape of an object's shadow on a flat screen?",
+                qZh: "投影在平坦螢幕上的物體影子，它的形狀有什麼特徵？",
+                options: [
+                    { textEn: "Its shape is completely random and never changes.", textZh: "它的形狀是完全隨機的，且永不改變。", correct: false },
+                    { textEn: "Its shape is similar to the shape of the object.", textZh: "影子的形狀與該物體的形狀相似。", correct: true },
+                    { textEn: "It is always a perfect circular shadow.", textZh: "不論是什麼物體，其影子永遠是完美的圓形。", correct: false }
+                ],
+                tipEn: "Shadow shapes mirror the contours of the opaque object that blocks the light.",
+                tipZh: "因為光沿直線傳播，所以當物體阻擋光線時，在後方形成的影子形狀與物體的外形輪廓相似（第 68 頁）。"
+            },
 
-            // --- Unit 12: Day and Night (35-40) ---
+            // --- Unit 12: Day and Night (55-60) ---
             {
                 category: "Day & Night (單元 12)",
                 qEn: "Why is Tsing Ma Bridge a popular place to watch the sunset?",
@@ -1432,24 +1672,23 @@
 
 
         // ==========================================
-        // MODULE: QUIZ (RANDOM SHUFFLE 10 FROM 40 POOL)
+        // MODULE: QUIZ
         // ==========================================
         let currentQuizDeck = [];
         let currentQuestionIdx = 0;
         let isQuestionAnswered = false;
 
         function initQuiz() {
-            // Shuffle the 40-question pool and select exactly 10 questions for a solid gameplay loop
             currentQuizDeck = JSON.parse(JSON.stringify(quizQuestions))
                 .sort(() => Math.random() - 0.5)
-                .slice(0, 10); 
+                .slice(0, 10); // Select exactly 10 questions for a solid gameplay loop
             currentQuestionIdx = 0;
             renderQuestion();
         }
 
         function shuffleAndRestartQuiz() {
             initQuiz();
-            showToast("🔄 Shuffled 10 questions from 40 pool! / 已從 40 題庫中重新隨機抽出 10 題！", "⚡");
+            showToast("🔄 Shuffled & Restarted! / 題目庫已隨機重新刷新！", "⚡");
         }
 
         function renderQuestion() {
